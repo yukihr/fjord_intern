@@ -7,7 +7,7 @@ activate :syntax
 
 activate :blog do |blog|
   #blog.prefix = "blog"
-  blog.permalink = ":year/:month/:day/:title"
+  blog.permalink = ":year/:month/:day/:title.html"
   blog.sources = "articles/:year-:month-:day-:title.html"
   blog.default_extension = ".md.erb"
   blog.taglink = "tags/:tag.html"
