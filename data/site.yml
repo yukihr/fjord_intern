@@ -39,13 +39,13 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name: yukihr
-disqus_identifier_url: http://yukihr.github.io/intern_fjord
+disqus_short_name: yukihrfjord
+disqus_identifier_url: http://yukihr.github.io/fjord_intern
 disqus_show_comment_count: true
 
 # Google Analytics
-google_analytics_tracking_id: UA-43857135-1
-google_analytics_domain: yukihr.github.io
+google_analytics_tracking_id:
+google_analytics_domain:
 
 # Facebook Like
 facebook_like: true
