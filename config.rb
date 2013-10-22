@@ -9,17 +9,17 @@ activate :blog do |blog|
   #blog.prefix = "blog"
   blog.permalink = ":year/:month/:day/:title"
   blog.sources = "articles/:year-:month-:day-:title.html"
-  #blog.taglink = "tags/:tag.html"
+  blog.default_extension = ".md.erb"
+  blog.taglink = "tags/:tag.html"
   blog.layout = "_layouts/article"
   # blog.summary_separator = /(READMORE)/
   # blog.summary_length = 120
   blog.year_link = ":year.html"
   blog.month_link = ":year/:month.html"
   blog.day_link = ":year/:month/:day.html"
-  blog.default_extension = ".md.erb"
 
-  blog.tag_template = "blog/tag.html"
-  blog.calendar_template = "blog/calendar.html"
+  blog.tag_template = "tag.html"
+  blog.calendar_template = "calendar.html"
 
   blog.paginate = false
   # blog.per_page = 12
