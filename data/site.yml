@@ -1,0 +1,61 @@
+title: yukihrのfjordインターン日記
+description: yukihrがfjordさんでのインターンをゆるゆると綴ります。
+lead: <a href="//twitter.com/yukihr">yukihr</a>が<a href="//fjord.jp">fjord</a>での<a href="//256interns.com">インターン</a>をゆるーく綴ります。
+baseurl: /intern_fjord/
+url: http://yukihr.github.io/intern_fjord
+author:
+  name: yukihiro hara
+  email: yukihr@gmail.com
+
+# Github repositories
+github_user: yukihr
+github_repo_count: 0
+github_show_profile_link: false
+github_skip_forks: true
+
+# Twitter
+twitter_user: yukihr
+twitter_tweet_count: 4
+twitter_show_replies: false
+twitter_follow_button: true
+twitter_show_follower_count: false
+twitter_tweet_button: true
+
+# Google +1
+google_plus_one: true
+google_plus_one_size: medium
+
+# Google Plus Profile
+# Hidden: No visible button, just add author information to search results
+googleplus_user:
+googleplus_hidden: false
+
+# Pinboard
+pinboard_user:
+pinboard_count: 3
+
+# Delicious
+delicious_user:
+delicious_count: 3
+
+# Disqus Comments
+disqus_short_name: yukihr
+disqus_identifier_url: http://yukihr.github.io/intern_fjord
+disqus_show_comment_count: true
+
+# Google Analytics
+google_analytics_tracking_id: UA-43857135-1
+google_analytics_domain: yukihr.github.io
+
+# Facebook Like
+facebook_like: true
+facebook_like_app_id: 212934732101925 # Octopress?
+
+# Hatena Bookmark
+hatebu: true
+
+# Feedly Button
+feedly_button: true
+
+# Amazon Affiliate
+amazon_id: yukihr-22
