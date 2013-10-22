@@ -1,8 +1,8 @@
 title: yukihrのfjordインターン日記
 description: yukihrがfjordさんでのインターンをゆるゆると綴ります。
 lead: <a href="//twitter.com/yukihr">yukihr</a>が<a href="//fjord.jp">fjord</a>での<a href="//256interns.com">インターン</a>をゆるーく綴ります。
-baseurl: /intern_fjord/
-url: http://yukihr.github.io/intern_fjord
+baseurl: /fjord_intern/
+url: http://yukihr.github.io/fjord_intern
 author:
   name: yukihiro hara
   email: yukihr@gmail.com
