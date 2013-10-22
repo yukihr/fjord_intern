@@ -84,6 +84,9 @@ module Helpers
 EOT
     tag
   end
+  def first_day
+    Time.parse(data.site.first_day.to_s).to_datetime
+  end
 end
 helpers Helpers
 
