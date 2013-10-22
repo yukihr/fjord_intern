@@ -1,0 +1,127 @@
+
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="description" content="yukihrがfjordさんでのインターンをゆるゆると綴ります。" />
+    <title>yukihrのfjordインターン日記</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="brand-name">yukihrのfjordインターン日記<a href="/fjord_intern/">■</a></h1>
+      <p class="lead"><a href="//twitter.com/yukihr">yukihr</a>が<a href="//fjord.jp">fjord</a>での<a href="//256interns.com">インターン</a>をゆるーく綴ります。</p>
+    </header>
+
+    <hr/>
+    
+    <div id="main" role="main">
+      
+<article class="article" itemscope itemtype="http://schema.org/Article">
+  
+    <header>
+      <h1 class="title" itemprop="name">
+        初日・・・。HTMLのマークアップ
+      </h1>
+      <div class="meta">
+        <time class="date" itemprop="datePublished" content="2013-10-21T00:00:00+09:00" datetime="2013-10-21T00:00:00+09:00" pubdate>
+  <span class="year">2013</span>-<span class="month">10</span>-<span class="day">21</span>
+</time>
+/
+        <span>1日目</span>/
+        <span>1週目・学習週</span>
+
+        
+          <a class="comment" href="#disqus_thread"><span>コメント</span></a>
+        
+      </div>
+    </header>
+  
+
+  <div class="body markdown" itemprop="articleBody"><p>今日はfjordさんでのインターン初日でした。
+（ブログ書いてるのが次の日になるので、正確には昨日です。）</p>
+
+<p>今日は初日につきもののいろいろな雑務と、HTMLマークアップの課題をやりました。</p>
+
+<p><a href="http://256interns.com/practices/53">http://256interns.com/practices/53</a></p>
+
+<p>HTMLのマークアップって奥が深いですよね。これまでなあなあでなんとなくやってたんですが、改めて課題ページの資料を見ると、正しくマークアップすることの重要さが身にしみました。HTML5でいろんなタグが増えてマークアップも大変になったなあと思う反面、ウェブページの情報をわかり易く整理できるのかなー、などと思ったりしています。</p>
+
+<p>で、提出した課題がこれになります。</p>
+
+<p><a href="http://gist.github.com/yukihr/7080604">http://gist.github.com/yukihr/7080604</a></p>
+
+<p>勉強になったなあ、と思ったのが <code>section</code> タグの使い方でした。今までは <code>div</code> の代わりくらいにしか思ってなかったんですが、きちんと情報の役割を明示するのに見出しタグをちゃんとつけて使うことを意識してみました。あと、材料のマークアップに <code>dl</code> を使ってますが、これは <code>table</code> のほうがいいのかなーと悩みました。どっちがいいんだろう？</p>
+
+<p>そんなこんなで初日の課題の終了です。</p>
+
+<p>あとは、<a href="http://kowabana.jp">kowabana</a>のすごくきれいなソースを拝見しておおーってなったり、夕方くらいから、<a href="http://tsukurusha.com">つくる社</a>の方々が来られて、ウェブサービスのいろんな話を聞くことができてとても勉強になりました。</p>
+</div>
+
+  
+    <section>
+      <div class="article-tag">
+        <h2>タグ</h2>
+        <ul class="tags horizontal">
+  
+    <li><a href="/tags/html.html">HTML</a></li>
+  
+    <li><a href="/tags/markup.html">markup</a></li>
+  
+</ul>
+
+      </div>
+    </section>
+  
+
+  
+    <section>
+      <h2>コメント</h2>
+      <div id="disqus_thread" aria-live="polite">
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+    </section>
+  
+
+</article>
+
+
+    </div>
+
+      <script type="text/javascript">
+    var disqus_shortname = 'yukihrfjord';
+    
+      
+      
+      var disqus_identifier = 'http://yukihr.github.io/fjord_intern/2013/10/21/first-day-html-markup';
+      var disqus_url = 'http://yukihr.github.io/fjord_intern/2013/10/21/first-day-html-markup';
+      var disqus_script = 'embed.js';
+    
+    (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+  </script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=212934732101925";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Blog Name</title>
+  <subtitle>Blog subtitle</subtitle>
+  <id>http://blog.url.com/</id>
+  <link href="http://blog.url.com/"/>
+  <link href="http://blog.url.com/feed.xml" rel="self"/>
+  <updated>2013-10-21T15:00:00Z</updated>
+  <author>
+    <name>Blog Author</name>
+  </author>
+  <entry>
+    <title>ブログづくり</title>
+    <link rel="alternate" href="http://blog.url.com/2013/10/22/create-intern-blog"/>
+    <id>http://blog.url.com/2013/10/22/create-intern-blog</id>
+    <published>2013-10-21T15:00:00Z</published>
+    <updated>2013-10-22T18:23:54+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;fjordさんのインターン(256インターン)で特徴的なのが、blogでその日やったことを報告するっていうことですね。とてもオープンでいいなあ、と思います。本当は昨日のうちにブログ書きたかったんですが、自分の元からあるブログに書くか新しいブログをつくるかで悩んで、結局今日になりました。&lt;/p&gt;
+
+&lt;p&gt;課題：&lt;a href="http://256interns.com/practices/130"&gt;http://256interns.com/practices/130&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;普通にブログ書いてもいいんですが、せっかくなのでインターンのことがうまく伝わるような感じにしたいなあ、と思っていたところ、Facebookのタイムラインのような形でブログの記事をレイアウトしたら面白いんじゃね、というようなことを思いつきブログをマークアップしてみました。デザインはCSSの課題をやってからにします・・・。&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>初日・・・。HTMLのマークアップ</title>
+    <link rel="alternate" href="http://blog.url.com/2013/10/21/first-day-html-markup"/>
+    <id>http://blog.url.com/2013/10/21/first-day-html-markup</id>
+    <published>2013-10-20T15:00:00Z</published>
+    <updated>2013-10-22T18:10:00+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;今日はfjordさんでのインターン初日でした。
+（ブログ書いてるのが次の日になるので、正確には昨日です。）&lt;/p&gt;
+
+&lt;p&gt;今日は初日につきもののいろいろな雑務と、HTMLマークアップの課題をやりました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://256interns.com/practices/53"&gt;http://256interns.com/practices/53&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;HTMLのマークアップって奥が深いですよね。これまでなあなあでなんとなくやってたんですが、改めて課題ページの資料を見ると、正しくマークアップすることの重要さが身にしみました。HTML5でいろんなタグが増えてマークアップも大変になったなあと思う反面、ウェブページの情報をわかり易く整理できるのかなー、などと思ったりしています。&lt;/p&gt;
+
+&lt;p&gt;で、提出した課題がこれになります。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://gist.github.com/yukihr/7080604"&gt;http://gist.github.com/yukihr/7080604&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;勉強になったなあ、と思ったのが &lt;code&gt;section&lt;/code&gt; タグの使い方でした。今までは &lt;code&gt;div&lt;/code&gt; の代わりくらいにしか思ってなかったんですが、きちんと情報の役割を明示するのに見出しタグをちゃんとつけて使うことを意識してみました。あと、材料のマークアップに &lt;code&gt;dl&lt;/code&gt; を使ってますが、これは &lt;code&gt;table&lt;/code&gt; のほうがいいのかなーと悩みました。どっちがいいんだろう？&lt;/p&gt;
+
+&lt;p&gt;そんなこんなで初日の課題の終了です。&lt;/p&gt;
+
+&lt;p&gt;あとは、&lt;a href="http://kowabana.jp"&gt;kowabana&lt;/a&gt;のすごくきれいなソースを拝見しておおーってなったり、夕方くらいから、&lt;a href="http://tsukurusha.com"&gt;つくる社&lt;/a&gt;の方々が来られて、ウェブサービスのいろんな話を聞くことができてとても勉強になりました。&lt;/p&gt;
+</content>
+  </entry>
+</feed>
