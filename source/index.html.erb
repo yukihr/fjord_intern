@@ -25,7 +25,7 @@ per_page: 10
     <h3><%= date.strftime('%m月') %></h3>
   <% end %>
   <% if new_cweek %>
-    <h4>（<%= weeks_from_first(date) %>週目・<%= (weeks_from_first(date).odd? ? '学習' : '作業') %>週）</h4>
+    <h4>（<%= partial 'intern_week', locals: {date: date} %>）</h4>
   <% end %>
 
   <% if new_section %>
