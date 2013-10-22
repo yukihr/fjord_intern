@@ -16,7 +16,7 @@
         <%= partial "date", locals: { date: article.date } %>
 
         <% if data.site.disqus_short_name and current_article.data.comments != false and data.site.disqus_show_comment_count == true %>
-          <%= link_to "<span class=\"glyphicon glyphicon-comment\"></span>", "#disqus_thread", class: "comment"%>
+          <%= link_to "<span>コメント</span>", "#disqus_thread", class: "comment"%>
         <% end %>
       </div>
     </header>
