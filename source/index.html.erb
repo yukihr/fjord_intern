@@ -14,10 +14,6 @@ per_page: 10
   <% new_cweek = true if !prev_date || prev_date.cweek != date.cweek %>
   <% new_section = true if new_year || new_month || new_cweek %>
 
-  <% years_from_first = date.year - first_day.year %>
-  <% weeks_from_first = years_from_first * 53 + date.cweek - first_day.cweek + 1 %>
-  <% days_from_first = (date - first_day).to_i + 1 %>
-
   <% if !i.zero? && new_section %>
     </ul>
   <% end %>
@@ -29,7 +25,7 @@ per_page: 10
     <h3><%= date.strftime('%m月') %></h3>
   <% end %>
   <% if new_cweek %>
-    <h4>（<%= weeks_from_first %>週目・<%= (weeks_from_first.odd? ? '学習' : '作業') %>週）</h4>
+    <h4>（<%= weeks_from_first(date) %>週目・<%= (weeks_from_first(date).odd? ? '学習' : '作業') %>週）</h4>
   <% end %>
 
   <% if new_section %>
@@ -39,7 +35,7 @@ per_page: 10
   <li>
     <span class="date"><%= date.strftime('%e日') %></span>
     <span> / </span>
-    <span class="day-period"><%= days_from_first %>日目</span>
+    <span class="day-period"><%= days_from_first(date) %>日目</span>
     <%= link_to article.title, article %>
   </li>
 

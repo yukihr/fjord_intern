@@ -87,6 +87,15 @@ EOT
   def first_day
     Time.parse(data.site.first_day.to_s).to_datetime
   end
+  def years_from_first(date)
+    date.year - first_day.year
+  end
+  def weeks_from_first(date)
+    years_from_first(date) * 53 + date.cweek - first_day.cweek + 1
+  end
+  def days_from_first(date)
+    (date - first_day).to_i + 1
+  end
 end
 helpers Helpers
 
