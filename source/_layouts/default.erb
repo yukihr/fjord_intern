@@ -10,10 +10,12 @@
     <header>
       <h1><%= data.site.title %></h1>
       <p class="lead"><%= data.site.lead %></p>
-    <header>
+    </header>
     
     <div id="main" role="main">
       <%= yield %>
     </div>
+
+    <%= partial "after_footer" %>
   </body>
 </html>

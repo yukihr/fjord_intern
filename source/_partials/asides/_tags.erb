@@ -1,0 +1,6 @@
+<h3>Tags</h3>
+<ul class="tags horizontal">
+  <% blog.tags.each do |tag, articles| %>
+    <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</li>
+  <% end %>
+</ul>

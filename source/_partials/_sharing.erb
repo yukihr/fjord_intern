@@ -1,0 +1,22 @@
+<div class="sharing">
+  <% if data.site.twitter_tweet_button %>
+    <div class="twitter">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= data.site.url %><%= current_page.url %>" data-lang="ja">ツイート</a>
+    </div>
+  <% end %>
+  <% if data.site.google_plus_one %>
+    <div class="gplusone">
+      <div class="g-plusone" data-size="<%= data.site.google_plus_one_size %>" data-width="120" data-href="<%= data.site.url %><%= current_page.url %>"></div>
+    </div>
+  <% end %>
+  <% if data.site.facebook_like %>
+    <div class="fblike">
+      <div class="fb-like" data-href="<%= data.site.url %><%= current_page.url %>" data-send="false" data-show-faces="false" data-layout="button_count" data-width="100"></div>
+    </div>
+  <% end %>
+  <% if data.site.hatebu %>
+    <div class="hatebu">
+      <a href="<%= data.site.url %><%= current_page.url %>" class="hatena-bookmark-button" data-hatena-bookmark-title="<%= current_page.title %>" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+    </div>
+  <% end %>
+</div>

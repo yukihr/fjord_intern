@@ -1,0 +1,6 @@
+<h3>By Year</h3>
+<ul class="horizontal">
+  <% blog.articles.group_by {|a| a.date.year }.each do |year, articles| %>
+    <li><%= link_to year, blog_year_path(year) %> (<%= articles.size %>)</a></li>
+<% end %>
+</ul>
