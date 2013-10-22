@@ -5,18 +5,18 @@ per_page: 10
 ---
 <% require 'date' %>
 
-<% FIRST_DAY = DateTime.new(2013,10,21,0,0,0) %>
+<% FIRST_DAY = Time.parse('2013-10-21').to_datetime %>
 
 <% prev_date = nil %>
 <% page_articles.each_with_index do |article, i| %>
-  <% date = DateTime.parse(article.date.to_s) %>
+  <% date = article.date.to_datetime %>
 
   <% new_year = true if !prev_date || prev_date.year != date.year %>
   <% new_month = true if !prev_date || prev_date.month != date.month %>
   <% new_cweek = true if !prev_date || prev_date.cweek != date.cweek %>
   <% new_section = true if new_year || new_month || new_cweek %>
 
-  <% years_from_first = article.date.year - FIRST_DAY.year %>
+  <% years_from_first = date.year - FIRST_DAY.year %>
   <% weeks_from_first = years_from_first * 53 + date.cweek - FIRST_DAY.cweek + 1 %>
   <% days_from_first = (date - FIRST_DAY).to_i + 1 %>
 
