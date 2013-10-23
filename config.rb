@@ -4,6 +4,7 @@
 Time.zone = "Tokyo"
 
 activate :syntax
+set :relative_links, true
 
 activate :blog do |blog|
   #blog.prefix = "blog"
