@@ -1,5 +1,5 @@
 <ul class="tags horizontal">
   <% tags.each do |tag| %>
-    <li><%= link_to tag, tag_path(tag) %></li>
+    <li><%= link_to tag, tag_path(tag), relative: true %></li>
   <% end %>
 </ul>
