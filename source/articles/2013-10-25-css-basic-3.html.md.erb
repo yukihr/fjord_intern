@@ -1,0 +1,22 @@
+---
+title: CSSの基本3日目
+date: 2013-10-25 18:53 JST
+tags: css
+---
+[前回](http://yukihr.github.io/fjord_intern/2013/10/24/css-basic-reloaded.html)の続きです。というか、やっとCSSの基本終わりました。時間がかかった割になんか微妙なデザインで、デザイナーさんの凄さを改めて感じます・・・。
+
+[提出課題](http://yukihr.github.io/fjord_intern-practice54/)
+
+とはいえ、学べたことはいくつかありました。書き出してみます。
+
+* [Bootstrapでクラス属性を使わずに、mixinでGridを構築できる](http://getbootstrap.com/css/#grid-less)
+
+    クラスに属性を色々付けたくない時に便利。今回はHTMLをなるべくいじらずに済ませたかったので、これを使いました。
+    
+* Grunt.jsは便利だけど、Middlemanも捨てがたい。
+    
+    [Grunt.jsのタスク](https://github.com/yukihr/fjord_intern-practice54/blob/gh-pages/Gruntfile.coffee)を書いて、SassからCSSの自動コンパイルやライブリロードをしてたんですが、よく考えるとこれってMiddlemanでもできるんですよね。MiddlemanだとCSSのリロードではページ全体ではなくCSSだけが読み込まれるので、軽くていい感じです。
+
+* CSSのGrid Columnに使ってる要素に横marginとpaddingを合わせて指定すると、幅が想定よりも長くなる(間違ってるかも)。
+
+    しっかりと検証してはないんですが、marginとpaddingを使って%で幅指定すると計算よりも広くなってしまいました。BootstrapのGridもpaddingだけを使ってますね。これは何が原因なんだろう。要素間に幅を取りたい場合はカラムの中にもう一つ要素をつくるのが良いようです。
