@@ -5,10 +5,38 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-10-23T15:00:00Z</updated>
+  <updated>2013-10-25T09:53:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>CSSの基本3日目</title>
+    <link rel="alternate" href="http://blog.url.com/2013/10/25/css-basic-3.html"/>
+    <id>http://blog.url.com/2013/10/25/css-basic-3.html</id>
+    <published>2013-10-25T09:53:00Z</published>
+    <updated>2013-10-25T19:16:29+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://yukihr.github.io/fjord_intern/2013/10/24/css-basic-reloaded.html"&gt;前回&lt;/a&gt;の続きです。というか、やっとCSSの基本終わりました。時間がかかった割になんか微妙なデザインで、デザイナーさんの凄さを改めて感じます・・・。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://yukihr.github.io/fjord_intern-practice54/"&gt;提出課題&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;とはいえ、学べたことはいくつかありました。書き出してみます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="http://getbootstrap.com/css/#grid-less"&gt;Bootstrapでクラス属性を使わずに、mixinでGridを構築できる&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;クラスに属性を色々付けたくない時に便利。今回はHTMLをなるべくいじらずに済ませたかったので、これを使いました。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Grunt.jsは便利だけど、Middlemanも捨てがたい。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/yukihr/fjord_intern-practice54/blob/gh-pages/Gruntfile.coffee"&gt;Grunt.jsのタスク&lt;/a&gt;を書いて、SassからCSSの自動コンパイルやライブリロードをしてたんですが、よく考えるとこれってMiddlemanでもできるんですよね。MiddlemanだとCSSのリロードではページ全体ではなくCSSだけが読み込まれるので、軽くていい感じです。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;CSSのGrid Columnに使ってる要素に横marginとpaddingを合わせて指定すると、幅が想定よりも長くなる(間違ってるかも)。&lt;/p&gt;
+
+&lt;p&gt;しっかりと検証してはないんですが、marginとpaddingを使って%で幅指定すると計算よりも広くなってしまいました。BootstrapのGridもpaddingだけを使ってますね。これは何が原因なんだろう。要素間に幅を取りたい場合はカラムの中にもう一つ要素をつくるのが良いようです。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>CSSの基礎2日目</title>
     <link rel="alternate" href="http://blog.url.com/2013/10/24/css-basic-reloaded.html"/>
