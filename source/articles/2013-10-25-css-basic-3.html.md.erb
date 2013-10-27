@@ -17,6 +17,6 @@ tags: css
     
     [Grunt.jsのタスク](https://github.com/yukihr/fjord_intern-practice54/blob/gh-pages/Gruntfile.coffee)を書いて、SassからCSSの自動コンパイルやライブリロードをしてたんですが、よく考えるとこれってMiddlemanでもできるんですよね。MiddlemanだとCSSのリロードではページ全体ではなくCSSだけが読み込まれるので、軽くていい感じです。
 
-* CSSのGrid Columnに使ってる要素に横marginとpaddingを合わせて指定すると、幅が想定よりも長くなる(間違ってるかも)。
-
-    しっかりと検証してはないんですが、marginとpaddingを使って%で幅指定すると計算よりも広くなってしまいました。BootstrapのGridもpaddingだけを使ってますね。これは何が原因なんだろう。要素間に幅を取りたい場合はカラムの中にもう一つ要素をつくるのが良いようです。
+* <del>CSSのGrid Columnに使ってる要素に横marginとpaddingを合わせて指定すると、幅が想定よりも長くなる(間違ってるかも)。</del>
+     <del>しっかりと検証してはないんですが、marginとpaddingを使って%で幅指定すると計算よりも広くなってしまいました。BootstrapのGridもpaddingだけを使ってますね。これは何が原因なんだろう。要素間に幅を取りたい場合はカラムの中にもう一つ要素をつくるのが良いようです。</del>
+    -> BootstrapのGridはカラム間にマージンが取れるような仕組みになってないんですね。カラム間にPadding,Margin両方取れるGrid Mixinライブラリ書いたら需要あるかな。ないだろうな・・・。
