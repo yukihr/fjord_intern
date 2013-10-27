@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/10/25/css-basic-3.html"/>
     <id>http://blog.url.com/2013/10/25/css-basic-3.html</id>
     <published>2013-10-25T09:53:00Z</published>
-    <updated>2013-10-25T19:16:29+09:00</updated>
+    <updated>2013-10-27T13:05:11+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -31,9 +31,10 @@
 &lt;li&gt;&lt;p&gt;Grunt.jsは便利だけど、Middlemanも捨てがたい。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="https://github.com/yukihr/fjord_intern-practice54/blob/gh-pages/Gruntfile.coffee"&gt;Grunt.jsのタスク&lt;/a&gt;を書いて、SassからCSSの自動コンパイルやライブリロードをしてたんですが、よく考えるとこれってMiddlemanでもできるんですよね。MiddlemanだとCSSのリロードではページ全体ではなくCSSだけが読み込まれるので、軽くていい感じです。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;CSSのGrid Columnに使ってる要素に横marginとpaddingを合わせて指定すると、幅が想定よりも長くなる(間違ってるかも)。&lt;/p&gt;
+&lt;li&gt;&lt;del&gt;CSSのGrid Columnに使ってる要素に横marginとpaddingを合わせて指定すると、幅が想定よりも長くなる(間違ってるかも)。&lt;/del&gt;
 
-&lt;p&gt;しっかりと検証してはないんですが、marginとpaddingを使って%で幅指定すると計算よりも広くなってしまいました。BootstrapのGridもpaddingだけを使ってますね。これは何が原因なんだろう。要素間に幅を取りたい場合はカラムの中にもう一つ要素をつくるのが良いようです。&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;del&gt;しっかりと検証してはないんですが、marginとpaddingを使って%で幅指定すると計算よりも広くなってしまいました。BootstrapのGridもpaddingだけを使ってますね。これは何が原因なんだろう。要素間に幅を取りたい場合はカラムの中にもう一つ要素をつくるのが良いようです。&lt;/del&gt;
+-&gt; BootstrapのGridはカラム間にマージンが取れるような仕組みになってないんですね。カラム間にPadding,Margin両方取れるGrid Mixinライブラリ書いたら需要あるかな。ないだろうな・・・。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
