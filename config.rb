@@ -48,6 +48,8 @@ end
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 
+require "holiday_jp"
+
 module Helpers
   def gist(id, filename=nil)
     "<script src=\"https://gist.github.com/#{id}.js#{'?file=' + filename if filename}\"></script>"
@@ -95,7 +97,9 @@ EOT
     years_from_first(date) * 53 + date.cweek - first_day.cweek + 1
   end
   def days_from_first(date)
-    (date - first_day).to_i + 1
+    holidays = HolidayJp.between(first_day, date)
+    weekends = (first_day..date).to_a.select {|k| [0,6].include?(k.wday)}
+    (date - first_day).to_i - holidays.length - weekends.length + 1
   end
 end
 helpers Helpers

@@ -11,3 +11,5 @@ gem "middleman-syntax", "~> 1.2.0"
 gem "builder", "~> 3.0"
 
 gem "redcarpet", "~> 3.0.0"
+
+gem "holiday_jp", "~> 0.3.1"
