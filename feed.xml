@@ -5,10 +5,33 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-10-30T05:35:00Z</updated>
+  <updated>2013-11-01T07:55:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>怖話の作業をやっています</title>
+    <link rel="alternate" href="http://blog.url.com/2013/11/01/kowobana-work.html"/>
+    <id>http://blog.url.com/2013/11/01/kowobana-work.html</id>
+    <published>2013-11-01T07:55:00Z</published>
+    <updated>2013-11-02T00:49:49+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;RSpecの書き方よくわからないんですよねー、と相談したら解説書を@nomnelさんに教えていただきました！&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/everydayrails/rspec_rails_4"&gt;https://github.com/everydayrails/rspec_rails_4&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;昨日は、SassつかうならFoundationというフレームワークが良い、と@machidaさんに教えていただきました！&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://foundation.zurb.com"&gt;http://foundation.zurb.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;いまは、ViewとかHelperとか触ってます。
+あと、昨日初めてkowabanaに送ったPullReqがマージされました！わーい！&lt;/p&gt;
+
+&lt;p&gt;あとあと、kowabanaのPullReqに付けられたコメントの数々がすごい勉強になることに気づきました！&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>怖話の作業開始</title>
     <link rel="alternate" href="http://blog.url.com/2013/10/30/start-working-on-kowabana.html"/>
@@ -149,29 +172,6 @@ Fulcrum眺めてて、できそうなタスクをやってみました。
     <content type="html">&lt;p&gt;今日はCSSの基礎2日目ということで&lt;a href="../../../2013/10/23/css-basic.html"&gt;前回&lt;/a&gt;の続きをやっていました。SassとGruntを使っての環境構築に半日くらい時間がかかってしまい、CSSにとりかかるのが午後遅くになってしまいました。デザインは昨日のうちにだいたい決めてたんですが、なんだかんだで色々と時間がかかり、途中までしか出来てません＞＜ とりあえず、今日までのスクリーンショットをあげておきます。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="../../../assets/images/css.png"/&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>CSSの基礎にとりかかったものの・・・</title>
-    <link rel="alternate" href="http://blog.url.com/2013/10/23/css-basic.html"/>
-    <id>http://blog.url.com/2013/10/23/css-basic.html</id>
-    <published>2013-10-23T09:47:00Z</published>
-    <updated>2013-10-23T19:01:33+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;a href="http://256interns.com/practices/54"&gt;http://256interns.com/practices/54&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;今日はCSSの基礎にとりかかりました。一日あれば完了できるかなー、と思ってたんですが甘かった。。
-まず、デザインの基礎が全くないのでデザイン開始するにしてもどこから手をつけていいか分からず、四苦八苦ですorz&lt;/p&gt;
-
-&lt;p&gt;でも、課題からリンクされてる資料はとても勉強になりました。
-Reset CSSとかなんとなく使ったほうがいいんだろうなーくらいの意識だったんですが、その意味を理解すると重要性が分かりますね。&lt;/p&gt;
-
-&lt;p&gt;あと、配色については今までにもどうすればきれいな配色ができるのかいろいろ記事を見たこともあるんですが、未だにどうすればいいのかよくわかっていません。
-なにか本でも買って読むべきかも。&lt;/p&gt;
-
-&lt;p&gt;明日は成果物を出せるようにしたいと思います。sassとgrunt.jsを使ってみようと思ってます。&lt;/p&gt;
 </content>
   </entry>
 </feed>
