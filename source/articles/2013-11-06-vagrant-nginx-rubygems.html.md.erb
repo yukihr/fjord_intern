@@ -1,0 +1,99 @@
+---
+title: VagrantとNginxとRubygemsと
+date: 2013-11-06 23:48 JST
+tags: vagrant, nginx, rubygems
+---
+
+昨日は日記かけてませんでしたが、2回目の学習週ということでOSXにNginxインストールしたりしてました。が、どうやらDebianにインストールするのが正解だったみたいで今日はそのやり直しなどです。せっかくなので、Vagrantとかを使ってみた記録です。あと、初めてgemをリリースしました。
+
+<%= toc %>
+
+# Vagrant で Debian Wheezy
+
+* [Debian 7 (Wheezy) をVagrantで再現可能な開発環境としてMac上に構築 2013年版 - Qiita [キータ]](http://qiita.com/reoring/items/7a333d1cbea82044207e "Debian 7 (Wheezy) をVagrantで再現可能な開発環境としてMac上に構築 2013年版 - Qiita [キータ]")
+
+などを参考に進めてました。ただ、ググってるとすでにできてるboxファイルを配布していることがわかったのでそっちを使いました。
+
+というわけで、Mac(OSX Mavericks)にVagrantでDebian(wheezy)をインストールするメモです。
+
+## 手順
+
+1. まず、VirtualBoxのインストール。https://www.virtualbox.org/wiki/Downloads から、x86/amd64向けのイメージをダウンロードして、マウントしてインストール。
+
+2. 次に、Vagrantのインストール。http://downloads.vagrantup.com からイメージファイルをダウンロードして、マウントしてVagrantをインストール。
+
+3. 仮想マシンの準備。以下、"wheezy"は仮想マシンの名前なので、適当に変えて良い。
+
+    ```shell
+    $ vagrant box add wheezy https://dl.dropboxusercontent.com/u/197673519/debian-7.2.0.box
+    ```
+
+    このコマンドで、ウェブ上のboxファイル（VirtualBoxの仮想マシンとVagrantの設定をまとめたもの?）がダウンロードされて、VirtualBoxのマシンイメージが`~/.vagrant.d/boxes/wheezy`の中に展開される。ファイルは大きいのでちょっと時間がかかる。コーヒーでも飲んで待つ。ちなみに、Wheezy以外のboxイメージは http://www.vagrantbox.es にリストアップされている。
+
+4. 適当なディレクトリ(~/box等、なかったらつくる)に移動。
+
+5. 4.で移動したディレクトリで`$ vagrant init wheezy`とすると、Vagrantで仮想マシンを起動するための設定ファイルが展開される。これで準備完了。
+
+6. 同じディレクトリで`$ vagrant up`で仮想マシン起動
+
+7. `$ vagrant ssh`で仮想マシンにssh接続(login:vagrant, passwd:vagrant)
+
+8. `$ vagrant halt`で仮想マシンをシャットダウン
+
+## そのほか
+
+### IPアドレスを設定する（ホストと仮想マシンのプライベートネットワーク）
+
+* http://www.absolute-keitarou.net/blog/?p=579#IP
+* Mavericksで「Failed to create the host-only adapter」エラーが出る場合はVirtualBox再インストールで直った
+    * http://blog.fkoji.com/2013/10260009.html
+
+
+# Debian Wheezy で Nginx
+
+## 手順
+
+1. `$ apt-cache policy nginx` でaptのnginxバージョンをチェック-> 1.2とかなので、1.4を入れたい
+
+2. http://www.dotdeb.org/ で1.4のパッケージがホストされている (RedisやMySQLの新しいパッケージもホストされてて便利)ので http://www.dotdeb.org/instructions/ に従ってリポジトリをaddして、`$ sudo apt-get install nginx`
+
+## 操作方法
+
+* `$ sudo nginx`でサーバスタート
+* `$ sudo nginx -s stop`でサーバ止める
+* `$ sudo nginx -s reload`で設定ロード
+
+## 設定
+
+* 設定は`/etc/nginx`以下
+* 独自設定は`/etc/nginx/conf.d/*.conf`
+* サイト設定は`/etc/nginx/sites-enabled/*`
+
+
+# nyaaaaaというgemをリリースしました
+
+https://github.com/yukihr/nyaaaaa
+
+aの数は５つです！嫌な予感しかしねえ！
+
+## インストール
+
+```shell
+$ gem install nyaaaaa
+```
+
+## 使い方
+
+顧客の無理な要求に心がやさぐれた時、アサインされたプロジェクトが炎上必至で未来に絶望しか感じられない時などに、PCを床に叩きつける代わりに
+
+```shell
+$ nyaaaaa
+```
+
+とか打ってみてください。まあ、ちょっとは癒やされるんじゃないかな・・・。
+
+またひとつ、ネタgemで神聖なrubygems.orgが汚されました・・・。
+
+## 参考に
+* `bundler gem`でぐぐると、Bundlerでgemのひな形をつくって開発する方法が出てくる
+* CLIを作るときのhowto: http://www.michaelrigart.be/en/blog/a-simple-ruby-command-line-tool.html
