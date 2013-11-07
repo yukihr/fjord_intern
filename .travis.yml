@@ -1,0 +1,14 @@
+language: ruby
+rvm: 2.0.0
+before_script:
+  - '[ "$TRAVIS_BRANCH" == "master" ] && [ "$GH_TOKEN" ] && rake setup > /dev/null'
+script: rake build
+after_success:
+  - '[ "$TRAVIS_BRANCH" == "master" ] && [ "$GH_TOKEN" ] && rake publish > /dev/null'
+env:
+  global:
+    - GIT_COMMITTER_NAME="yukihiro hara"
+    - GIT_COMMITTER_EMAIL="yukihr@gmail.com"
+    - GIT_AUTHOR_NAME="yukihiro hara"
+    - GIT_AUTHOR_EMAIL="yukihr@gmail.com"
+    - secure: "YyOoc6mEDn7wQLnKFXK1/JiKSwFQ3rZ2FRKLD+Z3VR+6QE6AJjcSTHfMU0JdZ9PkJnUdhCAz+d+eEupoiiVtoKr5FBj13+POXtc7Bd4dJ55kDIFXis4ILzaxgExGgwCfmGGVPxe4tA+Rg+HJ9JzlQ489XibH4uG94MHHh3ximf0="
