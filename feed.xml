@@ -5,16 +5,40 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-11-06T14:48:00Z</updated>
+  <updated>2013-11-07T10:16:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>gitとhttp</title>
+    <link rel="alternate" href="http://blog.url.com/2013/11/07/git-http.html"/>
+    <id>http://blog.url.com/2013/11/07/git-http.html</id>
+    <published>2013-11-07T10:16:00Z</published>
+    <updated>2013-11-07T12:41:01+00:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;Git: &lt;a href="http://256interns.com/practices/48"&gt;http://256interns.com/practices/48&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;HTTP: &lt;a href="http://256interns.com/practices/15"&gt;http://256interns.com/practices/15&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;今日は、GitとHTTPをメインに進めていきました。
+いままで、なんとなくでやっていたところをしっかりと学ぶ感じです。&lt;/p&gt;
+
+&lt;p&gt;Gitは &lt;a href="http://k.swd.cc/learnGitBranching-ja/"&gt;http://k.swd.cc/learnGitBranching-ja/&lt;/a&gt; がすごいよかったです。
+こうやってビジュアル的に理解できると、後々記憶に残りそう。
+&lt;code&gt;$ show solution&lt;/code&gt;でカンニングできるので、わからない時につかいます。&lt;/p&gt;
+
+&lt;p&gt;明日からは、いよいよRails開発っぽいところに入っていきます。楽しみ。&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>VagrantとNginxとRubygemsと</title>
     <link rel="alternate" href="http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html"/>
     <id>http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html</id>
     <published>2013-11-06T14:48:00Z</published>
-    <updated>2013-11-07T00:49:17+09:00</updated>
+    <updated>2013-11-07T12:41:01+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -117,7 +141,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/01/kowobana-work.html"/>
     <id>http://blog.url.com/2013/11/01/kowobana-work.html</id>
     <published>2013-11-01T07:55:00Z</published>
-    <updated>2013-11-02T00:49:49+09:00</updated>
+    <updated>2013-11-07T12:41:01+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -140,7 +164,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/10/30/start-working-on-kowabana.html"/>
     <id>http://blog.url.com/2013/10/30/start-working-on-kowabana.html</id>
     <published>2013-10-30T05:35:00Z</published>
-    <updated>2013-10-31T14:42:48+09:00</updated>
+    <updated>2013-11-07T12:41:01+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -160,7 +184,7 @@ Fulcrum眺めてて、できそうなタスクをやってみました。
     <link rel="alternate" href="http://blog.url.com/2013/10/29/kowabana-fulcrum-get-cold.html"/>
     <id>http://blog.url.com/2013/10/29/kowabana-fulcrum-get-cold.html</id>
     <published>2013-10-28T15:00:00Z</published>
-    <updated>2013-10-30T11:35:36+09:00</updated>
+    <updated>2013-11-07T12:41:01+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -200,7 +224,7 @@ Fulcrum眺めてて、できそうなタスクをやってみました。
     <link rel="alternate" href="http://blog.url.com/2013/10/28/kowabana-test.html"/>
     <id>http://blog.url.com/2013/10/28/kowabana-test.html</id>
     <published>2013-10-28T01:47:00Z</published>
-    <updated>2013-10-28T19:39:50+09:00</updated>
+    <updated>2013-11-07T12:41:01+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -232,35 +256,6 @@ Fulcrum眺めてて、できそうなタスクをやってみました。
 &lt;h2 id="toc_2"&gt;PC(Safari7.0)&lt;/h2&gt;
 
 &lt;p&gt;(PCだけの改善点は特に見つかりませんでした。)&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>CSSの基本3日目</title>
-    <link rel="alternate" href="http://blog.url.com/2013/10/25/css-basic-3.html"/>
-    <id>http://blog.url.com/2013/10/25/css-basic-3.html</id>
-    <published>2013-10-25T09:53:00Z</published>
-    <updated>2013-10-27T13:05:11+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;a href="http://yukihr.github.io/fjord_intern/2013/10/24/css-basic-reloaded.html"&gt;前回&lt;/a&gt;の続きです。というか、やっとCSSの基本終わりました。時間がかかった割になんか微妙なデザインで、デザイナーさんの凄さを改めて感じます・・・。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://yukihr.github.io/fjord_intern-practice54/"&gt;提出課題&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;とはいえ、学べたことはいくつかありました。書き出してみます。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="http://getbootstrap.com/css/#grid-less"&gt;Bootstrapでクラス属性を使わずに、mixinでGridを構築できる&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;クラスに属性を色々付けたくない時に便利。今回はHTMLをなるべくいじらずに済ませたかったので、これを使いました。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Grunt.jsは便利だけど、Middlemanも捨てがたい。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://github.com/yukihr/fjord_intern-practice54/blob/gh-pages/Gruntfile.coffee"&gt;Grunt.jsのタスク&lt;/a&gt;を書いて、SassからCSSの自動コンパイルやライブリロードをしてたんですが、よく考えるとこれってMiddlemanでもできるんですよね。MiddlemanだとCSSのリロードではページ全体ではなくCSSだけが読み込まれるので、軽くていい感じです。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;CSSのGrid Columnに使ってる要素に横marginとpaddingを合わせて指定すると、幅が想定よりも長くなる(間違ってるかも)。&lt;/del&gt;
-
-&lt;p&gt;&lt;del&gt;しっかりと検証してはないんですが、marginとpaddingを使って%で幅指定すると計算よりも広くなってしまいました。BootstrapのGridもpaddingだけを使ってますね。これは何が原因なんだろう。要素間に幅を取りたい場合はカラムの中にもう一つ要素をつくるのが良いようです。&lt;/del&gt;
--&gt; BootstrapのGridはカラム間にマージンが取れるような仕組みになってないんですね。カラム間にPadding,Margin両方取れるGrid Mixinライブラリ書いたら需要あるかな。ないだろうな・・・。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
