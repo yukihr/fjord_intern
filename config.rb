@@ -88,6 +88,7 @@ EOT
     tag
   end
   def first_day
+    # To apply settings TimeZone
     Time.parse(data.site.first_day.to_s).to_datetime
   end
   def years_from_first(date)
@@ -98,6 +99,7 @@ EOT
   end
   def days_from_first(date)
     holidays = HolidayJp.between(first_day, date).map(&:date).map do |d|
+      # To apply settings TimeZone
       Time.parse(d.to_s).to_datetime
     end
     weekends = (first_day..date).to_a.select {|k| [0,6].include?(k.wday)}
