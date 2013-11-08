@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-08T10:18:21+00:00</updated>
+    <updated>2013-11-08T10:28:00+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -22,8 +22,8 @@
 
 &lt;p&gt;今日はTDDのプラクティスやりました。@t_wadaさんの講義すごくためになりました。&lt;/p&gt;
 
-&lt;p&gt;TDDで新しい言語を学ぶ話(&lt;a href="http://gihyo.jp/dev/serial/01/tdd/0016)%E3%80%81%E5%AE%9F%E8%B7%B5%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%81%84%E3%80%82"&gt;http://gihyo.jp/dev/serial/01/tdd/0016)、実践してみたい。&lt;/a&gt;
-テストコードの重複の話(&lt;a href="http://gihyo.jp/dev/serial/01/tdd/0020)%E3%82%82%E9%9D%A2%E7%99%BD%E3%81%8B%E3%81%A3%E3%81%9F%E3%81%A7%E3%81%99%E3%80%82"&gt;http://gihyo.jp/dev/serial/01/tdd/0020)も面白かったです。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://gihyo.jp/dev/serial/01/tdd/0016"&gt;TDDで新しい言語を学ぶ話&lt;/a&gt;、実践してみたい。
+&lt;a href="http://gihyo.jp/dev/serial/01/tdd/0020"&gt;テストコードの重複の話&lt;/a&gt;も面白かったです。&lt;/p&gt;
 
 &lt;p&gt;テストの粒度やモックの話など、考え始めるときりがないですが、そこがテストの面白さかなあーと思ったりしています。&lt;/p&gt;
 </content>
@@ -33,7 +33,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/07/git-http.html"/>
     <id>http://blog.url.com/2013/11/07/git-http.html</id>
     <published>2013-11-07T10:16:00Z</published>
-    <updated>2013-11-08T10:18:21+00:00</updated>
+    <updated>2013-11-08T10:28:00+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -57,7 +57,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html"/>
     <id>http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html</id>
     <published>2013-11-06T14:48:00Z</published>
-    <updated>2013-11-08T10:18:21+00:00</updated>
+    <updated>2013-11-08T10:28:00+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -160,7 +160,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/01/kowobana-work.html"/>
     <id>http://blog.url.com/2013/11/01/kowobana-work.html</id>
     <published>2013-11-01T07:55:00Z</published>
-    <updated>2013-11-08T10:18:21+00:00</updated>
+    <updated>2013-11-08T10:28:00+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -183,7 +183,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/10/30/start-working-on-kowabana.html"/>
     <id>http://blog.url.com/2013/10/30/start-working-on-kowabana.html</id>
     <published>2013-10-30T05:35:00Z</published>
-    <updated>2013-11-08T10:18:21+00:00</updated>
+    <updated>2013-11-08T10:28:00+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -203,7 +203,7 @@ Fulcrum眺めてて、できそうなタスクをやってみました。
     <link rel="alternate" href="http://blog.url.com/2013/10/29/kowabana-fulcrum-get-cold.html"/>
     <id>http://blog.url.com/2013/10/29/kowabana-fulcrum-get-cold.html</id>
     <published>2013-10-28T15:00:00Z</published>
-    <updated>2013-11-08T10:18:21+00:00</updated>
+    <updated>2013-11-08T10:28:00+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
