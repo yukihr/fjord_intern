@@ -97,8 +97,11 @@ EOT
     years_from_first(date) * 53 + date.cweek - first_day.cweek + 1
   end
   def days_from_first(date)
-    holidays = HolidayJp.between(first_day, date)
+    holidays = HolidayJp.between(first_day, date).map(&:date).map do |d|
+      Time.parse(d.to_s).to_datetime
+    end
     weekends = (first_day..date).to_a.select {|k| [0,6].include?(k.wday)}
+    weekends.reject! { |k| holidays.include?(k) } # weekends may contain holidays
     (date - first_day).to_i - holidays.length - weekends.length + 1
   end
 end
