@@ -14,7 +14,7 @@
       </h1>
       <div class="meta">
         <%= partial "date", locals: { date: article.date } %>/
-        <span><%= days_from_first(article.date.to_datetime) %>日目</span>/
+        <span><%= n_days_from_first(article.date.to_datetime) %>日目</span>/
         <%= partial 'intern_week', locals: {date: article.date.to_datetime} %>
         <% if data.site.disqus_short_name and current_article.data.comments != false and data.site.disqus_show_comment_count == true %>
           <%= link_to "<span>コメント</span>", "#disqus_thread", class: "comment"%>

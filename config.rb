@@ -91,13 +91,13 @@ EOT
     # To apply settings TimeZone
     Time.parse(data.site.first_day.to_s).to_datetime
   end
-  def years_from_first(date)
+  def n_years_from_first(date)
     date.year - first_day.year
   end
-  def weeks_from_first(date)
-    years_from_first(date) * 53 + date.cweek - first_day.cweek + 1
+  def n_weeks_from_first(date)
+    n_years_from_first(date) * 53 + date.cweek - first_day.cweek + 1
   end
-  def days_from_first(date)
+  def n_days_from_first(date)
     holidays = HolidayJp.between(first_day, date).map(&:date).map do |d|
       # To apply settings TimeZone
       Time.parse(d.to_s).to_datetime
