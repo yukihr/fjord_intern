@@ -97,14 +97,17 @@ EOT
   def n_weeks_from_first(date)
     n_years_from_first(date) * 53 + date.cweek - first_day.cweek + 1
   end
-  def n_days_from_first(date)
+  def days_from_first(date)
+    days = (first_day..date).to_a
     holidays = HolidayJp.between(first_day, date).map(&:date).map do |d|
       # To apply settings TimeZone
       Time.parse(d.to_s).to_datetime
     end
-    weekends = (first_day..date).to_a.select {|k| [0,6].include?(k.wday)}
-    weekends.reject! { |k| holidays.include?(k) } # weekends may contain holidays
-    (date - first_day).to_i - holidays.length - weekends.length + 1
+    weekends = days.select {|k| [0,6].include?(k.wday)} # SAT or SUN
+    days.reject { |k| weekends.include?(k) || holidays.include?(k) }
+  end
+  def n_days_from_first(date)
+    days_from_first(date).length
   end
 end
 helpers Helpers
