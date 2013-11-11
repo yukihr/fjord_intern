@@ -25,14 +25,14 @@
   
     <header>
       <h1 class="title" itemprop="name">
-        
+        active_decoratorを使ってみた
       </h1>
       <div class="meta">
-        <time class="date" itemprop="datePublished" content="2013-11-11T00:00:00+09:00" datetime="2013-11-11T00:00:00+09:00" pubdate>
+        <time class="date" itemprop="datePublished" content="2013-11-11T11:44:00+09:00" datetime="2013-11-11T11:44:00+09:00" pubdate>
   <span class="year">2013</span>-<span class="month">11</span>-<span class="day">11</span>
 </time>
 /
-        <span>14日目</span>/
+        <span>15日目</span>/
         <span>4週目・作業週</span>
 
         
@@ -42,35 +42,40 @@
     </header>
   
 
-  <div class="body markdown" itemprop="articleBody"><hr>
-
-<p>title: [rails]active_decoratorとか
-date: 2013-11-11 11:44 JST</p>
-
-<h2 id="toc_0">tags: rails</h2>
-
-<p>作業週の2週目です。
+  <div class="body markdown" itemprop="articleBody"><p>作業週の2週目です。
 パーシャルを共通化していろいろなモデルのビューから使えるように、というようなことをやっています。</p>
 
-<h2 id="toc_1">active_decoratorをつかってヘルパーをまとめるメモ</h2>
+<h2 id="toc_0">active_decoratorをつかってヘルパーをまとめるメモ</h2>
 
 <ul>
 <li><p><a title="active_decorator - よりよいView helperであるActiveDecoratorの使い方 - Qiita [キータ]" href="http://qiita.com/toyoshi/items/205f4006ea85e2919aad">active_decorator - よりよいView helperであるActiveDecoratorの使い方 - Qiita [キータ]</a></p></li>
 <li><p>モデル名とは別のdecoratorを作った時には、モデル用のdecoratorの<code>Module do .. end</code>内で、<code>include HogeHogeDecorator</code>とすればよい。</p></li>
 </ul>
 
-<h2 id="toc_2">JSのCacheのせいでJSイベントが２回実行されるのにハマった</h2>
+<h2 id="toc_1">JSのCacheのせいでJSイベントが２回実行されるのにハマった</h2>
 
 <ul>
 <li><a title="Rails 3.2 の development 環境で javascript が二重に実行されてしまうときの対処方法 - 彼女からは、おいちゃんと呼ばれています" href="http://blog.inouetakuya.info/entry/20120630/1341055121">Rails 3.2 の development 環境で javascript が二重に実行されてしまうときの対処方法 - 彼女からは、おいちゃんと呼ばれています</a></li>
 </ul>
 
-<h3 id="toc_3">対処法</h3>
+<h3 id="toc_2">対処法</h3>
 <pre class="highlight text">$ bundle exec rake assets:clean RAILS_ENV=development
 </pre>
 <p>でpublic/assetsをクリーン</p>
 </div>
 
+  
+    <section>
+      <div class="article-tag">
+        <h2>タグ</h2>
+        <ul class="tags horizontal">
+  
+    <li><a href="../../../tags/rails.html">rails</a></li>
+  
+</ul>
+
+      </div>
+    </section>
   
 
   
@@ -93,8 +98,8 @@ date: 2013-11-11 11:44 JST</p>
     
       
       
-      var disqus_identifier = 'http://yukihr.github.io/fjord_intern/2013/11/11/rails-active_decorator-polymorphic';
-      var disqus_url = 'http://yukihr.github.io/fjord_intern/2013/11/11/rails-active_decorator-polymorphic.html';
+      var disqus_identifier = 'http://yukihr.github.io/fjord_intern/2013/11/11/rails-active_decorator';
+      var disqus_url = 'http://yukihr.github.io/fjord_intern/2013/11/11/rails-active_decorator.html';
       var disqus_script = 'embed.js';
     
     (function () {
