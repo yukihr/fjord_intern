@@ -1,0 +1,26 @@
+---
+title: [rails]active_decoratorとか
+date: 2013-11-11 11:44 JST
+tags: rails
+---
+
+作業週の2週目です。
+パーシャルを共通化していろいろなモデルのビューから使えるように、というようなことをやっています。
+
+## active_decoratorをつかってヘルパーをまとめるメモ
+
+* [active_decorator - よりよいView helperであるActiveDecoratorの使い方 - Qiita [キータ]](http://qiita.com/toyoshi/items/205f4006ea85e2919aad "active_decorator - よりよいView helperであるActiveDecoratorの使い方 - Qiita [キータ]")
+
+* モデル名とは別のdecoratorを作った時には、モデル用のdecoratorの`Module do .. end`内で、`include HogeHogeDecorator`とすればよい。
+
+
+## JSのCacheのせいでJSイベントが２回実行されるのにハマった
+* [Rails 3.2 の development 環境で javascript が二重に実行されてしまうときの対処方法 - 彼女からは、おいちゃんと呼ばれています](http://blog.inouetakuya.info/entry/20120630/1341055121 "Rails 3.2 の development 環境で javascript が二重に実行されてしまうときの対処方法 - 彼女からは、おいちゃんと呼ばれています")
+    
+### 対処法
+
+```
+$ bundle exec rake assets:clean RAILS_ENV=development
+```
+
+でpublic/assetsをクリーン
