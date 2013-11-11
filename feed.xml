@@ -5,43 +5,36 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-11-10T15:00:00Z</updated>
+  <updated>2013-11-11T02:44:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
   <entry>
-    <title/>
+    <title>active_decorator</title>
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator-polymorphic.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator-polymorphic.html</id>
-    <published>2013-11-10T15:00:00Z</published>
-    <updated>2013-11-11T10:36:58+00:00</updated>
+    <published>2013-11-11T02:44:00Z</published>
+    <updated>2013-11-11T10:41:59+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;hr&gt;
-
-&lt;p&gt;title: [rails]active_decoratorとか
-date: 2013-11-11 11:44 JST&lt;/p&gt;
-
-&lt;h2 id="toc_0"&gt;tags: rails&lt;/h2&gt;
-
-&lt;p&gt;作業週の2週目です。
+    <content type="html">&lt;p&gt;作業週の2週目です。
 パーシャルを共通化していろいろなモデルのビューから使えるように、というようなことをやっています。&lt;/p&gt;
 
-&lt;h2 id="toc_1"&gt;active_decoratorをつかってヘルパーをまとめるメモ&lt;/h2&gt;
+&lt;h2 id="toc_0"&gt;active_decoratorをつかってヘルパーをまとめるメモ&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;a title="active_decorator - よりよいView helperであるActiveDecoratorの使い方 - Qiita [キータ]" href="http://qiita.com/toyoshi/items/205f4006ea85e2919aad"&gt;active_decorator - よりよいView helperであるActiveDecoratorの使い方 - Qiita [キータ]&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;モデル名とは別のdecoratorを作った時には、モデル用のdecoratorの&lt;code&gt;Module do .. end&lt;/code&gt;内で、&lt;code&gt;include HogeHogeDecorator&lt;/code&gt;とすればよい。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id="toc_2"&gt;JSのCacheのせいでJSイベントが２回実行されるのにハマった&lt;/h2&gt;
+&lt;h2 id="toc_1"&gt;JSのCacheのせいでJSイベントが２回実行されるのにハマった&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a title="Rails 3.2 の development 環境で javascript が二重に実行されてしまうときの対処方法 - 彼女からは、おいちゃんと呼ばれています" href="http://blog.inouetakuya.info/entry/20120630/1341055121"&gt;Rails 3.2 の development 環境で javascript が二重に実行されてしまうときの対処方法 - 彼女からは、おいちゃんと呼ばれています&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id="toc_3"&gt;対処法&lt;/h3&gt;
+&lt;h3 id="toc_2"&gt;対処法&lt;/h3&gt;
 &lt;pre class="highlight text"&gt;$ bundle exec rake assets:clean RAILS_ENV=development
 &lt;/pre&gt;
 &lt;p&gt;でpublic/assetsをクリーン&lt;/p&gt;
@@ -52,7 +45,7 @@ date: 2013-11-11 11:44 JST&lt;/p&gt;
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-11T10:36:58+00:00</updated>
+    <updated>2013-11-11T10:41:59+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -71,7 +64,7 @@ date: 2013-11-11 11:44 JST&lt;/p&gt;
     <link rel="alternate" href="http://blog.url.com/2013/11/07/git-http.html"/>
     <id>http://blog.url.com/2013/11/07/git-http.html</id>
     <published>2013-11-07T10:16:00Z</published>
-    <updated>2013-11-11T10:36:58+00:00</updated>
+    <updated>2013-11-11T10:41:59+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -95,7 +88,7 @@ date: 2013-11-11 11:44 JST&lt;/p&gt;
     <link rel="alternate" href="http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html"/>
     <id>http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html</id>
     <published>2013-11-06T14:48:00Z</published>
-    <updated>2013-11-11T10:36:58+00:00</updated>
+    <updated>2013-11-11T10:41:59+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -198,7 +191,7 @@ date: 2013-11-11 11:44 JST&lt;/p&gt;
     <link rel="alternate" href="http://blog.url.com/2013/11/01/kowobana-work.html"/>
     <id>http://blog.url.com/2013/11/01/kowobana-work.html</id>
     <published>2013-11-01T07:55:00Z</published>
-    <updated>2013-11-11T10:36:58+00:00</updated>
+    <updated>2013-11-11T10:41:59+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -221,7 +214,7 @@ date: 2013-11-11 11:44 JST&lt;/p&gt;
     <link rel="alternate" href="http://blog.url.com/2013/10/30/start-working-on-kowabana.html"/>
     <id>http://blog.url.com/2013/10/30/start-working-on-kowabana.html</id>
     <published>2013-10-30T05:35:00Z</published>
-    <updated>2013-11-11T10:36:58+00:00</updated>
+    <updated>2013-11-11T10:41:59+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
