@@ -1,0 +1,41 @@
+---
+title: リファクタリング、SQL left join、Rails Model Scope、ベンチマーク
+date: 2013-11-13 12:31 JST
+tags: rails
+---
+
+# リファクタリング
+
+先日書いた、ActiveDecoratorを使ったコードをリファクタリングしてみました。Moduleのメソッドに多態性をもたせるには、include元のクラスでメソッドを上書きするといいのかなあと、昨日思いつき・・・。
+
+
+# SQL left join
+
+> LEFT JOINとRIGHT JOINは、左右いずれかの表を優先させたいときに指定する。
+
+> * LEFT JOIN
+
+>     左側に指定された表のすべての行が表示される
+
+> * RIGHT JOIN
+
+>     右側に指定された表のすべての行が表示される
+
+from: http://www.pursue.ne.jp/jouhousyo/SQLDoc/select22.html
+
+
+# Rails Model Scope
+
+* [Ruby on Rails | scopeでModelに検索条件を定義 - tbpg’s programming memo](http://d.hatena.ne.jp/tbpg/20130805/1375711757 "Ruby on Rails | scopeでModelに検索条件を定義 - tbpg’s programming memo")
+
+* [Active Record Query Interface — Ruby on Rails Guides](http://guides.rubyonrails.org/active_record_querying.html#joining-tables "Active Record Query Interface — Ruby on Rails Guides")
+
+    `polymorpic`で関連付けたテーブルをjoinするにはSQL書かないとダメっぽい
+    * [ruby on rails - ActiveRecord - querying polymorphic associations - Stack Overflow](http://stackoverflow.com/questions/680141/activerecord-querying-polymorphic-associations "ruby on rails - ActiveRecord - querying polymorphic associations - Stack Overflow")
+
+    * [activerecord - Rails joins or preload belongs_to association from polymorphic model - Stack Overflow](http://stackoverflow.com/questions/5815139/rails-joins-or-preload-belongs-to-association-from-polymorphic-model "activerecord - Rails joins or preload belongs_to association from polymorphic model - Stack Overflow")
+
+
+# rails console でベンチマーク
+
+* [sql - How to get execution time in rails console? - Stack Overflow](http://stackoverflow.com/questions/3522250/how-to-get-execution-time-in-rails-console "sql - How to get execution time in rails console? - Stack Overflow")
