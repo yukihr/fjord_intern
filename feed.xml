@@ -5,16 +5,67 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-11-12T06:37:00Z</updated>
+  <updated>2013-11-13T03:31:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>リファクタリング、SQL left join、Rails Model Scope、ベンチマーク</title>
+    <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
+    <id>http://blog.url.com/2013/11/13/huga.html</id>
+    <published>2013-11-13T03:31:00Z</published>
+    <updated>2013-11-13T10:09:53+00:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h1 id="toc_0"&gt;リファクタリング&lt;/h1&gt;
+
+&lt;p&gt;先日書いた、ActiveDecoratorを使ったコードをリファクタリングしてみました。Moduleのメソッドに多態性をもたせるには、include元のクラスでメソッドを上書きするといいのかなあと、昨日思いつき・・・。&lt;/p&gt;
+
+&lt;h1 id="toc_1"&gt;SQL left join&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;LEFT JOINとRIGHT JOINは、左右いずれかの表を優先させたいときに指定する。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;LEFT JOIN&lt;/p&gt;
+
+&lt;p&gt;左側に指定された表のすべての行が表示される&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;RIGHT JOIN&lt;/p&gt;
+
+&lt;p&gt;右側に指定された表のすべての行が表示される&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;from: &lt;a href="http://www.pursue.ne.jp/jouhousyo/SQLDoc/select22.html"&gt;http://www.pursue.ne.jp/jouhousyo/SQLDoc/select22.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id="toc_2"&gt;Rails Model Scope&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a title="Ruby on Rails | scopeでModelに検索条件を定義 - tbpg’s programming memo" href="http://d.hatena.ne.jp/tbpg/20130805/1375711757"&gt;Ruby on Rails | scopeでModelに検索条件を定義 - tbpg’s programming memo&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a title="Active Record Query Interface — Ruby on Rails Guides" href="http://guides.rubyonrails.org/active_record_querying.html#joining-tables"&gt;Active Record Query Interface — Ruby on Rails Guides&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;polymorpic&lt;/code&gt;で関連付けたテーブルをjoinするにはSQL書かないとダメっぽい&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="ruby on rails - ActiveRecord - querying polymorphic associations - Stack Overflow" href="http://stackoverflow.com/questions/680141/activerecord-querying-polymorphic-associations"&gt;ruby on rails - ActiveRecord - querying polymorphic associations - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a title="activerecord - Rails joins or preload belongs_to association from polymorphic model - Stack Overflow" href="http://stackoverflow.com/questions/5815139/rails-joins-or-preload-belongs-to-association-from-polymorphic-model"&gt;activerecord - Rails joins or preload belongs_to association from polymorphic model - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="toc_3"&gt;rails console でベンチマーク&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="sql - How to get execution time in rails console? - Stack Overflow" href="http://stackoverflow.com/questions/3522250/how-to-get-execution-time-in-rails-console"&gt;sql - How to get execution time in rails console? - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>Android2.3 デフォルトブラウザでスクロールできなくなるバグ</title>
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-13T02:24:56+00:00</updated>
+    <updated>2013-11-13T10:09:53+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -34,7 +85,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-13T02:24:56+00:00</updated>
+    <updated>2013-11-13T10:09:53+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -65,7 +116,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-13T02:24:56+00:00</updated>
+    <updated>2013-11-13T10:09:53+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -84,7 +135,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/07/git-http.html"/>
     <id>http://blog.url.com/2013/11/07/git-http.html</id>
     <published>2013-11-07T10:16:00Z</published>
-    <updated>2013-11-13T02:24:56+00:00</updated>
+    <updated>2013-11-13T10:09:53+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -108,7 +159,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html"/>
     <id>http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html</id>
     <published>2013-11-06T14:48:00Z</published>
-    <updated>2013-11-13T02:24:56+00:00</updated>
+    <updated>2013-11-13T10:09:53+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -204,29 +255,6 @@
 &lt;li&gt;&lt;code&gt;bundler gem&lt;/code&gt;でぐぐると、Bundlerでgemのひな形をつくって開発する方法が出てくる&lt;/li&gt;
 &lt;li&gt;CLIを作るときのhowto: &lt;a href="http://www.michaelrigart.be/en/blog/a-simple-ruby-command-line-tool.html"&gt;http://www.michaelrigart.be/en/blog/a-simple-ruby-command-line-tool.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>怖話の作業をやっています</title>
-    <link rel="alternate" href="http://blog.url.com/2013/11/01/kowobana-work.html"/>
-    <id>http://blog.url.com/2013/11/01/kowobana-work.html</id>
-    <published>2013-11-01T07:55:00Z</published>
-    <updated>2013-11-13T02:24:56+00:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;RSpecの書き方よくわからないんですよねー、と相談したら解説書を@nomnelさんに教えていただきました！&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://github.com/everydayrails/rspec_rails_4"&gt;https://github.com/everydayrails/rspec_rails_4&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;昨日は、SassつかうならFoundationというフレームワークが良い、と@machidaさんに教えていただきました！&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://foundation.zurb.com"&gt;http://foundation.zurb.com&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;いまは、ViewとかHelperとか触ってます。
-あと、昨日初めてkowabanaに送ったPullReqがマージされました！わーい！&lt;/p&gt;
-
-&lt;p&gt;あとあと、kowabanaのPullReqに付けられたコメントの数々がすごい勉強になることに気づきました！&lt;/p&gt;
 </content>
   </entry>
 </feed>

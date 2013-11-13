@@ -1,0 +1,150 @@
+
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="description" content="yukihrがfjordさんでのインターンをゆるゆると綴ります。" />
+    <title>yukihrのfjordインターン日記</title>
+    
+      <link href="/fjord_intern/assets/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css">
+    
+  </head>
+  <body>
+    <header>
+      <h1 class="brand-name">yukihrのfjordインターン日記<a href="/fjord_intern/">■</a></h1>
+      <p class="lead"><a href="//twitter.com/yukihr">yukihr</a>が<a href="//fjord.jp">fjord</a>での<a href="//256interns.com">インターン</a>をゆるーく綴ります。</p>
+    </header>
+
+    <hr/>
+    
+    <div id="main" role="main">
+      
+<article class="article" itemscope itemtype="http://schema.org/Article">
+  
+    <header>
+      <h1 class="title" itemprop="name">
+        リファクタリング、SQL left join、Rails Model Scope、ベンチマーク
+      </h1>
+      <div class="meta">
+        <time class="date" itemprop="datePublished" content="2013-11-13T12:31:00+09:00" datetime="2013-11-13T12:31:00+09:00" pubdate>
+  <span class="year">2013</span>-<span class="month">11</span>-<span class="day">13</span>
+</time>
+/
+        <span>17日目</span>/
+        <span>4週目・作業週</span>
+
+        
+          <a class="comment" href="#disqus_thread"><span>コメント</span></a>
+        
+      </div>
+    </header>
+  
+
+  <div class="body markdown" itemprop="articleBody"><h1 id="toc_0">リファクタリング</h1>
+
+<p>先日書いた、ActiveDecoratorを使ったコードをリファクタリングしてみました。Moduleのメソッドに多態性をもたせるには、include元のクラスでメソッドを上書きするといいのかなあと、昨日思いつき・・・。</p>
+
+<h1 id="toc_1">SQL left join</h1>
+
+<blockquote>
+<p>LEFT JOINとRIGHT JOINは、左右いずれかの表を優先させたいときに指定する。</p>
+
+<ul>
+<li><p>LEFT JOIN</p>
+
+<p>左側に指定された表のすべての行が表示される</p></li>
+<li><p>RIGHT JOIN</p>
+
+<p>右側に指定された表のすべての行が表示される</p></li>
+</ul>
+</blockquote>
+
+<p>from: <a href="http://www.pursue.ne.jp/jouhousyo/SQLDoc/select22.html">http://www.pursue.ne.jp/jouhousyo/SQLDoc/select22.html</a></p>
+
+<h1 id="toc_2">Rails Model Scope</h1>
+
+<ul>
+<li><p><a title="Ruby on Rails | scopeでModelに検索条件を定義 - tbpg’s programming memo" href="http://d.hatena.ne.jp/tbpg/20130805/1375711757">Ruby on Rails | scopeでModelに検索条件を定義 - tbpg’s programming memo</a></p></li>
+<li><p><a title="Active Record Query Interface — Ruby on Rails Guides" href="http://guides.rubyonrails.org/active_record_querying.html#joining-tables">Active Record Query Interface — Ruby on Rails Guides</a></p>
+
+<p><code>polymorpic</code>で関連付けたテーブルをjoinするにはSQL書かないとダメっぽい</p>
+
+<ul>
+<li><a title="ruby on rails - ActiveRecord - querying polymorphic associations - Stack Overflow" href="http://stackoverflow.com/questions/680141/activerecord-querying-polymorphic-associations">ruby on rails - ActiveRecord - querying polymorphic associations - Stack Overflow</a></li>
+<li><a title="activerecord - Rails joins or preload belongs_to association from polymorphic model - Stack Overflow" href="http://stackoverflow.com/questions/5815139/rails-joins-or-preload-belongs-to-association-from-polymorphic-model">activerecord - Rails joins or preload belongs_to association from polymorphic model - Stack Overflow</a></li>
+</ul></li>
+</ul>
+
+<h1 id="toc_3">rails console でベンチマーク</h1>
+
+<ul>
+<li><a title="sql - How to get execution time in rails console? - Stack Overflow" href="http://stackoverflow.com/questions/3522250/how-to-get-execution-time-in-rails-console">sql - How to get execution time in rails console? - Stack Overflow</a></li>
+</ul>
+</div>
+
+  
+    <section>
+      <div class="article-tag">
+        <h2>タグ</h2>
+        <ul class="tags horizontal">
+  
+    <li><a href="../../../tags/rails.html">rails</a></li>
+  
+</ul>
+
+      </div>
+    </section>
+  
+
+  
+    <section>
+      <h2>コメント</h2>
+      <div id="disqus_thread" aria-live="polite">
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+    </section>
+  
+
+</article>
+
+
+    </div>
+
+      <script type="text/javascript">
+    var disqus_shortname = 'yukihrfjord';
+    
+      
+      
+      var disqus_identifier = 'http://yukihr.github.io/fjord_intern/2013/11/13/huga';
+      var disqus_url = 'http://yukihr.github.io/fjord_intern/2013/11/13/huga.html';
+      var disqus_script = 'embed.js';
+    
+    (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+  </script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=212934732101925";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>
