@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
     <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
     <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-14T16:36:41+00:00</updated>
+    <updated>2013-11-14T16:37:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -73,9 +73,9 @@ Commands &lt;span class="k"&gt;for &lt;/span&gt;spring itself:
 &lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;~/.spring.rb&lt;/code&gt;に次のように書く&lt;/p&gt;
 &lt;pre class="highlight ruby"&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;spring/commands/rspec&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;pre class="highlight shell"&gt;spring rspec path/to/hoge_spec.rb
+&lt;/pre&gt;&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;spring rspec path/to/hoge_spec.rb
 &lt;/pre&gt;
-&lt;p&gt;成功。結構速くなってハッピー&lt;/p&gt;
+&lt;p&gt;成功。結構速くなって嬉しい。&lt;/p&gt;
 
 &lt;h2 id="toc_3"&gt;参考その１&lt;/h2&gt;
 
@@ -146,7 +146,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
     <id>http://blog.url.com/2013/11/13/huga.html</id>
     <published>2013-11-13T03:31:00Z</published>
-    <updated>2013-11-14T16:36:41+00:00</updated>
+    <updated>2013-11-14T16:37:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -203,7 +203,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-14T16:36:41+00:00</updated>
+    <updated>2013-11-14T16:37:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -223,7 +223,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-14T16:36:41+00:00</updated>
+    <updated>2013-11-14T16:37:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -254,7 +254,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-14T16:36:41+00:00</updated>
+    <updated>2013-11-14T16:37:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -273,7 +273,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/07/git-http.html"/>
     <id>http://blog.url.com/2013/11/07/git-http.html</id>
     <published>2013-11-07T10:16:00Z</published>
-    <updated>2013-11-14T16:36:41+00:00</updated>
+    <updated>2013-11-14T16:37:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
