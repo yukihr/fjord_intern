@@ -60,10 +60,16 @@
 <li>
 <a href="#toc_4">参考その２</a>
 </li>
+<li>
+<a href="#toc_5">guard、使ったほうががいいですか</a>
+</li>
 </ul>
 </li>
 <li>
-<a href="#toc_5">新知識</a>
+<a href="#toc_6">Capybaraを使ったテストがOpenSSL::SSL::SSLErrorでコケる</a>
+</li>
+<li>
+<a href="#toc_7">新知識</a>
 </li>
 </ul>
 </div>
@@ -80,8 +86,15 @@
 
 <h1 id="toc_2">Springでrspecの高速化</h1>
 
-<p>単体テストを手動で走らせるのに結構時間かかるので。
-個人でつかうため、プロジェクトのGemfileは使わずにやる方法。</p>
+<p>単体テストを手動で走らせるのに結構時間かかるので。</p>
+
+<p>調べると、springというのが良さそう。</p>
+
+<ul>
+<li><a title="jonleighton/spring" href="https://github.com/jonleighton/spring">jonleighton/spring</a></li>
+</ul>
+
+<p>個人でつかうため、プロジェクトのGemfileは使わずにやる方法。</p>
 <pre class="highlight shell"><span class="gp">$ </span>gem install spring
 <span class="gp">$ </span>spring rspec
 </pre>
@@ -143,7 +156,23 @@ require<span class="s1">&#39;: cannot load such file -- spec_helper (LoadError)
 </pre>
 <p>ちなみに、rspec-modeでは<code>C-c , v</code>で開いているファイルに関連するテストだけを走らせる事ができる。</p>
 
-<h1 id="toc_5">新知識</h1>
+<h2 id="toc_5">guard、使ったほうががいいですか</h2>
+
+<p>guardと組み合わせて使ってる人が多いみたい。guardは以前rails-tutorialやってる時に使ったけど、裏で走り続けるのがCPUの無駄使いにしか思えなくて使わなくなってしまった。guardの結果がエラーでも無視してコーディングすることも多かった。guard使ったほうがいい理由は、書いているコードが意図しない影響をもたらしてしまうことにすぐに気付いて方向修正できることなんだろうけど、commitの前にテストが通るか確認するだけでも十分な気もする。</p>
+
+<h1 id="toc_6">Capybaraを使ったテストがOpenSSL::SSL::SSLErrorでコケる</h1>
+
+<p>omniauthで登録する画面でエラーが出る(OSX 10.9, ruby2.0, rails3.2.12)。</p>
+
+<p><code>save_and_open_page</code>でブラウザ開いてみると、<code>OpenSSL::SSL::SSLError</code>。</p>
+
+<ul>
+<li><a title="OpenSSL Errors and Rails – Certificate Verify Failed · RailsApps" href="http://railsapps.github.io/openssl-certificate-verify-failed.html">OpenSSL Errors and Rails – Certificate Verify Failed · RailsApps</a></li>
+</ul>
+
+<p>ここの、Errors with Ruby 2.0 &gt; Alternative の手順で解決。SSL証明書が古くなっていたのが原因のよう。</p>
+
+<h1 id="toc_7">新知識</h1>
 
 <ul>
 <li><p><a title="Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g" href="http://blog.s21g.com/articles/561">Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g</a></p></li>
