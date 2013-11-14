@@ -31,10 +31,20 @@ from: http://www.pursue.ne.jp/jouhousyo/SQLDoc/select22.html
 * [Active Record Query Interface — Ruby on Rails Guides](http://guides.rubyonrails.org/active_record_querying.html#joining-tables "Active Record Query Interface — Ruby on Rails Guides")
 
     `polymorpic`で関連付けたテーブルをjoinするにはSQL書かないとダメっぽい
+
     * [ruby on rails - ActiveRecord - querying polymorphic associations - Stack Overflow](http://stackoverflow.com/questions/680141/activerecord-querying-polymorphic-associations "ruby on rails - ActiveRecord - querying polymorphic associations - Stack Overflow")
 
     * [activerecord - Rails joins or preload belongs_to association from polymorphic model - Stack Overflow](http://stackoverflow.com/questions/5815139/rails-joins-or-preload-belongs-to-association-from-polymorphic-model "activerecord - Rails joins or preload belongs_to association from polymorphic model - Stack Overflow")
 
+    * [Railsで生SQLを書かずにLEFT JOINする方法 - Qiita [キータ]](http://qiita.com/unosk/items/403d0fdaf91ca86aa099 "Railsで生SQLを書かずにLEFT JOINする方法 - Qiita [キータ]")
+        
+        これ使うと
+
+        ```
+        ActiveRecord::ConfigurationError: Association named 'story' was not found; perhaps you misspelled it?
+        ```
+
+        ってなる。
 
 # rails console でベンチマーク
 
