@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
     <id>http://blog.url.com/2013/11/13/huga.html</id>
     <published>2013-11-13T03:31:00Z</published>
-    <updated>2013-11-13T10:09:53+00:00</updated>
+    <updated>2013-11-14T03:24:09+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -50,6 +50,12 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;a title="ruby on rails - ActiveRecord - querying polymorphic associations - Stack Overflow" href="http://stackoverflow.com/questions/680141/activerecord-querying-polymorphic-associations"&gt;ruby on rails - ActiveRecord - querying polymorphic associations - Stack Overflow&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a title="activerecord - Rails joins or preload belongs_to association from polymorphic model - Stack Overflow" href="http://stackoverflow.com/questions/5815139/rails-joins-or-preload-belongs-to-association-from-polymorphic-model"&gt;activerecord - Rails joins or preload belongs_to association from polymorphic model - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a title="Railsで生SQLを書かずにLEFT JOINする方法 - Qiita [キータ]" href="http://qiita.com/unosk/items/403d0fdaf91ca86aa099"&gt;Railsで生SQLを書かずにLEFT JOINする方法 - Qiita [キータ]&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;これ使うと&lt;/p&gt;
+&lt;pre class="highlight text"&gt;ActiveRecord::ConfigurationError: Association named &amp;#39;story&amp;#39; was not found; perhaps you misspelled it?
+&lt;/pre&gt;
+&lt;p&gt;ってなる。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -65,7 +71,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-13T10:09:53+00:00</updated>
+    <updated>2013-11-14T03:24:09+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -85,7 +91,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-13T10:09:53+00:00</updated>
+    <updated>2013-11-14T03:24:09+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -116,7 +122,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-13T10:09:53+00:00</updated>
+    <updated>2013-11-14T03:24:09+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -135,7 +141,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/07/git-http.html"/>
     <id>http://blog.url.com/2013/11/07/git-http.html</id>
     <published>2013-11-07T10:16:00Z</published>
-    <updated>2013-11-13T10:09:53+00:00</updated>
+    <updated>2013-11-14T03:24:09+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -159,7 +165,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html"/>
     <id>http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html</id>
     <published>2013-11-06T14:48:00Z</published>
-    <updated>2013-11-13T10:09:53+00:00</updated>
+    <updated>2013-11-14T03:24:09+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
