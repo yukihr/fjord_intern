@@ -18,6 +18,11 @@ ActiveDecoratorで実装してた部分をModelに移す。<- 見た目に関係
 # Springでrspecの高速化
 
 単体テストを手動で走らせるのに結構時間かかるので。
+
+調べると、springというのが良さそう。
+
+* [jonleighton/spring](https://github.com/jonleighton/spring "jonleighton/spring")
+
 個人でつかうため、プロジェクトのGemfileは使わずにやる方法。
 
 ```shell
@@ -106,6 +111,21 @@ emacsのrspec-modeで、上記のようにしてspringを使うと、自動で�
 ```
 
 ちなみに、rspec-modeでは`C-c , v`で開いているファイルに関連するテストだけを走らせる事ができる。
+
+## guard、使ったほうががいいですか
+
+guardと組み合わせて使ってる人が多いみたい。guardは以前rails-tutorialやってる時に使ったけど、裏で走り続けるのがCPUの無駄使いにしか思えなくて使わなくなってしまった。guardの結果がエラーでも無視してコーディングすることも多かった。guard使ったほうがいい理由は、書いているコードが意図しない影響をもたらしてしまうことにすぐに気付いて方向修正できることなんだろうけど、commitの前にテストが通るか確認するだけでも十分な気もする。
+
+
+# Capybaraを使ったテストがOpenSSL::SSL::SSLErrorでコケる
+
+omniauthで登録する画面でエラーが出る(OSX 10.9, ruby2.0, rails3.2.12)。
+
+`save_and_open_page`でブラウザ開いてみると、`OpenSSL::SSL::SSLError`。
+
+* [OpenSSL Errors and Rails – Certificate Verify Failed · RailsApps](http://railsapps.github.io/openssl-certificate-verify-failed.html "OpenSSL Errors and Rails – Certificate Verify Failed · RailsApps")
+
+ここの、Errors with Ruby 2.0 > Alternative の手順で解決。SSL証明書が古くなっていたのが原因のよう。
 
 
 # 新知識
