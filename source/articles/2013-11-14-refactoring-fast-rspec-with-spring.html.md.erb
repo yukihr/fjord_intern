@@ -105,9 +105,11 @@ emacsのrspec-modeで、上記のようにしてspringを使うと、自動で�
 これはtmpにpidファイルが作られないため。
 強制的にspringを使うには、次のように設定する。
 
-```elisp
+```cl
 (require 'rspec-mode)
-(defun rspec-spring-p () t)
+(defun rspec-spring-p ()
+  (and rspec-use-spring-when-possible
+       (stringp (executable-find "spring"))))
 ```
 
 ちなみに、rspec-modeでは`C-c , v`で開いているファイルに関連するテストだけを走らせる事ができる。
@@ -115,6 +117,15 @@ emacsのrspec-modeで、上記のようにしてspringを使うと、自動で�
 ## guard、使ったほうががいいですか
 
 guardと組み合わせて使ってる人が多いみたい。guardは以前rails-tutorialやってる時に使ったけど、裏で走り続けるのがCPUの無駄使いにしか思えなくて使わなくなってしまった。guardの結果がエラーでも無視してコーディングすることも多かった。guard使ったほうがいい理由は、書いているコードが意図しない影響をもたらしてしまうことにすぐに気付いて方向修正できることなんだろうけど、commitの前にテストが通るか確認するだけでも十分な気もする。
+
+## Gitのpre-commit-hookでテスト走らせる
+
+そんなことを考えていて、Gitのpre-commit-hookでテスト走らせればいいんじゃないかと思いつきました。同じようなことを考えた先達がいたようです。
+
+* [markhazlett/RSpec-Pre-commit-Git-Hook](https://github.com/markhazlett/RSpec-Pre-commit-Git-Hook "markhazlett/RSpec-Pre-commit-Git-Hook")
+* [Matjaz Muhic : git pre-commit hook - commit if all RSpec tests passed](https://coderwall.com/p/0uuoaq "Matjaz Muhic : git pre-commit hook - commit if all RSpec tests passed")
+
+コミットにあまりに時間がかかるのは考えものですが、一回やってみてもいいかも。
 
 
 # Capybaraを使ったテストがOpenSSL::SSL::SSLErrorでコケる
@@ -126,6 +137,8 @@ omniauthで登録する画面でエラーが出る(OSX 10.9, ruby2.0, rails3.2.1
 * [OpenSSL Errors and Rails – Certificate Verify Failed · RailsApps](http://railsapps.github.io/openssl-certificate-verify-failed.html "OpenSSL Errors and Rails – Certificate Verify Failed · RailsApps")
 
 ここの、Errors with Ruby 2.0 > Alternative の手順で解決。SSL証明書が古くなっていたのが原因のよう。
+
+kowabanaのローカル環境作った時からコケてて、そういうものかと放置してたのですが、@komagataさんに聞いたところ普通は全部通るとの事だったので、やっぱりか！、と思って調べてみました。
 
 
 # 新知識
