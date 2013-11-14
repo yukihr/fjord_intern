@@ -1,0 +1,118 @@
+---
+title: リファクタリングについて考えたりとか、rspecの高速化とか
+date: 2013-11-14 13:09 JST
+tags: rails
+---
+
+<%= toc %>
+
+# 再度リファクタリング
+
+ActiveDecoratorで実装してた部分をModelに移す。<- 見た目に関係しないコードはできるだけモデルでやる方針
+
+## 方針
+
+1. 内部でhelperを使ってないコードとそうでないコードをわける
+
+
+# Springでrspecの高速化
+
+単体テストを手動で走らせるのに結構時間かかるので。
+個人でつかうため、プロジェクトのGemfileは使わずにやる方法。
+
+```shell
+$ gem install spring
+$ spring rspec
+```
+
+gem バージョンが古いというエラーが出るので、gemのアップデート
+
+```shell
+$ gem install rubygems-update
+$ update_rubygems
+```
+
+次のようにするといいらしい
+
+```shell
+$ gem pristine --all
+```
+
+> `gem pristine`: gemの隠し場所にあるファイルからインストールしたgemを初期状態へ戻す
+
+from: [Rubyのパッケージマネジメントシステムgem(Rubygems)のコマンド一覧](http://blog.layer8.sh/ja/2012/04/16/ruby%E3%81%AE%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0gemrubygems%E3%81%AE%E3%82%B3%E3%83%9E%E3%83%B3/ "Rubyのパッケージマネジメントシステムgem(Rubygems)のコマンド一覧")
+
+```shell
+$ spring rspec hoge_spec.rb
+Version: 0.9.2
+
+Usage: spring COMMAND [ARGS]
+
+Commands for spring itself:
+....
+```
+
+あれ・・・？
+
+* [jonleighton/spring-commands-rspec](https://github.com/jonleighton/spring-commands-rspec "jonleighton/spring-commands-rspec")
+
+こういうのがある
+
+```shell
+$ gem install spring-commands-rspec
+```
+
+`~/.spring.rb`に次のように書く
+
+```ruby
+require "spring/commands/rspec"
+```
+
+```shell
+spring rspec path/to/hoge_spec.rb
+```
+
+成功。結構速くなってハッピー
+
+
+## 参考その１
+
+spec_helper等、specファイル中でロードエラーが出る場合。
+
+```shell
+$ spring rspec path/to/hoge_spec.rb
+require': cannot load such file -- spec_helper (LoadError)
+```
+
+こんな時は、プロジェクトルートで一回`spring rspec`を実行しておく
+
+```shell
+$ spring stop
+$ cd $PROJECT_ROOT
+$ spring rspec path/to/hoge_spec.rb
+```
+
+これで、プロジェクトルートをカレントディレクトリとしてspringでrailsが読み込まれるので、requireでパスを正しく読み込める。
+
+## 参考その２
+
+emacsのrspec-modeで、上記のようにしてspringを使うと、自動ではspringがONにならない。
+これはtmpにpidファイルが作られないため。
+強制的にspringを使うには、次のように設定する。
+
+```elisp
+(require 'rspec-mode)
+(defun rspec-spring-p () t)
+```
+
+ちなみに、rspec-modeでは`C-c , v`で開いているファイルに関連するテストだけを走らせる事ができる。
+
+
+# 新知識
+
+* [Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g](http://blog.s21g.com/articles/561 "Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g")
+
+* [Rubyのアクセス制御について(protectとprivate) - おもしろWEBサービス開発日記](http://d.hatena.ne.jp/willnet/20080612/1213286518 "Rubyのアクセス制御について(protectとprivate) - おもしろWEBサービス開発日記")
+
+* [Active Record scopes vs class methods | Plataformatec Blog](http://blog.plataformatec.com.br/2013/02/active-record-scopes-vs-class-methods/ "Active Record scopes vs class methods | Plataformatec Blog")
+    scopeじゃなくてClassMethodではだめなの？という疑問に対して
