@@ -5,16 +5,110 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-11-13T03:31:00Z</updated>
+  <updated>2013-11-14T04:09:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>リファクタリングについて考えたりとか、rspecの高速化とか</title>
+    <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
+    <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
+    <published>2013-11-14T04:09:00Z</published>
+    <updated>2013-11-14T13:43:17+00:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h1 id="toc_0"&gt;再度リファクタリング&lt;/h1&gt;
+
+&lt;p&gt;ActiveDecoratorで実装してた部分をModelに移す。&amp;lt;- 見た目に関係しないコードはできるだけモデルでやる方針&lt;/p&gt;
+
+&lt;h2 id="toc_1"&gt;方針&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;内部でhelperを使ってないコードとそうでないコードをわける&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id="toc_2"&gt;Springでrspecの高速化&lt;/h1&gt;
+
+&lt;p&gt;単体テストを手動で走らせるのに結構時間かかるので。
+個人でつかうため、プロジェクトのGemfileは使わずにやる方法。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;gem install spring
+&lt;span class="gp"&gt;$ &lt;/span&gt;spring rspec
+&lt;/pre&gt;
+&lt;p&gt;gem バージョンが古いというエラーが出るので、gemのアップデート&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;gem install rubygems-update
+&lt;span class="gp"&gt;$ &lt;/span&gt;update_rubygems
+&lt;/pre&gt;
+&lt;p&gt;次のようにするといいらしい&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;gem pristine --all
+&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;gem pristine&lt;/code&gt;: gemの隠し場所にあるファイルからインストールしたgemを初期状態へ戻す&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;from: &lt;a title="Rubyのパッケージマネジメントシステムgem(Rubygems)のコマンド一覧" href="http://blog.layer8.sh/ja/2012/04/16/ruby%E3%81%AE%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0gemrubygems%E3%81%AE%E3%82%B3%E3%83%9E%E3%83%B3/"&gt;Rubyのパッケージマネジメントシステムgem(Rubygems)のコマンド一覧&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;spring rspec hoge_spec.rb
+Version: 0.9.2
+
+Usage: spring COMMAND &lt;span class="o"&gt;[&lt;/span&gt;ARGS]
+
+Commands &lt;span class="k"&gt;for &lt;/span&gt;spring itself:
+....
+&lt;/pre&gt;
+&lt;p&gt;あれ・・・？&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="jonleighton/spring-commands-rspec" href="https://github.com/jonleighton/spring-commands-rspec"&gt;jonleighton/spring-commands-rspec&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;こういうのがある&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;gem install spring-commands-rspec
+&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;~/.spring.rb&lt;/code&gt;に次のように書く&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;spring/commands/rspec&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="highlight shell"&gt;spring rspec path/to/hoge_spec.rb
+&lt;/pre&gt;
+&lt;p&gt;成功。結構速くなってハッピー&lt;/p&gt;
+
+&lt;h2 id="toc_3"&gt;参考その１&lt;/h2&gt;
+
+&lt;p&gt;spec_helper等、specファイル中でロードエラーが出る場合。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;spring rspec path/to/hoge_spec.rb
+require&lt;span class="s1"&gt;&amp;#39;: cannot load such file -- spec_helper (LoadError)
+&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;こんな時は、プロジェクトルートで一回&lt;code&gt;spring rspec&lt;/code&gt;を実行しておく&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;spring stop
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$PROJECT_ROOT&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;spring rspec path/to/hoge_spec.rb
+&lt;/pre&gt;
+&lt;p&gt;これで、プロジェクトルートをカレントディレクトリとしてspringでrailsが読み込まれるので、requireでパスを正しく読み込める。&lt;/p&gt;
+
+&lt;h2 id="toc_4"&gt;参考その２&lt;/h2&gt;
+
+&lt;p&gt;emacsのrspec-modeで、上記のようにしてspringを使うと、自動ではspringがONにならない。
+これはtmpにpidファイルが作られないため。
+強制的にspringを使うには、次のように設定する。&lt;/p&gt;
+&lt;pre class="highlight text"&gt;(require &amp;#39;rspec-mode)
+(defun rspec-spring-p () t)
+&lt;/pre&gt;
+&lt;p&gt;ちなみに、rspec-modeでは&lt;code&gt;C-c , v&lt;/code&gt;で開いているファイルに関連するテストだけを走らせる事ができる。&lt;/p&gt;
+
+&lt;h1 id="toc_5"&gt;新知識&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a title="Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g" href="http://blog.s21g.com/articles/561"&gt;Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a title="Rubyのアクセス制御について(protectとprivate) - おもしろWEBサービス開発日記" href="http://d.hatena.ne.jp/willnet/20080612/1213286518"&gt;Rubyのアクセス制御について(protectとprivate) - おもしろWEBサービス開発日記&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a title="Active Record scopes vs class methods | Plataformatec Blog" href="http://blog.plataformatec.com.br/2013/02/active-record-scopes-vs-class-methods/"&gt;Active Record scopes vs class methods | Plataformatec Blog&lt;/a&gt;
+scopeじゃなくてClassMethodではだめなの？という疑問に対して&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>リファクタリング、SQL left join、Rails Model Scope、ベンチマーク</title>
     <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
     <id>http://blog.url.com/2013/11/13/huga.html</id>
     <published>2013-11-13T03:31:00Z</published>
-    <updated>2013-11-14T03:24:09+00:00</updated>
+    <updated>2013-11-14T13:43:17+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -71,7 +165,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-14T03:24:09+00:00</updated>
+    <updated>2013-11-14T13:43:17+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -91,7 +185,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-14T03:24:09+00:00</updated>
+    <updated>2013-11-14T13:43:17+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -122,7 +216,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-14T03:24:09+00:00</updated>
+    <updated>2013-11-14T13:43:17+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -141,7 +235,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/07/git-http.html"/>
     <id>http://blog.url.com/2013/11/07/git-http.html</id>
     <published>2013-11-07T10:16:00Z</published>
-    <updated>2013-11-14T03:24:09+00:00</updated>
+    <updated>2013-11-14T13:43:17+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -158,109 +252,6 @@
 &lt;code&gt;$ show solution&lt;/code&gt;でカンニングできるので、わからない時につかいます。&lt;/p&gt;
 
 &lt;p&gt;明日からは、いよいよRails開発っぽいところに入っていきます。楽しみ。&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>VagrantとNginxとRubygemsと</title>
-    <link rel="alternate" href="http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html"/>
-    <id>http://blog.url.com/2013/11/06/vagrant-nginx-rubygems.html</id>
-    <published>2013-11-06T14:48:00Z</published>
-    <updated>2013-11-14T03:24:09+00:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;昨日は日記かけてませんでしたが、2回目の学習週ということでOSXにNginxインストールしたりしてました。が、どうやらDebianにインストールするのが正解だったみたいで今日はそのやり直しなどです。せっかくなので、Vagrantとかを使ってみた記録です。あと、初めてgemをリリースしました。&lt;/p&gt;
-
-&lt;h1 id="toc_0"&gt;Vagrant で Debian Wheezy&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="Debian 7 (Wheezy) をVagrantで再現可能な開発環境としてMac上に構築 2013年版 - Qiita [キータ]" href="http://qiita.com/reoring/items/7a333d1cbea82044207e"&gt;Debian 7 (Wheezy) をVagrantで再現可能な開発環境としてMac上に構築 2013年版 - Qiita [キータ]&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;などを参考に進めてました。ただ、ググってるとすでにできてるboxファイルを配布していることがわかったのでそっちを使いました。&lt;/p&gt;
-
-&lt;p&gt;というわけで、Mac(OSX Mavericks)にVagrantでDebian(wheezy)をインストールするメモです。&lt;/p&gt;
-
-&lt;h2 id="toc_1"&gt;手順&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;まず、VirtualBoxのインストール。&lt;a href="https://www.virtualbox.org/wiki/Downloads"&gt;https://www.virtualbox.org/wiki/Downloads&lt;/a&gt; から、x86/amd64向けのイメージをダウンロードして、マウントしてインストール。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;次に、Vagrantのインストール。&lt;a href="http://downloads.vagrantup.com"&gt;http://downloads.vagrantup.com&lt;/a&gt; からイメージファイルをダウンロードして、マウントしてVagrantをインストール。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;仮想マシンの準備。以下、&amp;quot;wheezy&amp;quot;は仮想マシンの名前なので、適当に変えて良い。&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant box add wheezy https://dl.dropboxusercontent.com/u/197673519/debian-7.2.0.box
-&lt;/pre&gt;
-&lt;p&gt;このコマンドで、ウェブ上のboxファイル（VirtualBoxの仮想マシンとVagrantの設定をまとめたもの?）がダウンロードされて、VirtualBoxのマシンイメージが&lt;code&gt;~/.vagrant.d/boxes/wheezy&lt;/code&gt;の中に展開される。ファイルは大きいのでちょっと時間がかかる。コーヒーでも飲んで待つ。ちなみに、Wheezy以外のboxイメージは &lt;a href="http://www.vagrantbox.es"&gt;http://www.vagrantbox.es&lt;/a&gt; にリストアップされている。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;適当なディレクトリ(~/box等、なかったらつくる)に移動。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;4.で移動したディレクトリで&lt;code&gt;$ vagrant init wheezy&lt;/code&gt;とすると、Vagrantで仮想マシンを起動するための設定ファイルが展開される。これで準備完了。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;同じディレクトリで&lt;code&gt;$ vagrant up&lt;/code&gt;で仮想マシン起動&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;$ vagrant ssh&lt;/code&gt;で仮想マシンにssh接続(login:vagrant, passwd:vagrant)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;$ vagrant halt&lt;/code&gt;で仮想マシンをシャットダウン&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id="toc_2"&gt;そのほか&lt;/h2&gt;
-
-&lt;h3 id="toc_3"&gt;IPアドレスを設定する（ホストと仮想マシンのプライベートネットワーク）&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://www.absolute-keitarou.net/blog/?p=579#IP"&gt;http://www.absolute-keitarou.net/blog/?p=579#IP&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Mavericksで「Failed to create the host-only adapter」エラーが出る場合はVirtualBox再インストールで直った
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://blog.fkoji.com/2013/10260009.html"&gt;http://blog.fkoji.com/2013/10260009.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id="toc_4"&gt;Debian Wheezy で Nginx&lt;/h1&gt;
-
-&lt;h2 id="toc_5"&gt;手順&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;$ apt-cache policy nginx&lt;/code&gt; でaptのnginxバージョンをチェック-&gt; 1.2とかなので、1.4を入れたい&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="http://www.dotdeb.org/"&gt;http://www.dotdeb.org/&lt;/a&gt; で1.4のパッケージがホストされている (RedisやMySQLの新しいパッケージもホストされてて便利)ので &lt;a href="http://www.dotdeb.org/instructions/"&gt;http://www.dotdeb.org/instructions/&lt;/a&gt; に従ってリポジトリをaddして、&lt;code&gt;$ sudo apt-get install nginx&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id="toc_6"&gt;操作方法&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;$ sudo nginx&lt;/code&gt;でサーバスタート&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;$ sudo nginx -s stop&lt;/code&gt;でサーバ止める&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;$ sudo nginx -s reload&lt;/code&gt;で設定ロード&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id="toc_7"&gt;設定&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;設定は&lt;code&gt;/etc/nginx&lt;/code&gt;以下&lt;/li&gt;
-&lt;li&gt;独自設定は&lt;code&gt;/etc/nginx/conf.d/*.conf&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;サイト設定は&lt;code&gt;/etc/nginx/sites-enabled/*&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id="toc_8"&gt;nyaaaaaというgemをリリースしました&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href="https://github.com/yukihr/nyaaaaa"&gt;https://github.com/yukihr/nyaaaaa&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;aの数は５つです！嫌な予感しかしねえ！&lt;/p&gt;
-
-&lt;h2 id="toc_9"&gt;インストール&lt;/h2&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;gem install nyaaaaa
-&lt;/pre&gt;
-&lt;h2 id="toc_10"&gt;使い方&lt;/h2&gt;
-
-&lt;p&gt;顧客の無理な要求に心がやさぐれた時、アサインされたプロジェクトが炎上必至で未来に絶望しか感じられない時などに、PCを床に叩きつける代わりに&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;nyaaaaa
-&lt;/pre&gt;
-&lt;p&gt;とか打ってみてください。この世のものとは思えないほど可愛らしい生物があなたの心を潤してくれることでしょう。&lt;/p&gt;
-
-&lt;p&gt;まあ、ちょっとは癒やされるんじゃないかな・・・。&lt;/p&gt;
-
-&lt;p&gt;・・・またひとつ、ネタgemで神聖なrubygems.orgが汚されてしまいました。&lt;/p&gt;
-
-&lt;h2 id="toc_11"&gt;参考に&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;bundler gem&lt;/code&gt;でぐぐると、Bundlerでgemのひな形をつくって開発する方法が出てくる&lt;/li&gt;
-&lt;li&gt;CLIを作るときのhowto: &lt;a href="http://www.michaelrigart.be/en/blog/a-simple-ruby-command-line-tool.html"&gt;http://www.michaelrigart.be/en/blog/a-simple-ruby-command-line-tool.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
