@@ -63,13 +63,16 @@
 <li>
 <a href="#toc_5">guard、使ったほうががいいですか</a>
 </li>
+<li>
+<a href="#toc_6">Gitのpre-commit-hookでテスト走らせる</a>
+</li>
 </ul>
 </li>
 <li>
-<a href="#toc_6">Capybaraを使ったテストがOpenSSL::SSL::SSLErrorでコケる</a>
+<a href="#toc_7">Capybaraを使ったテストがOpenSSL::SSL::SSLErrorでコケる</a>
 </li>
 <li>
-<a href="#toc_7">新知識</a>
+<a href="#toc_8">新知識</a>
 </li>
 </ul>
 </div>
@@ -151,8 +154,10 @@ require<span class="s1">&#39;: cannot load such file -- spec_helper (LoadError)
 <p>emacsのrspec-modeで、上記のようにしてspringを使うと、自動ではspringがONにならない。
 これはtmpにpidファイルが作られないため。
 強制的にspringを使うには、次のように設定する。</p>
-<pre class="highlight text">(require &#39;rspec-mode)
-(defun rspec-spring-p () t)
+<pre class="highlight common_lisp"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;rspec-mode</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">rspec-spring-p</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nb">and</span> <span class="nv">rspec-use-spring-when-possible</span>
+       <span class="p">(</span><span class="nb">stringp</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">&quot;spring&quot;</span><span class="p">))))</span>
 </pre>
 <p>ちなみに、rspec-modeでは<code>C-c , v</code>で開いているファイルに関連するテストだけを走らせる事ができる。</p>
 
@@ -160,7 +165,18 @@ require<span class="s1">&#39;: cannot load such file -- spec_helper (LoadError)
 
 <p>guardと組み合わせて使ってる人が多いみたい。guardは以前rails-tutorialやってる時に使ったけど、裏で走り続けるのがCPUの無駄使いにしか思えなくて使わなくなってしまった。guardの結果がエラーでも無視してコーディングすることも多かった。guard使ったほうがいい理由は、書いているコードが意図しない影響をもたらしてしまうことにすぐに気付いて方向修正できることなんだろうけど、commitの前にテストが通るか確認するだけでも十分な気もする。</p>
 
-<h1 id="toc_6">Capybaraを使ったテストがOpenSSL::SSL::SSLErrorでコケる</h1>
+<h2 id="toc_6">Gitのpre-commit-hookでテスト走らせる</h2>
+
+<p>そんなことを考えていて、Gitのpre-commit-hookでテスト走らせればいいんじゃないかと思いつきました。同じようなことを考えた先達がいたようです。</p>
+
+<ul>
+<li><a title="markhazlett/RSpec-Pre-commit-Git-Hook" href="https://github.com/markhazlett/RSpec-Pre-commit-Git-Hook">markhazlett/RSpec-Pre-commit-Git-Hook</a></li>
+<li><a title="Matjaz Muhic : git pre-commit hook - commit if all RSpec tests passed" href="https://coderwall.com/p/0uuoaq">Matjaz Muhic : git pre-commit hook - commit if all RSpec tests passed</a></li>
+</ul>
+
+<p>コミットにあまりに時間がかかるのは考えものですが、一回やってみてもいいかも。</p>
+
+<h1 id="toc_7">Capybaraを使ったテストがOpenSSL::SSL::SSLErrorでコケる</h1>
 
 <p>omniauthで登録する画面でエラーが出る(OSX 10.9, ruby2.0, rails3.2.12)。</p>
 
@@ -172,7 +188,9 @@ require<span class="s1">&#39;: cannot load such file -- spec_helper (LoadError)
 
 <p>ここの、Errors with Ruby 2.0 &gt; Alternative の手順で解決。SSL証明書が古くなっていたのが原因のよう。</p>
 
-<h1 id="toc_7">新知識</h1>
+<p>kowabanaのローカル環境作った時からコケてて、そういうものかと放置してたのですが、@komagataさんに聞いたところ普通は全部通るとの事だったので、やっぱりか！、と思って調べてみました。</p>
+
+<h1 id="toc_8">新知識</h1>
 
 <ul>
 <li><p><a title="Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g" href="http://blog.s21g.com/articles/561">Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g</a></p></li>

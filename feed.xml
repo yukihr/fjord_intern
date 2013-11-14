@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
     <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
     <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-14T16:18:33+00:00</updated>
+    <updated>2013-11-14T16:36:41+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -95,8 +95,10 @@ require&lt;span class="s1"&gt;&amp;#39;: cannot load such file -- spec_helper (L
 &lt;p&gt;emacsのrspec-modeで、上記のようにしてspringを使うと、自動ではspringがONにならない。
 これはtmpにpidファイルが作られないため。
 強制的にspringを使うには、次のように設定する。&lt;/p&gt;
-&lt;pre class="highlight text"&gt;(require &amp;#39;rspec-mode)
-(defun rspec-spring-p () t)
+&lt;pre class="highlight common_lisp"&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="ss"&gt;&amp;#39;rspec-mode&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;rspec-spring-p&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;rspec-use-spring-when-possible&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;stringp&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;executable-find&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;spring&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;ちなみに、rspec-modeでは&lt;code&gt;C-c , v&lt;/code&gt;で開いているファイルに関連するテストだけを走らせる事ができる。&lt;/p&gt;
 
@@ -104,7 +106,18 @@ require&lt;span class="s1"&gt;&amp;#39;: cannot load such file -- spec_helper (L
 
 &lt;p&gt;guardと組み合わせて使ってる人が多いみたい。guardは以前rails-tutorialやってる時に使ったけど、裏で走り続けるのがCPUの無駄使いにしか思えなくて使わなくなってしまった。guardの結果がエラーでも無視してコーディングすることも多かった。guard使ったほうがいい理由は、書いているコードが意図しない影響をもたらしてしまうことにすぐに気付いて方向修正できることなんだろうけど、commitの前にテストが通るか確認するだけでも十分な気もする。&lt;/p&gt;
 
-&lt;h1 id="toc_6"&gt;Capybaraを使ったテストがOpenSSL::SSL::SSLErrorでコケる&lt;/h1&gt;
+&lt;h2 id="toc_6"&gt;Gitのpre-commit-hookでテスト走らせる&lt;/h2&gt;
+
+&lt;p&gt;そんなことを考えていて、Gitのpre-commit-hookでテスト走らせればいいんじゃないかと思いつきました。同じようなことを考えた先達がいたようです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="markhazlett/RSpec-Pre-commit-Git-Hook" href="https://github.com/markhazlett/RSpec-Pre-commit-Git-Hook"&gt;markhazlett/RSpec-Pre-commit-Git-Hook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a title="Matjaz Muhic : git pre-commit hook - commit if all RSpec tests passed" href="https://coderwall.com/p/0uuoaq"&gt;Matjaz Muhic : git pre-commit hook - commit if all RSpec tests passed&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;コミットにあまりに時間がかかるのは考えものですが、一回やってみてもいいかも。&lt;/p&gt;
+
+&lt;h1 id="toc_7"&gt;Capybaraを使ったテストがOpenSSL::SSL::SSLErrorでコケる&lt;/h1&gt;
 
 &lt;p&gt;omniauthで登録する画面でエラーが出る(OSX 10.9, ruby2.0, rails3.2.12)。&lt;/p&gt;
 
@@ -116,7 +129,9 @@ require&lt;span class="s1"&gt;&amp;#39;: cannot load such file -- spec_helper (L
 
 &lt;p&gt;ここの、Errors with Ruby 2.0 &amp;gt; Alternative の手順で解決。SSL証明書が古くなっていたのが原因のよう。&lt;/p&gt;
 
-&lt;h1 id="toc_7"&gt;新知識&lt;/h1&gt;
+&lt;p&gt;kowabanaのローカル環境作った時からコケてて、そういうものかと放置してたのですが、@komagataさんに聞いたところ普通は全部通るとの事だったので、やっぱりか！、と思って調べてみました。&lt;/p&gt;
+
+&lt;h1 id="toc_8"&gt;新知識&lt;/h1&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;a title="Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g" href="http://blog.s21g.com/articles/561"&gt;Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -131,7 +146,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
     <id>http://blog.url.com/2013/11/13/huga.html</id>
     <published>2013-11-13T03:31:00Z</published>
-    <updated>2013-11-14T16:18:33+00:00</updated>
+    <updated>2013-11-14T16:36:41+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -188,7 +203,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-14T16:18:33+00:00</updated>
+    <updated>2013-11-14T16:36:41+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -208,7 +223,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-14T16:18:33+00:00</updated>
+    <updated>2013-11-14T16:36:41+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -239,7 +254,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-14T16:18:33+00:00</updated>
+    <updated>2013-11-14T16:36:41+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -258,7 +273,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/07/git-http.html"/>
     <id>http://blog.url.com/2013/11/07/git-http.html</id>
     <published>2013-11-07T10:16:00Z</published>
-    <updated>2013-11-14T16:18:33+00:00</updated>
+    <updated>2013-11-14T16:36:41+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
