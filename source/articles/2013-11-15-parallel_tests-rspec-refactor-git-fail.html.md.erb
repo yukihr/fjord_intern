@@ -4,6 +4,8 @@ date: 2013-11-15 11:33 JST
 tags: rails, git
 ---
 
+<%= toc %>
+
 # parallel_tests を使ってみる
 
 ## プロジェクトではなく、環境にインストール。 -> 微妙な結果に
@@ -77,3 +79,20 @@ $ parallel_rspec spec/ -n 4
 ## 教訓
 
 すでにpushしたブランチでrebaseするべからず
+
+
+# relationで関連オブジェクトを取得するときにunscopedを使いたい
+
+ちょっとハマった
+
+* [[rails] うぇぇん、unscopedがきかないよー。 って泣いてたお話 | おれせか](http://ichi.fool.jp/blog/?p=1753 "[rails] うぇぇん、unscopedがきかないよー。 って泣いてたお話 | おれせか")
+
+
+# 新知識
+
+* [Rubyで文字列をクラス名として扱うには？ - QA@IT](http://qa.atmarkit.co.jp/q/75 "Rubyで文字列をクラス名として扱うには？ - QA@IT")
+
+
+# Gitのpre-commit-hookでテストする
+
+[昨日のやつ](../../../2013/11/14/refactoring-fast-rspec-with-spring.html#toc_6)で思いついたけど、テストの必要ないコミットには、コメントでそのことを示せばいいのでは。頭に"!"をつけるとか。試してみようか。
