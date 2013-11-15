@@ -96,3 +96,29 @@ $ parallel_rspec spec/ -n 4
 # Gitのpre-commit-hookでテストする
 
 [昨日のやつ](../../../2013/11/14/refactoring-fast-rspec-with-spring.html#toc_6)で思いついたけど、テストの必要ないコミットには、コメントでそのことを示せばいいのでは。頭に"!"をつけるとか。試してみようか。
+
+
+# polymorphicでわからないこと
+
+```ruby
+class Comment < ActiveRecord::Base
+  belongs_to :commentable, polymorphic: true
+  # この下を書くのと書かないとでは何が違う？
+  # 書いたほうがComment.includes(:article)とかできて良さそうだけど
+  # なにか弊害があるんだろうか？
+  belongs_to :article,
+    foreign_key: 'commentable_id'
+  belongs_to :picture,
+    foreign_key: 'commentable_id'
+end
+
+class Article < ActiveRecord::Base
+  has_many :comments, as: :commentable
+end
+
+class Picture < ActiveRecord::Base
+  has_many :comments, as: :commentable
+end
+```
+
+`belongs_to :parent` があればコードがすんなり書ける気がする。
