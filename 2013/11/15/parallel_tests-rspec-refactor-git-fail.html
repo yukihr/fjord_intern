@@ -1,0 +1,190 @@
+
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="description" content="yukihrがfjordさんでのインターンをゆるゆると綴ります。" />
+    <title>yukihrのfjordインターン日記</title>
+    
+      <link href="/fjord_intern/assets/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css">
+    
+  </head>
+  <body>
+    <header>
+      <h1 class="brand-name">yukihrのfjordインターン日記<a href="/fjord_intern/">■</a></h1>
+      <p class="lead"><a href="//twitter.com/yukihr">yukihr</a>が<a href="//fjord.jp">fjord</a>での<a href="//256interns.com">インターン</a>をゆるーく綴ります。</p>
+    </header>
+
+    <hr/>
+    
+    <div id="main" role="main">
+      
+<article class="article" itemscope itemtype="http://schema.org/Article">
+  
+    <header>
+      <h1 class="title" itemprop="name">
+        parallel_tests, rspecテストコードのリファクタリング, gitで詰んだかと思った話
+      </h1>
+      <div class="meta">
+        <time class="date" itemprop="datePublished" content="2013-11-15T11:33:00+09:00" datetime="2013-11-15T11:33:00+09:00" pubdate>
+  <span class="year">2013</span>-<span class="month">11</span>-<span class="day">15</span>
+</time>
+/
+        <span>19日目</span>/
+        <span>4週目・作業週</span>
+
+        
+          <a class="comment" href="#disqus_thread"><span>コメント</span></a>
+        
+      </div>
+    </header>
+  
+
+  <div class="body markdown" itemprop="articleBody"><h1 id="toc_0">parallel_tests を使ってみる</h1>
+
+<h2 id="toc_1">プロジェクトではなく、環境にインストール。 -> 微妙な結果に</h2>
+
+<ul>
+<li><a title="grosser/parallel_tests" href="https://github.com/grosser/parallel_tests#setup-for-non-rails">Setup for non-rails</a></li>
+</ul>
+
+<p>基本的にここを参考に。
+まずはgemのインストール。</p>
+<pre class="highlight shell"><span class="gp">$ </span>gem install parallel_tests
+</pre>
+<p>次の記述に従って、dbの設定を編集。</p>
+
+<ul>
+<li><a title="grosser/parallel_tests" href="https://github.com/grosser/parallel_tests#add-to-configdatabaseyml">Add to config/database.yml</a></li>
+</ul>
+
+<p>並列実行の数の指定はここを参考にすると良い。今回はクアッドコアのマシンなので4にした。</p>
+
+<ul>
+<li><a title="Ruby / Rails のテストが約3倍速になって超快適に！！ - #生存戦略 、それは - subtech" href="http://subtech.g.hatena.ne.jp/secondlife/20100819/1282226971">Ruby / Rails のテストが約3倍速になって超快適に！！ - #生存戦略 、それは - subtech</a></li>
+</ul>
+
+<p>テスト用データベースの準備</p>
+<pre class="highlight shell"><span class="gp">$ </span>parallel_rspec -n 4 -e <span class="s1">&#39;rake db:create&#39;</span> 
+<span class="gp">$ </span>parallel_rspec -n 4 -e <span class="s1">&#39;rake db:test:prepare&#39;</span>
+</pre>
+<p>実際に走らせる</p>
+<pre class="highlight shell"><span class="gp">$ </span>parallel_rspec spec/ -n 4
+</pre>
+<p>75秒 -> 45秒に高速化された。んー、思ったほどではない・・・。</p>
+
+<p>そして、普通にテスト走らせた時にはなかったエラーが・・・。</p>
+
+<p>やっぱり、プロジェクトにインストールしないとだめか。</p>
+
+<h1 id="toc_2">rspecをもっと綺麗に書きたい</h1>
+
+<p>とても参考になる。</p>
+
+<ul>
+<li><a title="RSpec の入門とその一歩先へ - t-wadaの日記" href="http://d.hatena.ne.jp/t-wada/20100228/p1">RSpec の入門とその一歩先へ - t-wadaの日記</a></li>
+</ul>
+
+<p>あと、違うデータに対して同じit{..}を実行しているので、その重複を無くしたい。次が参考になりそう。shard examplesを使えばいいっぽい。</p>
+
+<ul>
+<li><a title="すごいぞRSpec(shared example group編) - ぷろぐらまねが" href="http://d.hatena.ne.jp/yohfee/20110222/1298384637">すごいぞRSpec(shared example group編) - ぷろぐらまねが</a></li>
+</ul>
+
+<p>実際の使用例は、次も参考になる。</p>
+
+<ul>
+<li><a title="shared examples - Example groups - RSpec Core - RSpec - Relish" href="https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-examples">shared examples - Example groups - RSpec Core - RSpec - Relish</a></li>
+</ul>
+
+<h1 id="toc_3">Gitで詰んだかと思った</h1>
+
+<ol>
+<li>あるブランチ(branch-hogeとしよう)をorigin(Github)にpush</li>
+<li>masterの変更を取り込むためにlocalのbranch-hogeで<code>$git rebase master</code>とする。 <strong>&lt;-ここがそもそもの間違い</strong></li>
+<li>branch-hogeのコミットを<code>$ git rebase -i</code>でまとめる。</li>
+<li><code>$ git push origin branch-hoge</code>とするとエラーになる。2.で履歴が置き換わっているためbranch-hoge@originにpushできない。</li>
+<li>あーrebaseしたからか！と気づいて、<code>$ git reflog</code>でHEADの履歴を参照するも、<code>rebase -i</code>でよくわからないことに・・・。</li>
+</ol>
+
+<p>詰んだかと思いましたが、なんとかリカバった。手順は、</p>
+
+<ol>
+<li><code>$ git checkout --track origin/branch-hoge</code>てローカルに追跡ブランチorigin-branch-hogeを作成。</li>
+<li>branch-hogeからorigin-branch-hogeに必要なコミットをcherry-pick。このとき、-nを使うとgit addした状態で追加されていくので、origin-branch-hogeに必要な変更をためていって、最後にコミットすれば良い。</li>
+<li>push可能な変更を追跡ブランチに追加することができたので、<code>$ git push</code>すると良い。PullReqでautomergeできない場合は、masterを <strong>merge</strong></li>
+</ol>
+
+<h2 id="toc_4">教訓</h2>
+
+<p>すでにpushしたブランチでrebaseするべからず</p>
+</div>
+
+  
+    <section>
+      <div class="article-tag">
+        <h2>タグ</h2>
+        <ul class="tags horizontal">
+  
+    <li><a href="../../../tags/rails.html">rails</a></li>
+  
+    <li><a href="../../../tags/git.html">git</a></li>
+  
+</ul>
+
+      </div>
+    </section>
+  
+
+  
+    <section>
+      <h2>コメント</h2>
+      <div id="disqus_thread" aria-live="polite">
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+    </section>
+  
+
+</article>
+
+
+    </div>
+
+      <script type="text/javascript">
+    var disqus_shortname = 'yukihrfjord';
+    
+      
+      
+      var disqus_identifier = 'http://yukihr.github.io/fjord_intern/2013/11/15/parallel_tests-rspec-refactor-git-fail';
+      var disqus_url = 'http://yukihr.github.io/fjord_intern/2013/11/15/parallel_tests-rspec-refactor-git-fail.html';
+      var disqus_script = 'embed.js';
+    
+    (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+  </script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=212934732101925";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>
