@@ -42,7 +42,39 @@
     </header>
   
 
-  <div class="body markdown" itemprop="articleBody"><h1 id="toc_0">parallel_tests を使ってみる</h1>
+  <div class="body markdown" itemprop="articleBody"><div class="toc"><ul>
+<li>
+<a href="#toc_0">parallel_tests を使ってみる</a>
+<ul>
+<li>
+<a href="#toc_1">プロジェクトではなく、環境にインストール。 -> 微妙な結果に</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_2">rspecをもっと綺麗に書きたい</a>
+</li>
+<li>
+<a href="#toc_3">Gitで詰んだかと思った</a>
+<ul>
+<li>
+<a href="#toc_4">教訓</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_5">relationで関連オブジェクトを取得するときにunscopedを使いたい</a>
+</li>
+<li>
+<a href="#toc_6">新知識</a>
+</li>
+<li>
+<a href="#toc_7">Gitのpre-commit-hookでテストする</a>
+</li>
+</ul>
+</div>
+
+<h1 id="toc_0">parallel_tests を使ってみる</h1>
 
 <h2 id="toc_1">プロジェクトではなく、環境にインストール。 -> 微妙な結果に</h2>
 
@@ -120,6 +152,24 @@
 <h2 id="toc_4">教訓</h2>
 
 <p>すでにpushしたブランチでrebaseするべからず</p>
+
+<h1 id="toc_5">relationで関連オブジェクトを取得するときにunscopedを使いたい</h1>
+
+<p>ちょっとハマった</p>
+
+<ul>
+<li><a title="[rails] うぇぇん、unscopedがきかないよー。 って泣いてたお話 | おれせか" href="http://ichi.fool.jp/blog/?p=1753">[rails] うぇぇん、unscopedがきかないよー。 って泣いてたお話 | おれせか</a></li>
+</ul>
+
+<h1 id="toc_6">新知識</h1>
+
+<ul>
+<li><a title="Rubyで文字列をクラス名として扱うには？ - QA@IT" href="http://qa.atmarkit.co.jp/q/75">Rubyで文字列をクラス名として扱うには？ - QA@IT</a></li>
+</ul>
+
+<h1 id="toc_7">Gitのpre-commit-hookでテストする</h1>
+
+<p><a href="../../../2013/11/14/refactoring-fast-rspec-with-spring.html#toc_6">昨日のやつ</a>で思いついたけど、テストの必要ないコミットには、コメントでそのことを示せばいいのでは。頭に&quot;!&ldquo;をつけるとか。試してみようか。</p>
 </div>
 
   

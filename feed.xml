@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html"/>
     <id>http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html</id>
     <published>2013-11-15T02:33:00Z</published>
-    <updated>2013-11-15T11:31:02+00:00</updated>
+    <updated>2013-11-15T16:02:45+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -96,6 +96,24 @@
 &lt;h2 id="toc_4"&gt;教訓&lt;/h2&gt;
 
 &lt;p&gt;すでにpushしたブランチでrebaseするべからず&lt;/p&gt;
+
+&lt;h1 id="toc_5"&gt;relationで関連オブジェクトを取得するときにunscopedを使いたい&lt;/h1&gt;
+
+&lt;p&gt;ちょっとハマった&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="[rails] うぇぇん、unscopedがきかないよー。 って泣いてたお話 | おれせか" href="http://ichi.fool.jp/blog/?p=1753"&gt;[rails] うぇぇん、unscopedがきかないよー。 って泣いてたお話 | おれせか&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="toc_6"&gt;新知識&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="Rubyで文字列をクラス名として扱うには？ - QA@IT" href="http://qa.atmarkit.co.jp/q/75"&gt;Rubyで文字列をクラス名として扱うには？ - QA@IT&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="toc_7"&gt;Gitのpre-commit-hookでテストする&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="../../../2013/11/14/refactoring-fast-rspec-with-spring.html#toc_6"&gt;昨日のやつ&lt;/a&gt;で思いついたけど、テストの必要ないコミットには、コメントでそのことを示せばいいのでは。頭に&amp;quot;!&amp;ldquo;をつけるとか。試してみようか。&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -103,7 +121,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
     <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
     <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-15T11:31:02+00:00</updated>
+    <updated>2013-11-15T16:02:45+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -235,7 +253,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
     <id>http://blog.url.com/2013/11/13/huga.html</id>
     <published>2013-11-13T03:31:00Z</published>
-    <updated>2013-11-15T11:31:02+00:00</updated>
+    <updated>2013-11-15T16:02:45+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -292,7 +310,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-15T11:31:02+00:00</updated>
+    <updated>2013-11-15T16:02:45+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -312,7 +330,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-15T11:31:02+00:00</updated>
+    <updated>2013-11-15T16:02:45+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -343,7 +361,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-15T11:31:02+00:00</updated>
+    <updated>2013-11-15T16:02:45+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
