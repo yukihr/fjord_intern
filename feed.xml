@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html"/>
     <id>http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html</id>
     <published>2013-11-15T02:33:00Z</published>
-    <updated>2013-11-15T16:02:45+00:00</updated>
+    <updated>2013-11-15T16:25:38+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -114,6 +114,28 @@
 &lt;h1 id="toc_7"&gt;Gitのpre-commit-hookでテストする&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href="../../../2013/11/14/refactoring-fast-rspec-with-spring.html#toc_6"&gt;昨日のやつ&lt;/a&gt;で思いついたけど、テストの必要ないコミットには、コメントでそのことを示せばいいのでは。頭に&amp;quot;!&amp;ldquo;をつけるとか。試してみようか。&lt;/p&gt;
+
+&lt;h1 id="toc_8"&gt;polymorphicでわからないこと&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Comment&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;ActiveRecord&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Base&lt;/span&gt;
+  &lt;span class="n"&gt;belongs_to&lt;/span&gt; &lt;span class="ss"&gt;:commentable&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;polymorphic: &lt;/span&gt;&lt;span class="kp"&gt;true&lt;/span&gt;
+  &lt;span class="c1"&gt;# この下を書くのと書かないとでは何が違う？&lt;/span&gt;
+  &lt;span class="c1"&gt;# 書いたほうがComment.includes(:article)とかできて良さそうだけど&lt;/span&gt;
+  &lt;span class="c1"&gt;# なにか弊害があるんだろうか？&lt;/span&gt;
+  &lt;span class="n"&gt;belongs_to&lt;/span&gt; &lt;span class="ss"&gt;:article&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;foreign_key: &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;commentable_id&amp;#39;&lt;/span&gt;
+  &lt;span class="n"&gt;belongs_to&lt;/span&gt; &lt;span class="ss"&gt;:picture&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;foreign_key: &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;commentable_id&amp;#39;&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Article&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;ActiveRecord&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Base&lt;/span&gt;
+  &lt;span class="n"&gt;has_many&lt;/span&gt; &lt;span class="ss"&gt;:comments&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;as: :commentable&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Picture&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;ActiveRecord&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Base&lt;/span&gt;
+  &lt;span class="n"&gt;has_many&lt;/span&gt; &lt;span class="ss"&gt;:comments&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;as: :commentable&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;belongs_to :parent&lt;/code&gt; があればコードがすんなり書ける気がする。&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -121,7 +143,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
     <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
     <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-15T16:02:45+00:00</updated>
+    <updated>2013-11-15T16:25:38+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -253,7 +275,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
     <id>http://blog.url.com/2013/11/13/huga.html</id>
     <published>2013-11-13T03:31:00Z</published>
-    <updated>2013-11-15T16:02:45+00:00</updated>
+    <updated>2013-11-15T16:25:38+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -310,7 +332,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-15T16:02:45+00:00</updated>
+    <updated>2013-11-15T16:25:38+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -330,7 +352,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-15T16:02:45+00:00</updated>
+    <updated>2013-11-15T16:25:38+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -361,7 +383,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-15T16:02:45+00:00</updated>
+    <updated>2013-11-15T16:25:38+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
