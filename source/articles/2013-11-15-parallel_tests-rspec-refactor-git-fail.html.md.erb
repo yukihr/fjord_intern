@@ -1,0 +1,79 @@
+---
+title: parallel_tests, rspecテストコードのリファクタリング, gitで詰んだかと思った話
+date: 2013-11-15 11:33 JST
+tags: rails, git
+---
+
+# parallel_tests を使ってみる
+
+## プロジェクトではなく、環境にインストール。 -> 微妙な結果に
+
+* [Setup for non-rails](https://github.com/grosser/parallel_tests#setup-for-non-rails "grosser/parallel_tests")
+
+基本的にここを参考に。
+まずはgemのインストール。
+
+```shell
+$ gem install parallel_tests
+```
+
+次の記述に従って、dbの設定を編集。
+
+* [Add to config/database.yml](https://github.com/grosser/parallel_tests#add-to-configdatabaseyml "grosser/parallel_tests")
+
+並列実行の数の指定はここを参考にすると良い。今回はクアッドコアのマシンなので4にした。
+
+* [Ruby / Rails のテストが約3倍速になって超快適に！！ - #生存戦略 、それは - subtech](http://subtech.g.hatena.ne.jp/secondlife/20100819/1282226971 "Ruby / Rails のテストが約3倍速になって超快適に！！ - #生存戦略 、それは - subtech")
+
+テスト用データベースの準備
+
+```shell
+$ parallel_rspec -n 4 -e 'rake db:create' 
+$ parallel_rspec -n 4 -e 'rake db:test:prepare'
+```
+
+実際に走らせる
+
+```shell
+$ parallel_rspec spec/ -n 4
+```
+
+75秒 -> 45秒に高速化された。んー、思ったほどではない・・・。
+
+そして、普通にテスト走らせた時にはなかったエラーが・・・。
+
+やっぱり、プロジェクトにインストールしないとだめか。
+
+
+# rspecをもっと綺麗に書きたい
+
+とても参考になる。
+
+* [RSpec の入門とその一歩先へ - t-wadaの日記](http://d.hatena.ne.jp/t-wada/20100228/p1 "RSpec の入門とその一歩先へ - t-wadaの日記")
+
+あと、違うデータに対して同じit{..}を実行しているので、その重複を無くしたい。次が参考になりそう。shard examplesを使えばいいっぽい。
+
+* [すごいぞRSpec(shared example group編) - ぷろぐらまねが](http://d.hatena.ne.jp/yohfee/20110222/1298384637 "すごいぞRSpec(shared example group編) - ぷろぐらまねが")
+
+実際の使用例は、次も参考になる。
+
+* [shared examples - Example groups - RSpec Core - RSpec - Relish](https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-examples "shared examples - Example groups - RSpec Core - RSpec - Relish")
+
+
+# Gitで詰んだかと思った
+
+1. あるブランチ(branch-hogeとしよう)をorigin(Github)にpush
+2. masterの変更を取り込むためにlocalのbranch-hogeで`$git rebase master`とする。 **<-ここがそもそもの間違い**
+3. branch-hogeのコミットを`$ git rebase -i`でまとめる。
+4. `$ git push origin branch-hoge`とするとエラーになる。2.で履歴が置き換わっているためbranch-hoge@originにpushできない。
+5. あーrebaseしたからか！と気づいて、`$ git reflog`でHEADの履歴を参照するも、`rebase -i`でよくわからないことに・・・。
+
+詰んだかと思いましたが、なんとかリカバった。手順は、
+
+1. `$ git checkout --track origin/branch-hoge`てローカルに追跡ブランチorigin-branch-hogeを作成。
+2. branch-hogeからorigin-branch-hogeに必要なコミットをcherry-pick。このとき、-nを使うとgit addした状態で追加されていくので、origin-branch-hogeに必要な変更をためていって、最後にコミットすれば良い。
+3. push可能な変更を追跡ブランチに追加することができたので、`$ git push`すると良い。PullReqでautomergeできない場合は、masterを **merge**
+
+## 教訓
+
+すでにpushしたブランチでrebaseするべからず
