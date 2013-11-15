@@ -13,7 +13,7 @@
   </head>
   <body>
     <header>
-      <h1 class="brand-name"><%= data.site.title %><%= link_to '■', data.site.baseurl %></h1>
+      <h1 class="brand-name"><%= data.site.title %><%= link_to '■', development? ? '/' : data.site.baseurl %></h1>
       <p class="lead"><%= data.site.lead %></p>
     </header>
 
