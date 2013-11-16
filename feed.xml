@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html"/>
     <id>http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html</id>
     <published>2013-11-15T02:33:00Z</published>
-    <updated>2013-11-15T16:25:38+00:00</updated>
+    <updated>2013-11-16T04:40:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -136,6 +136,16 @@
 &lt;span class="k"&gt;end&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;belongs_to :parent&lt;/code&gt; があればコードがすんなり書ける気がする。&lt;/p&gt;
+
+&lt;p&gt;[追記:2013-11-16]&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;belongs_to :parent&lt;/code&gt; とかけば、確かにincludesで別モデルに関するリレーションを定義できるのだけれど、SQLが複雑になって遅くなったりする。というか、そもそもpolymorphicなので、一種類の親モデルを持つわけではない。つまりbelongs_toで親になりうる全てのモデルを指定すると、それぞれのモデルインスタンスが、全てを親に持つことになってしまっておかしな定義になる。ちょっとめんどくさいけれど、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/a/5815612/1015770"&gt;http://stackoverflow.com/a/5815612/1015770&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;にあるように、joinの定義はSQLで書くのが無難なよう。こうしたほうがいいよ、というのがあったらぜひ教えてほしい。&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -143,7 +153,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
     <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
     <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-15T16:25:38+00:00</updated>
+    <updated>2013-11-16T04:40:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -275,7 +285,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
     <id>http://blog.url.com/2013/11/13/huga.html</id>
     <published>2013-11-13T03:31:00Z</published>
-    <updated>2013-11-15T16:25:38+00:00</updated>
+    <updated>2013-11-16T04:40:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -332,7 +342,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-15T16:25:38+00:00</updated>
+    <updated>2013-11-16T04:40:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -352,7 +362,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-15T16:25:38+00:00</updated>
+    <updated>2013-11-16T04:40:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -383,7 +393,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-15T16:25:38+00:00</updated>
+    <updated>2013-11-16T04:40:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
