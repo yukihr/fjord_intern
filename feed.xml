@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html"/>
     <id>http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html</id>
     <published>2013-11-15T02:33:00Z</published>
-    <updated>2013-11-16T04:40:29+00:00</updated>
+    <updated>2013-11-16T05:00:54+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -146,6 +146,12 @@
 &lt;/ul&gt;
 
 &lt;p&gt;にあるように、joinの定義はSQLで書くのが無難なよう。こうしたほうがいいよ、というのがあったらぜひ教えてほしい。&lt;/p&gt;
+
+&lt;h2 id="toc_9"&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="Ruby on Railsあれこれ/findメソッドの：includeオプションの書き方 - 笑猫酒家" href="http://winter-tail.sakura.ne.jp/pukiwiki/index.php?Ruby%20on%20Rails%A4%A2%A4%EC%A4%B3%A4%EC%2Ffind%A5%E1%A5%BD%A5%C3%A5%C9%A4%CE%A1%A7include%A5%AA%A5%D7%A5%B7%A5%E7%A5%F3%A4%CE%BD%F1%A4%AD%CA%FD"&gt;Ruby on Railsあれこれ/findメソッドの：includeオプションの書き方 - 笑猫酒家&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </content>
   </entry>
   <entry>
@@ -153,7 +159,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
     <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
     <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-16T04:40:29+00:00</updated>
+    <updated>2013-11-16T05:00:54+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -285,7 +291,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
     <id>http://blog.url.com/2013/11/13/huga.html</id>
     <published>2013-11-13T03:31:00Z</published>
-    <updated>2013-11-16T04:40:29+00:00</updated>
+    <updated>2013-11-16T05:00:54+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -342,7 +348,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-16T04:40:29+00:00</updated>
+    <updated>2013-11-16T05:00:54+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -362,7 +368,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-16T04:40:29+00:00</updated>
+    <updated>2013-11-16T05:00:54+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -393,7 +399,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-16T04:40:29+00:00</updated>
+    <updated>2013-11-16T05:00:54+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
