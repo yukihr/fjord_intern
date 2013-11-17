@@ -211,6 +211,20 @@
 
 <p>にあるように、joinの定義はSQLで書くのが無難なよう。こうしたほうがいいよ、というのがあったらぜひ教えてほしい。</p>
 
+<p>[追記:2013-11-17]</p>
+
+<ul>
+<li><a href="http://stackoverflow.com/a/16124295/1015770">http://stackoverflow.com/a/16124295/1015770</a> </li>
+</ul>
+
+<p>上記URLのSolutionも参考になる。</p>
+<pre class="highlight ruby"><span class="n">belongs_to</span> <span class="ss">:article</span><span class="p">,</span>
+  <span class="ss">foreign_key: </span><span class="s1">&#39;comemntable_id&#39;</span><span class="p">,</span>
+  <span class="ss">conditions: </span><span class="s2">&quot;comments.commentable_type = &#39;Article&#39;&quot;</span>
+</pre>
+<p>とすれば、commentable_typeが&#39;Article&#39;のcommentにだけ、articleという子プロパティが作られる。
+これは一回使ってみたい。</p>
+
 <h2 id="toc_9">参考</h2>
 
 <ul>

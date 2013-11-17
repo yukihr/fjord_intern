@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html"/>
     <id>http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html</id>
     <published>2013-11-15T02:33:00Z</published>
-    <updated>2013-11-16T05:00:54+00:00</updated>
+    <updated>2013-11-17T03:04:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -147,6 +147,20 @@
 
 &lt;p&gt;にあるように、joinの定義はSQLで書くのが無難なよう。こうしたほうがいいよ、というのがあったらぜひ教えてほしい。&lt;/p&gt;
 
+&lt;p&gt;[追記:2013-11-17]&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/a/16124295/1015770"&gt;http://stackoverflow.com/a/16124295/1015770&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;上記URLのSolutionも参考になる。&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;span class="n"&gt;belongs_to&lt;/span&gt; &lt;span class="ss"&gt;:article&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="ss"&gt;foreign_key: &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;comemntable_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="ss"&gt;conditions: &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;comments.commentable_type = &amp;#39;Article&amp;#39;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;とすれば、commentable_typeが&amp;#39;Article&amp;#39;のcommentにだけ、articleという子プロパティが作られる。
+これは一回使ってみたい。&lt;/p&gt;
+
 &lt;h2 id="toc_9"&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -159,7 +173,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
     <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
     <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-16T05:00:54+00:00</updated>
+    <updated>2013-11-17T03:04:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -291,7 +305,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
     <id>http://blog.url.com/2013/11/13/huga.html</id>
     <published>2013-11-13T03:31:00Z</published>
-    <updated>2013-11-16T05:00:54+00:00</updated>
+    <updated>2013-11-17T03:04:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -348,7 +362,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-16T05:00:54+00:00</updated>
+    <updated>2013-11-17T03:04:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -368,7 +382,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-16T05:00:54+00:00</updated>
+    <updated>2013-11-17T03:04:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -399,7 +413,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/08/tdd.html"/>
     <id>http://blog.url.com/2013/11/08/tdd.html</id>
     <published>2013-11-08T10:11:00Z</published>
-    <updated>2013-11-16T05:00:54+00:00</updated>
+    <updated>2013-11-17T03:04:33+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
