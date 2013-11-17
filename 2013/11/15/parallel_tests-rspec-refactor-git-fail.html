@@ -75,7 +75,15 @@
 <a href="#toc_8">polymorphicでわからないこと</a>
 <ul>
 <li>
-<a href="#toc_9">参考</a>
+<a href="#toc_9">[追記:2013-11-16]</a>
+<ul>
+<li>
+<a href="#toc_10">参考</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_11">[追記:2013-11-17]</a>
 </li>
 </ul>
 </li>
@@ -201,7 +209,7 @@
 </pre>
 <p><code>belongs_to :parent</code> があればコードがすんなり書ける気がする。</p>
 
-<p>[追記:2013-11-16]</p>
+<h2 id="toc_9">[追記:2013-11-16]</h2>
 
 <p><code>belongs_to :parent</code> とかけば、確かにincludesで別モデルに関するリレーションを定義できるのだけれど、SQLが複雑になって遅くなったりする。というか、そもそもpolymorphicなので、一種類の親モデルを持つわけではない。つまりbelongs_toで親になりうる全てのモデルを指定すると、それぞれのモデルインスタンスが、全てを親に持つことになってしまっておかしな定義になる。ちょっとめんどくさいけれど、</p>
 
@@ -211,7 +219,13 @@
 
 <p>にあるように、joinの定義はSQLで書くのが無難なよう。こうしたほうがいいよ、というのがあったらぜひ教えてほしい。</p>
 
-<p>[追記:2013-11-17]</p>
+<h3 id="toc_10">参考</h3>
+
+<ul>
+<li><a title="Ruby on Railsあれこれ/findメソッドの：includeオプションの書き方 - 笑猫酒家" href="http://winter-tail.sakura.ne.jp/pukiwiki/index.php?Ruby%20on%20Rails%A4%A2%A4%EC%A4%B3%A4%EC%2Ffind%A5%E1%A5%BD%A5%C3%A5%C9%A4%CE%A1%A7include%A5%AA%A5%D7%A5%B7%A5%E7%A5%F3%A4%CE%BD%F1%A4%AD%CA%FD">Ruby on Railsあれこれ/findメソッドの：includeオプションの書き方 - 笑猫酒家</a></li>
+</ul>
+
+<h2 id="toc_11">[追記:2013-11-17]</h2>
 
 <ul>
 <li><a href="http://stackoverflow.com/a/16124295/1015770">http://stackoverflow.com/a/16124295/1015770</a> </li>
@@ -224,12 +238,6 @@
 </pre>
 <p>とすれば、commentable_typeが&#39;Article&#39;のcommentにだけ、articleという子プロパティが作られる。
 これは一回使ってみたい。</p>
-
-<h2 id="toc_9">参考</h2>
-
-<ul>
-<li><a title="Ruby on Railsあれこれ/findメソッドの：includeオプションの書き方 - 笑猫酒家" href="http://winter-tail.sakura.ne.jp/pukiwiki/index.php?Ruby%20on%20Rails%A4%A2%A4%EC%A4%B3%A4%EC%2Ffind%A5%E1%A5%BD%A5%C3%A5%C9%A4%CE%A1%A7include%A5%AA%A5%D7%A5%B7%A5%E7%A5%F3%A4%CE%BD%F1%A4%AD%CA%FD">Ruby on Railsあれこれ/findメソッドの：includeオプションの書き方 - 笑猫酒家</a></li>
-</ul>
 </div>
 
   
