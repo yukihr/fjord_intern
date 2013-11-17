@@ -131,6 +131,22 @@ end
 
 にあるように、joinの定義はSQLで書くのが無難なよう。こうしたほうがいいよ、というのがあったらぜひ教えてほしい。
 
+[追記:2013-11-17]
+
+* http://stackoverflow.com/a/16124295/1015770 
+
+上記URLのSolutionも参考になる。
+
+```ruby
+belongs_to :article,
+  foreign_key: 'comemntable_id',
+  conditions: "comments.commentable_type = 'Article'"
+```
+
+とすれば、commentable_typeが'Article'のcommentにだけ、articleという子プロパティが作られる。
+これは一回使ってみたい。
+
+
 ## 参考
 
 * [Ruby on Railsあれこれ/findメソッドの：includeオプションの書き方 - 笑猫酒家](http://winter-tail.sakura.ne.jp/pukiwiki/index.php?Ruby%20on%20Rails%A4%A2%A4%EC%A4%B3%A4%EC%2Ffind%A5%E1%A5%BD%A5%C3%A5%C9%A4%CE%A1%A7include%A5%AA%A5%D7%A5%B7%A5%E7%A5%F3%A4%CE%BD%F1%A4%AD%CA%FD "Ruby on Railsあれこれ/findメソッドの：includeオプションの書き方 - 笑猫酒家")
