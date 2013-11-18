@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html"/>
     <id>http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html</id>
     <published>2013-11-18T05:40:00Z</published>
-    <updated>2013-11-18T10:39:38+00:00</updated>
+    <updated>2013-11-18T11:42:51+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -78,7 +78,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html"/>
     <id>http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html</id>
     <published>2013-11-15T02:33:00Z</published>
-    <updated>2013-11-18T10:39:38+00:00</updated>
+    <updated>2013-11-18T11:42:51+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -230,6 +230,14 @@
 &lt;/pre&gt;
 &lt;p&gt;とすれば、commentable_typeが&amp;#39;Article&amp;#39;のcommentにだけ、articleという子プロパティが作られる。
 これは一回使ってみたい。&lt;/p&gt;
+
+&lt;h2 id="toc_12"&gt;[追記:2013-11-18]&lt;/h2&gt;
+
+&lt;p&gt;続きを書きました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="../../../2013/11/18/polymorphic-includes-joins-eager-loading.html#toc_0"&gt;polymorphicでのincludesとjoinについて&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </content>
   </entry>
   <entry>
@@ -237,7 +245,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
     <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
     <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-18T10:39:38+00:00</updated>
+    <updated>2013-11-18T11:42:51+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -369,7 +377,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
     <id>http://blog.url.com/2013/11/13/huga.html</id>
     <published>2013-11-13T03:31:00Z</published>
-    <updated>2013-11-18T10:39:38+00:00</updated>
+    <updated>2013-11-18T11:42:51+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -426,7 +434,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-18T10:39:38+00:00</updated>
+    <updated>2013-11-18T11:42:51+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -446,7 +454,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-18T10:39:38+00:00</updated>
+    <updated>2013-11-18T11:42:51+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
