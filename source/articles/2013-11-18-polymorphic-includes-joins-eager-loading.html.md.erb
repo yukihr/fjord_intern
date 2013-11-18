@@ -4,7 +4,8 @@ date: 2013-11-18 14:40 JST
 tags: ralis
 ---
 
-そういえば、アイルランドのワーキングホリデーの申請が通ってたんで、せっかくだから行ってみるかなーと思っている今日このごろです。
+はやいもので、ローカルインターンに来始めてからもうすぐ1ヶ月です。
+時が立つのは早い。次何するかそろそろ決めないと・・・。
 
 <%= toc %>
 
@@ -39,7 +40,7 @@ comments = Comment.includes(:article).where('articles.user_id = 10')
 
 にあるように、`includes`の長所(あまり詳しくないがeager loadingというらしい)を活用することができる。
 
-ただ、`article`オブジェクトを用いる必要があまりない場合、つまり、`article`の情報をCommentのクエリのみに用いる場合は、`joins`で`left join`を使う以下の説明にあるコードのほうが、簡潔なSQLを発行出来て速度的にも有利。
+ただ、`article`オブジェクトを用いる必要があまりない場合、つまり、`article`の情報をCommentのクエリのみに用いる場合は、`joins`で`left join`を使う以下の説明にあるコードのほうが、簡潔なSQLを発行出来て(comment.commentableに何回もアクセスしない場合は)速度的にも有利。
 
 * http://stackoverflow.com/a/5815612/1015770
 
@@ -48,9 +49,9 @@ comments = Comment.includes(:article).where('articles.user_id = 10')
 ご意見、ツッコミお待ちしております＞＜
 
 
-# Ralisのキャッシュとかeager loadingとかについて調べてみる。
+# eager loadingについて調べてみる。
 
-せっかくeager loadingとか出てきたので、掘り下げて調べてみる。まずは参考リンク。
+せっかくeager loadingが出てきたので、掘り下げて調べてみる。とりあえず参考リンク。
 
 * [eager loadingって何？ - おもしろWEBサービス開発日記](http://d.hatena.ne.jp/willnet/20090303/1236093728 "eager loadingって何？ - おもしろWEBサービス開発日記")
 * [#22 Eager Loading (revised) - RailsCasts](http://railscasts.com/episodes/22-eager-loading-revised "#22 Eager Loading (revised) - RailsCasts")
