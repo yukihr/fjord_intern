@@ -109,6 +109,9 @@ EOT
   def n_days_from_first(date)
     days_from_first(date).length
   end
+  def link_to_article(title, article_path)
+    link_to(title, '../../../' + article_path)
+  end
 end
 helpers Helpers
 

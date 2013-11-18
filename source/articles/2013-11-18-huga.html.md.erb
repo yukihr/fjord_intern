@@ -1,0 +1,58 @@
+---
+title: そろそろ１ヶ月
+date: 2013-11-18 14:40 JST
+tags: ralis
+---
+
+そういえば、アイルランドのワーキングホリデーの申請が通ってたんで、せっかくだから行ってみるかなーと思っている今日このごろです。
+
+<%= toc %>
+
+# polymorphicでのincludesとjoinについて
+
+* <%= link_to_article 'polymorphicでわからないこと', '2013/11/15/parallel_tests-rspec-refactor-git-fail.html#toc_8' %>
+
+の続き。今までに理解できたことをまとめてみる。
+
+* http://stackoverflow.com/a/16124295/1015770
+
+にあるように、
+
+```ruby
+class Comment < ActiveRecord::Base
+  belongs_to :commentable, polymorphic: true
+  belongs_to :article,
+    foreign_key: 'comemntable_id',
+    conditions: "comments.commentable_type = 'Article'"
+end
+```
+
+のように書いておけば、commentオブジェクトのうち、`commentable_type`が`Article`のものについては、`comment.article`でarticleオブジェクトにアクセスできる。さらに、
+
+```ruby
+comments = Comment.includes(:article).where('articles.user_id = 10')
+```
+
+のようなクエリを発行することも可能になる。これによって、
+
+* [joins オプションとinclude オプションの決定的な違い - mic_footprints](http://d.hatena.ne.jp/micdonalds/20101115/1289819697 "joins オプションとinclude オプションの決定的な違い - mic_footprints")
+
+にあるように、`includes`の長所(あまり詳しくないがeager loadingというらしい)を活用することができる。
+
+ただ、`article`オブジェクトを用いる必要があまりない場合、つまり、`article`の情報をCommentのクエリのみに用いる場合は、`joins`で`left join`を使う以下の説明にあるコードのほうが、簡潔なSQLを発行出来て速度的にも有利。
+
+* http://stackoverflow.com/a/5815612/1015770
+
+クエリの結果をどのように利用するかで、最適解が変わってくるということかな・・。
+
+ご意見、ツッコミお待ちしております＞＜
+
+
+# Ralisのキャッシュとかeager loadingとかについて調べてみる。
+
+せっかくeager loadingとか出てきたので、掘り下げて調べてみる。
+
+* [eager loadingって何？ - おもしろWEBサービス開発日記](http://d.hatena.ne.jp/willnet/20090303/1236093728 "eager loadingって何？ - おもしろWEBサービス開発日記")
+* [#22 Eager Loading (revised) - RailsCasts](http://railscasts.com/episodes/22-eager-loading-revised "#22 Eager Loading (revised) - RailsCasts")
+* [Ruby on Rails を高速化する](http://www.ibm.com/developerworks/jp/opensource/library/os-railsn1/ "Ruby on Rails を高速化する")
+
