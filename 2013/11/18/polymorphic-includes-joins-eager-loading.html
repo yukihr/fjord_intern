@@ -42,14 +42,15 @@
     </header>
   
 
-  <div class="body markdown" itemprop="articleBody"><p>そういえば、アイルランドのワーキングホリデーの申請が通ってたんで、せっかくだから行ってみるかなーと思っている今日このごろです。</p>
+  <div class="body markdown" itemprop="articleBody"><p>はやいもので、ローカルインターンに来始めてからもうすぐ1ヶ月です。
+時が立つのは早い。次何するかそろそろ決めないと・・・。</p>
 
 <div class="toc"><ul>
 <li>
 <a href="#toc_0">polymorphicでのincludesとjoinについて</a>
 </li>
 <li>
-<a href="#toc_1">Ralisのキャッシュとかeager loadingとかについて調べてみる。</a>
+<a href="#toc_1">eager loadingについて調べてみる。</a>
 </li>
 </ul>
 </div>
@@ -85,7 +86,7 @@
 
 <p>にあるように、<code>includes</code>の長所(あまり詳しくないがeager loadingというらしい)を活用することができる。</p>
 
-<p>ただ、<code>article</code>オブジェクトを用いる必要があまりない場合、つまり、<code>article</code>の情報をCommentのクエリのみに用いる場合は、<code>joins</code>で<code>left join</code>を使う以下の説明にあるコードのほうが、簡潔なSQLを発行出来て速度的にも有利。</p>
+<p>ただ、<code>article</code>オブジェクトを用いる必要があまりない場合、つまり、<code>article</code>の情報をCommentのクエリのみに用いる場合は、<code>joins</code>で<code>left join</code>を使う以下の説明にあるコードのほうが、簡潔なSQLを発行出来て(comment.commentableに何回もアクセスしない場合は)速度的にも有利。</p>
 
 <ul>
 <li><a href="http://stackoverflow.com/a/5815612/1015770">http://stackoverflow.com/a/5815612/1015770</a></li>
@@ -95,9 +96,9 @@
 
 <p>ご意見、ツッコミお待ちしております＞＜</p>
 
-<h1 id="toc_1">Ralisのキャッシュとかeager loadingとかについて調べてみる。</h1>
+<h1 id="toc_1">eager loadingについて調べてみる。</h1>
 
-<p>せっかくeager loadingとか出てきたので、掘り下げて調べてみる。まずは参考リンク。</p>
+<p>せっかくeager loadingが出てきたので、掘り下げて調べてみる。とりあえず参考リンク。</p>
 
 <ul>
 <li><a title="eager loadingって何？ - おもしろWEBサービス開発日記" href="http://d.hatena.ne.jp/willnet/20090303/1236093728">eager loadingって何？ - おもしろWEBサービス開発日記</a></li>
