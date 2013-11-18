@@ -11,10 +11,10 @@
   </author>
   <entry>
     <title>そろそろ１ヶ月</title>
-    <link rel="alternate" href="http://blog.url.com/2013/11/18/huga.html"/>
-    <id>http://blog.url.com/2013/11/18/huga.html</id>
+    <link rel="alternate" href="http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html"/>
+    <id>http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html</id>
     <published>2013-11-18T05:40:00Z</published>
-    <updated>2013-11-18T06:40:03+00:00</updated>
+    <updated>2013-11-18T06:46:23+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -63,7 +63,7 @@
 
 &lt;h1 id="toc_1"&gt;Ralisのキャッシュとかeager loadingとかについて調べてみる。&lt;/h1&gt;
 
-&lt;p&gt;せっかくeager loadingとか出てきたので、掘り下げて調べてみる。&lt;/p&gt;
+&lt;p&gt;せっかくeager loadingとか出てきたので、掘り下げて調べてみる。まずは参考リンク。&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a title="eager loadingって何？ - おもしろWEBサービス開発日記" href="http://d.hatena.ne.jp/willnet/20090303/1236093728"&gt;eager loadingって何？ - おもしろWEBサービス開発日記&lt;/a&gt;&lt;/li&gt;
@@ -77,7 +77,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html"/>
     <id>http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html</id>
     <published>2013-11-15T02:33:00Z</published>
-    <updated>2013-11-18T06:40:03+00:00</updated>
+    <updated>2013-11-18T06:46:23+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -236,7 +236,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
     <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
     <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-18T06:40:03+00:00</updated>
+    <updated>2013-11-18T06:46:23+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -368,7 +368,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/13/huga.html"/>
     <id>http://blog.url.com/2013/11/13/huga.html</id>
     <published>2013-11-13T03:31:00Z</published>
-    <updated>2013-11-18T06:40:03+00:00</updated>
+    <updated>2013-11-18T06:46:23+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -425,7 +425,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html"/>
     <id>http://blog.url.com/2013/11/12/scroll-bug-android-2-3-default-browser.html</id>
     <published>2013-11-12T06:37:00Z</published>
-    <updated>2013-11-18T06:40:03+00:00</updated>
+    <updated>2013-11-18T06:46:23+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -445,7 +445,7 @@ scopeじゃなくてClassMethodではだめなの？という疑問に対して&
     <link rel="alternate" href="http://blog.url.com/2013/11/11/rails-active_decorator.html"/>
     <id>http://blog.url.com/2013/11/11/rails-active_decorator.html</id>
     <published>2013-11-11T02:44:00Z</published>
-    <updated>2013-11-18T06:40:03+00:00</updated>
+    <updated>2013-11-18T06:46:23+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
