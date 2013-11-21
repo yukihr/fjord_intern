@@ -1,0 +1,11 @@
+---
+title: Mavericksでlibv8 Gemでビルドエラー
+date: 2013-11-20 18:06 JST
+tags: rails
+---
+
+最新版では解決されてるらしい。
+
+* [rubygems - Installing libv8 gem on Mavericks - Stack Overflow](http://stackoverflow.com/questions/19577759/installing-libv8-gem-on-mavericks "rubygems - Installing libv8 gem on Mavericks - Stack Overflow")
+
+Gemfile.lockを見ると、therubyracerがlibv8のビルドエラーが出るバージョンに依存している。therubyracerのバージョンを最新にして解決。
