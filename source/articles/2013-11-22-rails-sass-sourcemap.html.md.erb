@@ -1,0 +1,58 @@
+---
+title: RailsでSass Sourcemapを使ってみる
+date: 2013-11-22 18:46 JST
+tags: rails
+---
+
+Railsだと、
+
+* [vhyza/sass-rails-source-maps](https://github.com/vhyza/sass-rails-source-maps "vhyza/sass-rails-source-maps")
+
+を使うと、最新のChromeでSassのSourcemapが使える
+
+```ruby
+group :development, :test do
+  gem 'sass-rails-source-maps'
+end
+```
+
+```shell
+$ bundle update sass
+```
+
+environments/development.rb で
+
+```ruby
+  config.sass.debug_info = true
+  config.sass.line_comments = false # source maps don't get output if this is true
+```
+
+として、サーバをリスタート。ChromeのDeveloper Tools > 設定（ギアアイコン） > General > Enable CSS source maps をオンにしておく。
+これで、通常どおりの要素のインスペクトでscssファイルが表示されるはず(*.sassには未対応なのか普通のcssが表示される)。
+
+
+## Compassを一緒に使う場合、バージョンに注意
+
+sass-rails-source-mapsがsassの3.3.0.alpha以上に依存しているので、Gemfileで次のようにバージョン指定する。
+
+```ruby
+gem 'compass', '~> 0.13.alpha.10'
+```
+
+あと、余談ですが、compass-railsというGemを使えば設定なしでCompassが使えるはずなんだけど、
+
+```
+`require': cannot load such file -- sass/script/node (LoadError) 
+```
+
+とか、compassのimportエラーが出てうまく行かない。
+
+* [Rails4 beta さわってみたメモ #railshackathon - 130単位](http://d.hatena.ne.jp/deeeki/20121124/rails4_1st_impression "Rails4 beta さわってみたメモ #railshackathon - 130単位")
+
+にあるように、initializers/compass.rbなどに
+
+```ruby
+Rails.configuration.assets.paths << Compass::Frameworks['compass'].stylesheets_directory
+```
+
+と書くことでCompassが使えるようになった。
