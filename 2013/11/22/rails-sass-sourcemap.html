@@ -1,0 +1,147 @@
+
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="description" content="yukihrがfjordさんでのインターンをゆるゆると綴ります。" />
+    <title>yukihrのfjordインターン日記</title>
+    
+      <link href="/fjord_intern/assets/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css">
+    
+  </head>
+  <body>
+    <header>
+      <h1 class="brand-name">yukihrのfjordインターン日記<a href="/fjord_intern/">■</a></h1>
+      <p class="lead"><a href="//twitter.com/yukihr">yukihr</a>が<a href="//fjord.jp">fjord</a>での<a href="//256interns.com">インターン</a>をゆるーく綴ります。</p>
+    </header>
+
+    <hr/>
+    
+    <div id="main" role="main">
+      
+<article class="article" itemscope itemtype="http://schema.org/Article">
+  
+    <header>
+      <h1 class="title" itemprop="name">
+        RailsでSass Sourcemapを使ってみる
+      </h1>
+      <div class="meta">
+        <time class="date" itemprop="datePublished" content="2013-11-22T18:46:00+09:00" datetime="2013-11-22T18:46:00+09:00" pubdate>
+  <span class="year">2013</span>-<span class="month">11</span>-<span class="day">22</span>
+</time>
+/
+        <span>24日目</span>/
+        <span>5週目・学習週</span>
+
+        
+          <a class="comment" href="#disqus_thread"><span>コメント</span></a>
+        
+      </div>
+    </header>
+  
+
+  <div class="body markdown" itemprop="articleBody"><p>Railsだと、</p>
+
+<ul>
+<li><a title="vhyza/sass-rails-source-maps" href="https://github.com/vhyza/sass-rails-source-maps">vhyza/sass-rails-source-maps</a></li>
+</ul>
+
+<p>を使うと、最新のChromeでSassのSourcemapが使える</p>
+<pre class="highlight ruby"><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sass-rails-source-maps&#39;</span>
+<span class="k">end</span>
+</pre><pre class="highlight shell"><span class="gp">$ </span>bundle update sass
+</pre>
+<p>environments/development.rb で</p>
+<pre class="highlight ruby">  <span class="n">config</span><span class="nf">.sass.debug_info</span> <span class="o">=</span> <span class="kp">true</span>
+  <span class="n">config</span><span class="nf">.sass.line_comments</span> <span class="o">=</span> <span class="kp">false</span> <span class="c1"># source maps don&#39;t get output if this is true</span>
+</pre>
+<p>として、サーバをリスタート。ChromeのDeveloper Tools &gt; 設定（ギアアイコン） &gt; General &gt; Enable CSS source maps をオンにしておく。
+これで、通常どおりの要素のインスペクトでscssファイルが表示されるはず(*.sassには未対応なのか普通のcssが表示される)。</p>
+
+<h2 id="toc_0">Compassを一緒に使う場合、バージョンに注意</h2>
+
+<p>sass-rails-source-mapsがsassの3.3.0.alpha以上に依存しているので、Gemfileで次のようにバージョン指定する。</p>
+<pre class="highlight ruby"><span class="n">gem</span> <span class="s1">&#39;compass&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 0.13.alpha.10&#39;</span>
+</pre>
+<p>あと、余談ですが、compass-railsというGemを使えば設定なしでCompassが使えるはずなんだけど、</p>
+<pre class="highlight text">`require&#39;: cannot load such file -- sass/script/node (LoadError) 
+</pre>
+<p>とか、compassのimportエラーが出てうまく行かない。</p>
+
+<ul>
+<li><a title="Rails4 beta さわってみたメモ #railshackathon - 130単位" href="http://d.hatena.ne.jp/deeeki/20121124/rails4_1st_impression">Rails4 beta さわってみたメモ #railshackathon - 130単位</a></li>
+</ul>
+
+<p>にあるように、initializers/compass.rbなどに</p>
+<pre class="highlight ruby"><span class="no">Rails</span><span class="nf">.configuration.assets.paths</span> <span class="o">&lt;&lt;</span> <span class="no">Compass</span><span class="o">::</span><span class="no">Frameworks</span><span class="o">[</span><span class="s1">&#39;compass&#39;</span><span class="o">]</span><span class="nf">.stylesheets_directory</span>
+</pre>
+<p>と書くことでCompassが使えるようになった。</p>
+</div>
+
+  
+    <section>
+      <div class="article-tag">
+        <h2>タグ</h2>
+        <ul class="tags horizontal">
+  
+    <li><a href="../../../tags/rails.html">rails</a></li>
+  
+</ul>
+
+      </div>
+    </section>
+  
+
+  
+    <section>
+      <h2>コメント</h2>
+      <div id="disqus_thread" aria-live="polite">
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+    </section>
+  
+
+</article>
+
+
+    </div>
+
+      <script type="text/javascript">
+    var disqus_shortname = 'yukihrfjord';
+    
+      
+      
+      var disqus_identifier = 'http://yukihr.github.io/fjord_intern/2013/11/22/rails-sass-sourcemap';
+      var disqus_url = 'http://yukihr.github.io/fjord_intern/2013/11/22/rails-sass-sourcemap.html';
+      var disqus_script = 'embed.js';
+    
+    (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+  </script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=212934732101925";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>
