@@ -10,15 +10,21 @@ Railsだと、
 
 を使うと、最新のChromeでSassのSourcemapが使える
 
+Gemfileに
+
 ```ruby
 group :development, :test do
   gem 'sass-rails-source-maps'
 end
 ```
 
+と書いて、
+
 ```shell
 $ bundle update sass
 ```
+
+とする。
 
 environments/development.rb で
 
