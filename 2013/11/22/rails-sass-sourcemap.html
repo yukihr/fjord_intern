@@ -51,8 +51,6 @@
 <p>を使うと、最新のChromeでSassのSourcemap(v3)が使える</p>
 
 <p>Gemfileに</p>
-
-<p>Gemfileに</p>
 <pre class="highlight ruby"><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;sass-rails-source-maps&#39;</span>
 <span class="k">end</span>
@@ -69,6 +67,12 @@
 <p>として、サーバをリスタート。ChromeのDeveloper Tools &gt; 設定（ギアアイコン） &gt; General &gt; Enable CSS source maps をオンにしておく。
 これで、通常どおりの要素のインスペクトでscssファイルが表示されるはず(*.sassには未対応なのか普通のcssが表示される)。</p>
 
+<p>参考:</p>
+
+<ul>
+<li><a title="How to make Chrome understand the Sass/SCSS in your rails app | fonicmonkey" href="http://fonicmonkey.net/2013/03/25/native-sass-scss-source-map-support-in-chrome-and-rails/">How to make Chrome understand the Sass/SCSS in your rails app | fonicmonkey</a></li>
+</ul>
+
 <p>[追記:2013-11-23]</p>
 
 <p>Safari7でも同様にscssのインスペクトができた。</p>
@@ -79,7 +83,7 @@
 
 <ul>
 <li><a title="rails で Mix-in するときにすでにあるメソッドをオーバーライドする - 情報建築学って何さ?" href="http://d.hatena.ne.jp/ckazu/20110523/1306152825">rails で Mix-in するときにすでにあるメソッドをオーバーライドする - 情報建築学って何さ?</a></li>
-<li><a title="How to make Chrome understand the Sass/SCSS in your rails app | fonicmonkey" href="http://fonicmonkey.net/2013/03/25/native-sass-scss-source-map-support-in-chrome-and-rails/">How to make Chrome understand the Sass/SCSS in your rails app | fonicmonkey</a></li>
+<li><a title="Ruby: how to override class method with a module - Byte Friendly" href="http://tech.tulentsev.com/2012/02/ruby-how-to-override-class-method-with-a-module/">Ruby: how to override class method with a module - Byte Friendly</a></li>
 </ul>
 
 <p>*.scssの場合に動いてるのは、<a title="sprockets/lib/sprockets/scss_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/scss_template.rb">Sprockets::ScssTemplate</a>が<a title="sprockets/lib/sprockets/sass_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/sass_template.rb">Sprockets::SassTemplate</a>を継承していて、定義にはメソッドがないから、includeしたモジュールのメソッドが優先されるためかな・・・</p>
