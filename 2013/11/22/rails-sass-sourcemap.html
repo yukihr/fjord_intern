@@ -58,12 +58,6 @@
 <p>と書いて、</p>
 <pre class="highlight shell"><span class="gp">$ </span>bundle update sass
 </pre>
-<p>とする。</p>
-
-<p>environments/development.rb で</p>
-<pre class="highlight ruby">  <span class="n">config</span><span class="nf">.sass.debug_info</span> <span class="o">=</span> <span class="kp">true</span>
-  <span class="n">config</span><span class="nf">.sass.line_comments</span> <span class="o">=</span> <span class="kp">false</span> <span class="c1"># source maps don&#39;t get output if this is true</span>
-</pre>
 <p>として、サーバをリスタート。ChromeのDeveloper Tools &gt; 設定（ギアアイコン） &gt; General &gt; Enable CSS source maps をオンにしておく。
 これで、通常どおりの要素のインスペクトでscssファイルが表示されるはず(*.sassには未対応なのか普通のcssが表示される)。</p>
 
