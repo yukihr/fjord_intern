@@ -36,6 +36,11 @@ environments/development.rb で
 として、サーバをリスタート。ChromeのDeveloper Tools > 設定（ギアアイコン） > General > Enable CSS source maps をオンにしておく。
 これで、通常どおりの要素のインスペクトでscssファイルが表示されるはず(*.sassには未対応なのか普通のcssが表示される)。
 
+参考:
+
+* [How to make Chrome understand the Sass/SCSS in your rails app | fonicmonkey](http://fonicmonkey.net/2013/03/25/native-sass-scss-source-map-support-in-chrome-and-rails/ "How to make Chrome understand the Sass/SCSS in your rails app | fonicmonkey")
+
+
 [追記:2013-11-23]
 
 Safari7でも同様にscssのインスペクトができた。
@@ -45,7 +50,7 @@ Safari7でも同様にscssのインスペクトができた。
 参考:
 
 * [rails で Mix-in するときにすでにあるメソッドをオーバーライドする - 情報建築学って何さ?](http://d.hatena.ne.jp/ckazu/20110523/1306152825 "rails で Mix-in するときにすでにあるメソッドをオーバーライドする - 情報建築学って何さ?")
-* [How to make Chrome understand the Sass/SCSS in your rails app | fonicmonkey](http://fonicmonkey.net/2013/03/25/native-sass-scss-source-map-support-in-chrome-and-rails/ "How to make Chrome understand the Sass/SCSS in your rails app | fonicmonkey")
+* [Ruby: how to override class method with a module - Byte Friendly](http://tech.tulentsev.com/2012/02/ruby-how-to-override-class-method-with-a-module/ "Ruby: how to override class method with a module - Byte Friendly")
 
 *.scssの場合に動いてるのは、[Sprockets::ScssTemplate](https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/scss_template.rb "sprockets/lib/sprockets/scss_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets")が[Sprockets::SassTemplate](https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/sass_template.rb "sprockets/lib/sprockets/sass_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets")を継承していて、定義にはメソッドがないから、includeしたモジュールのメソッドが優先されるためかな・・・
 
