@@ -42,13 +42,15 @@
     </header>
   
 
-  <div class="body markdown" itemprop="articleBody"><p>Railsだと、</p>
+  <div class="body markdown" itemprop="articleBody"><p>Rails4だと、</p>
 
 <ul>
 <li><a title="vhyza/sass-rails-source-maps" href="https://github.com/vhyza/sass-rails-source-maps">vhyza/sass-rails-source-maps</a></li>
 </ul>
 
-<p>を使うと、最新のChromeでSassのSourcemapが使える</p>
+<p>を使うと、最新のChromeでSassのSourcemap(v3)が使える</p>
+
+<p>Gemfileに</p>
 
 <p>Gemfileに</p>
 <pre class="highlight ruby"><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
@@ -66,6 +68,10 @@
 </pre>
 <p>として、サーバをリスタート。ChromeのDeveloper Tools &gt; 設定（ギアアイコン） &gt; General &gt; Enable CSS source maps をオンにしておく。
 これで、通常どおりの要素のインスペクトでscssファイルが表示されるはず(*.sassには未対応なのか普通のcssが表示される)。</p>
+
+<p>[追記:2013-11-23]</p>
+
+<p>Safari7でも同様にscssのインスペクトができた。</p>
 
 <h2 id="toc_0">Compassを一緒に使う場合、バージョンに注意</h2>
 
