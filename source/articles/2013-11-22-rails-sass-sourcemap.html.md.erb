@@ -4,11 +4,13 @@ date: 2013-11-22 18:46 JST
 tags: rails
 ---
 
-Railsだと、
+Rails4だと、
 
 * [vhyza/sass-rails-source-maps](https://github.com/vhyza/sass-rails-source-maps "vhyza/sass-rails-source-maps")
 
-を使うと、最新のChromeでSassのSourcemapが使える
+を使うと、最新のChromeでSassのSourcemap(v3)が使える
+
+Gemfileに
 
 Gemfileに
 
@@ -35,6 +37,10 @@ environments/development.rb で
 
 として、サーバをリスタート。ChromeのDeveloper Tools > 設定（ギアアイコン） > General > Enable CSS source maps をオンにしておく。
 これで、通常どおりの要素のインスペクトでscssファイルが表示されるはず(*.sassには未対応なのか普通のcssが表示される)。
+
+[追記:2013-11-23]
+
+Safari7でも同様にscssのインスペクトができた。
 
 
 ## Compassを一緒に使う場合、バージョンに注意
