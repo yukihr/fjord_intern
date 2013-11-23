@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/22/rails-sass-sourcemap.html"/>
     <id>http://blog.url.com/2013/11/22/rails-sass-sourcemap.html</id>
     <published>2013-11-22T09:46:00Z</published>
-    <updated>2013-11-23T07:34:44+00:00</updated>
+    <updated>2013-11-23T12:12:15+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -49,6 +49,25 @@
 
 &lt;p&gt;Safari7でも同様にscssのインスペクトができた。&lt;/p&gt;
 
+&lt;p&gt;さらに追記。*.sassファイルのSourcemapが作られないのは、どうやらSprocketsのメソッドのオーバーライドに失敗してるかららしい。RubyのインスタンスメソッドをModuleのメソッドでオーバーライドするにはちょっとしたノウハウが必要らしい。&lt;/p&gt;
+
+&lt;p&gt;参考:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="rails で Mix-in するときにすでにあるメソッドをオーバーライドする - 情報建築学って何さ?" href="http://d.hatena.ne.jp/ckazu/20110523/1306152825"&gt;rails で Mix-in するときにすでにあるメソッドをオーバーライドする - 情報建築学って何さ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a title="How to make Chrome understand the Sass/SCSS in your rails app | fonicmonkey" href="http://fonicmonkey.net/2013/03/25/native-sass-scss-source-map-support-in-chrome-and-rails/"&gt;How to make Chrome understand the Sass/SCSS in your rails app | fonicmonkey&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;*.scssの場合に動いてるのは、&lt;a title="sprockets/lib/sprockets/scss_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/scss_template.rb"&gt;Sprockets::ScssTemplate&lt;/a&gt;が&lt;a title="sprockets/lib/sprockets/sass_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/sass_template.rb"&gt;Sprockets::SassTemplate&lt;/a&gt;を継承していて、定義にはメソッドがないから、includeしたモジュールのメソッドが優先されるためかな・・・&lt;/p&gt;
+
+&lt;p&gt;ということで、Pullreqを送ってみた。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="Fix overriding Sprockets::SassTemplate#evaluate by yukihr · Pull Request #1 · vhyza/sass-rails-source-maps" href="https://github.com/vhyza/sass-rails-source-maps/pull/1"&gt;Fix overriding Sprockets::SassTemplate#evaluate by yukihr · Pull Request #1 · vhyza/sass-rails-source-maps&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Pullreq送るときは緊張する・・・。&lt;/p&gt;
+
 &lt;h2 id="toc_0"&gt;Compassを一緒に使う場合、バージョンに注意&lt;/h2&gt;
 
 &lt;p&gt;sass-rails-source-mapsがsassの3.3.0.alpha以上に依存しているので、Gemfileで次のようにバージョン指定する。&lt;/p&gt;
@@ -74,7 +93,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/22/heroku-hk.html"/>
     <id>http://blog.url.com/2013/11/22/heroku-hk.html</id>
     <published>2013-11-22T03:27:00Z</published>
-    <updated>2013-11-23T07:34:44+00:00</updated>
+    <updated>2013-11-23T12:12:15+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -98,7 +117,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html"/>
     <id>http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html</id>
     <published>2013-11-20T09:06:00Z</published>
-    <updated>2013-11-23T07:34:44+00:00</updated>
+    <updated>2013-11-23T12:12:15+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -116,7 +135,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html"/>
     <id>http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html</id>
     <published>2013-11-18T05:40:00Z</published>
-    <updated>2013-11-23T07:34:44+00:00</updated>
+    <updated>2013-11-23T12:12:15+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -180,7 +199,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html"/>
     <id>http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html</id>
     <published>2013-11-15T02:33:00Z</published>
-    <updated>2013-11-23T07:34:44+00:00</updated>
+    <updated>2013-11-23T12:12:15+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -347,7 +366,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
     <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
     <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-23T07:34:44+00:00</updated>
+    <updated>2013-11-23T12:12:15+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
