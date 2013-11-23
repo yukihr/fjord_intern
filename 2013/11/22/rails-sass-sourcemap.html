@@ -86,7 +86,7 @@
 <li><a title="Ruby: how to override class method with a module - Byte Friendly" href="http://tech.tulentsev.com/2012/02/ruby-how-to-override-class-method-with-a-module/">Ruby: how to override class method with a module - Byte Friendly</a></li>
 </ul>
 
-<p>*.scssの場合に動いてるのは、<a title="sprockets/lib/sprockets/scss_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/scss_template.rb">Sprockets::ScssTemplate</a>が<a title="sprockets/lib/sprockets/sass_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/sass_template.rb">Sprockets::SassTemplate</a>を継承していて、定義にはメソッドがないから、includeしたモジュールのメソッドが優先されるためかな・・・</p>
+<p>*.scssの場合に動いてるのは、<a title="sprockets/lib/sprockets/scss_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/scss_template.rb">Sprockets::ScssTemplate</a>が<a title="sprockets/lib/sprockets/sass_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/sass_template.rb">Sprockets::SassTemplate</a>を継承していて、定義にはメソッドがないから、includeしたモジュールのメソッドが優先されるためかな・・・。<a href="#toc_1">*1</a></p>
 
 <p>ということで、Pullreqを送ってみた。</p>
 
@@ -114,7 +114,66 @@
 <pre class="highlight ruby"><span class="no">Rails</span><span class="nf">.configuration.assets.paths</span> <span class="o">&lt;&lt;</span> <span class="no">Compass</span><span class="o">::</span><span class="no">Frameworks</span><span class="o">[</span><span class="s1">&#39;compass&#39;</span><span class="o">]</span><span class="nf">.stylesheets_directory</span>
 </pre>
 <p>と書くことでCompassが使えるようになった。</p>
-</div>
+
+<h2 id="toc_1">*1</h2>
+
+<p>の検証のために次のようなコードを書いてみたが、予想と異なる結果に。こうなると、元のコードがどうして動いているのかがわからない。デバッガも入れて動作を追ってみたけれど、結局分からずじまい。見逃している点がありそうで不安。まあ、間違ってたらPullreqのDiscussionで指摘してくれるだろう。</p>
+<pre class="highlight ruby"><span class="k">module</span> <span class="nn">Original</span>
+  <span class="k">class </span><span class="nc">Klass</span>
+    <span class="k">def </span><span class="nf">overridden</span>
+      <span class="nb">puts</span> <span class="s1">&#39;original&#39;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="k">class </span><span class="nc">Successor</span> <span class="o">&lt;</span> <span class="no">Klass</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Original</span><span class="o">::</span><span class="no">Klass</span><span class="nf">.new.overridden</span> <span class="c1">#=&gt; &#39;original&#39;</span>
+<span class="no">Original</span><span class="o">::</span><span class="no">Successor</span><span class="nf">.new.overridden</span> <span class="c1">#=&gt; &#39;original&#39;</span>
+
+<span class="c1">#</span>
+<span class="c1"># Override1</span>
+<span class="c1">#</span>
+<span class="k">module</span> <span class="nn">Override1</span>
+  <span class="k">module</span> <span class="nn">Klass</span>
+    <span class="k">def </span><span class="nf">overridden</span>
+      <span class="nb">puts</span> <span class="s1">&#39;override 1&#39;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Original</span><span class="o">::</span><span class="no">Klass</span><span class="nf">.class_eval</span> <span class="k">do</span>
+  <span class="kp">include</span> <span class="no">Override1</span><span class="o">::</span><span class="no">Klass</span>
+<span class="k">end</span>
+
+<span class="no">Original</span><span class="o">::</span><span class="no">Successor</span><span class="nf">.class_eval</span> <span class="k">do</span>
+  <span class="kp">include</span> <span class="no">Override1</span><span class="o">::</span><span class="no">Klass</span>
+<span class="k">end</span>
+
+<span class="no">Original</span><span class="o">::</span><span class="no">Klass</span><span class="nf">.new.overridden</span> <span class="c1">#=&gt; &#39;original&#39;</span>
+<span class="no">Original</span><span class="o">::</span><span class="no">Successor</span><span class="nf">.new.overridden</span> <span class="c1">#=&gt; &#39;original&#39; ここがoverride1になると期待してた :(</span>
+
+<span class="c1">#</span>
+<span class="c1"># Override2</span>
+<span class="c1">#</span>
+<span class="k">module</span> <span class="nn">Override2</span>
+  <span class="k">module</span> <span class="nn">Klass</span>
+    <span class="k">def </span><span class="nc">self</span><span class="o">.</span><span class="nf">included</span> <span class="n">base</span>
+      <span class="n">base</span><span class="nf">.class_eval</span> <span class="k">do</span>
+        <span class="k">def </span><span class="nf">overridden</span>
+          <span class="nb">puts</span> <span class="s1">&#39;override 2&#39;</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Original</span><span class="o">::</span><span class="no">Klass</span><span class="nf">.send</span><span class="p">(</span><span class="ss">:include</span><span class="p">,</span> <span class="no">Override2</span><span class="o">::</span><span class="no">Klass</span><span class="p">)</span>
+<span class="c1"># Original::Successor.send(:include, Override2::Klass) # This isnt needed</span>
+
+<span class="no">Original</span><span class="o">::</span><span class="no">Klass</span><span class="nf">.new.overridden</span> <span class="c1">#=&gt; &#39;override 2&#39;</span>
+<span class="no">Original</span><span class="o">::</span><span class="no">Successor</span><span class="nf">.new.overridden</span> <span class="c1">#=&gt; &#39;override 2&#39;</span>
+</pre></div>
 
   
     <section>

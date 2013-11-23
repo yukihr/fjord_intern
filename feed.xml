@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/22/rails-sass-sourcemap.html"/>
     <id>http://blog.url.com/2013/11/22/rails-sass-sourcemap.html</id>
     <published>2013-11-22T09:46:00Z</published>
-    <updated>2013-11-23T12:22:29+00:00</updated>
+    <updated>2013-11-23T15:38:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -62,7 +62,7 @@
 &lt;li&gt;&lt;a title="Ruby: how to override class method with a module - Byte Friendly" href="http://tech.tulentsev.com/2012/02/ruby-how-to-override-class-method-with-a-module/"&gt;Ruby: how to override class method with a module - Byte Friendly&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;*.scssの場合に動いてるのは、&lt;a title="sprockets/lib/sprockets/scss_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/scss_template.rb"&gt;Sprockets::ScssTemplate&lt;/a&gt;が&lt;a title="sprockets/lib/sprockets/sass_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/sass_template.rb"&gt;Sprockets::SassTemplate&lt;/a&gt;を継承していて、定義にはメソッドがないから、includeしたモジュールのメソッドが優先されるためかな・・・&lt;/p&gt;
+&lt;p&gt;*.scssの場合に動いてるのは、&lt;a title="sprockets/lib/sprockets/scss_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/scss_template.rb"&gt;Sprockets::ScssTemplate&lt;/a&gt;が&lt;a title="sprockets/lib/sprockets/sass_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets" href="https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/sass_template.rb"&gt;Sprockets::SassTemplate&lt;/a&gt;を継承していて、定義にはメソッドがないから、includeしたモジュールのメソッドが優先されるためかな・・・。&lt;a href="#toc_1"&gt;*1&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;ということで、Pullreqを送ってみた。&lt;/p&gt;
 
@@ -90,14 +90,73 @@
 &lt;pre class="highlight ruby"&gt;&lt;span class="no"&gt;Rails&lt;/span&gt;&lt;span class="nf"&gt;.configuration.assets.paths&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;Compass&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Frameworks&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;compass&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="nf"&gt;.stylesheets_directory&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;と書くことでCompassが使えるようになった。&lt;/p&gt;
-</content>
+
+&lt;h2 id="toc_1"&gt;*1&lt;/h2&gt;
+
+&lt;p&gt;の検証のために次のようなコードを書いてみたが、予想と異なる結果に。こうなると、元のコードがどうして動いているのかがわからない。デバッガも入れて動作を追ってみたけれど、結局分からずじまい。見逃している点がありそうで不安。まあ、間違ってたらPullreqのDiscussionで指摘してくれるだろう。&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;Original&lt;/span&gt;
+  &lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Klass&lt;/span&gt;
+    &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nf"&gt;overridden&lt;/span&gt;
+      &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;original&amp;#39;&lt;/span&gt;
+    &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Successor&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;Klass&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;&lt;span class="nf"&gt;.new.overridden&lt;/span&gt; &lt;span class="c1"&gt;#=&amp;gt; &amp;#39;original&amp;#39;&lt;/span&gt;
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.new.overridden&lt;/span&gt; &lt;span class="c1"&gt;#=&amp;gt; &amp;#39;original&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# Override1&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;Override1&lt;/span&gt;
+  &lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;Klass&lt;/span&gt;
+    &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nf"&gt;overridden&lt;/span&gt;
+      &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;override 1&amp;#39;&lt;/span&gt;
+    &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;&lt;span class="nf"&gt;.class_eval&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;Override1&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.class_eval&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;Override1&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;&lt;span class="nf"&gt;.new.overridden&lt;/span&gt; &lt;span class="c1"&gt;#=&amp;gt; &amp;#39;original&amp;#39;&lt;/span&gt;
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.new.overridden&lt;/span&gt; &lt;span class="c1"&gt;#=&amp;gt; &amp;#39;original&amp;#39; ここがoverride1になると期待してた :(&lt;/span&gt;
+
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# Override2&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;Override2&lt;/span&gt;
+  &lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;Klass&lt;/span&gt;
+    &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nc"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;included&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt;
+      &lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="nf"&gt;.class_eval&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+        &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nf"&gt;overridden&lt;/span&gt;
+          &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;override 2&amp;#39;&lt;/span&gt;
+        &lt;span class="k"&gt;end&lt;/span&gt;
+      &lt;span class="k"&gt;end&lt;/span&gt;
+    &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;&lt;span class="nf"&gt;.send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:include&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;Override2&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Original::Successor.send(:include, Override2::Klass) # This isnt needed&lt;/span&gt;
+
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;&lt;span class="nf"&gt;.new.overridden&lt;/span&gt; &lt;span class="c1"&gt;#=&amp;gt; &amp;#39;override 2&amp;#39;&lt;/span&gt;
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.new.overridden&lt;/span&gt; &lt;span class="c1"&gt;#=&amp;gt; &amp;#39;override 2&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;</content>
   </entry>
   <entry>
     <title>heroku-hk</title>
     <link rel="alternate" href="http://blog.url.com/2013/11/22/heroku-hk.html"/>
     <id>http://blog.url.com/2013/11/22/heroku-hk.html</id>
     <published>2013-11-22T03:27:00Z</published>
-    <updated>2013-11-23T12:22:29+00:00</updated>
+    <updated>2013-11-23T15:38:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -121,7 +180,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html"/>
     <id>http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html</id>
     <published>2013-11-20T09:06:00Z</published>
-    <updated>2013-11-23T12:22:29+00:00</updated>
+    <updated>2013-11-23T15:38:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -139,7 +198,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html"/>
     <id>http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html</id>
     <published>2013-11-18T05:40:00Z</published>
-    <updated>2013-11-23T12:22:29+00:00</updated>
+    <updated>2013-11-23T15:38:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -203,7 +262,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html"/>
     <id>http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html</id>
     <published>2013-11-15T02:33:00Z</published>
-    <updated>2013-11-23T12:22:29+00:00</updated>
+    <updated>2013-11-23T15:38:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -370,7 +429,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
     <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
     <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-23T12:22:29+00:00</updated>
+    <updated>2013-11-23T15:38:29+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
