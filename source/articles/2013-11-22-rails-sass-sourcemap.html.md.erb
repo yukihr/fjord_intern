@@ -52,14 +52,13 @@ Safari7でも同様にscssのインスペクトができた。
 * [rails で Mix-in するときにすでにあるメソッドをオーバーライドする - 情報建築学って何さ?](http://d.hatena.ne.jp/ckazu/20110523/1306152825 "rails で Mix-in するときにすでにあるメソッドをオーバーライドする - 情報建築学って何さ?")
 * [Ruby: how to override class method with a module - Byte Friendly](http://tech.tulentsev.com/2012/02/ruby-how-to-override-class-method-with-a-module/ "Ruby: how to override class method with a module - Byte Friendly")
 
-*.scssの場合に動いてるのは、[Sprockets::ScssTemplate](https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/scss_template.rb "sprockets/lib/sprockets/scss_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets")が[Sprockets::SassTemplate](https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/sass_template.rb "sprockets/lib/sprockets/sass_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets")を継承していて、定義にはメソッドがないから、includeしたモジュールのメソッドが優先されるためかな・・・
+*.scssの場合に動いてるのは、[Sprockets::ScssTemplate](https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/scss_template.rb "sprockets/lib/sprockets/scss_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets")が[Sprockets::SassTemplate](https://github.com/sstephenson/sprockets/blob/81ee87fba59d79f9fa7b8a987c649e0125866e7f/lib/sprockets/sass_template.rb "sprockets/lib/sprockets/sass_template.rb at 81ee87fba59d79f9fa7b8a987c649e0125866e7f · sstephenson/sprockets")を継承していて、定義にはメソッドがないから、includeしたモジュールのメソッドが優先されるためかな・・・。[*1](#toc_1)
 
 ということで、Pullreqを送ってみた。
 
 * [Fix overriding Sprockets::SassTemplate#evaluate by yukihr · Pull Request #1 · vhyza/sass-rails-source-maps](https://github.com/vhyza/sass-rails-source-maps/pull/1 "Fix overriding Sprockets::SassTemplate#evaluate by yukihr · Pull Request #1 · vhyza/sass-rails-source-maps")
 
 Pullreq送るときは緊張する・・・。
-
 
 ## Compassを一緒に使う場合、バージョンに注意
 
@@ -86,3 +85,67 @@ Rails.configuration.assets.paths << Compass::Frameworks['compass'].stylesheets_d
 ```
 
 と書くことでCompassが使えるようになった。
+
+
+## *1
+
+の検証のために次のようなコードを書いてみたが、予想と異なる結果に。こうなると、元のコードがどうして動いているのかがわからない。デバッガも入れて動作を追ってみたけれど、結局分からずじまい。見逃している点がありそうで不安。まあ、間違ってたらPullreqのDiscussionで指摘してくれるだろう。
+
+```ruby
+module Original
+  class Klass
+    def overridden
+      puts 'original'
+    end
+  end
+  class Successor < Klass
+  end
+end
+
+Original::Klass.new.overridden #=> 'original'
+Original::Successor.new.overridden #=> 'original'
+
+#
+# Override1
+#
+module Override1
+  module Klass
+    def overridden
+      puts 'override 1'
+    end
+  end
+end
+
+Original::Klass.class_eval do
+  include Override1::Klass
+end
+
+Original::Successor.class_eval do
+  include Override1::Klass
+end
+
+Original::Klass.new.overridden #=> 'original'
+Original::Successor.new.overridden #=> 'original' ここがoverride1になると期待してた :(
+
+#
+# Override2
+#
+module Override2
+  module Klass
+    def self.included base
+      base.class_eval do
+        def overridden
+          puts 'override 2'
+        end
+      end
+    end
+  end
+end
+
+Original::Klass.send(:include, Override2::Klass)
+# Original::Successor.send(:include, Override2::Klass) # This isnt needed
+
+Original::Klass.new.overridden #=> 'override 2'
+Original::Successor.new.overridden #=> 'override 2'
+```
+
