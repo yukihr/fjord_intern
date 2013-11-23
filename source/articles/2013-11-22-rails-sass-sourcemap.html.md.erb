@@ -24,15 +24,6 @@ end
 $ bundle update sass
 ```
 
-とする。
-
-environments/development.rb で
-
-```ruby
-  config.sass.debug_info = true
-  config.sass.line_comments = false # source maps don't get output if this is true
-```
-
 として、サーバをリスタート。ChromeのDeveloper Tools > 設定（ギアアイコン） > General > Enable CSS source maps をオンにしておく。
 これで、通常どおりの要素のインスペクトでscssファイルが表示されるはず(*.sassには未対応なのか普通のcssが表示される)。
 
