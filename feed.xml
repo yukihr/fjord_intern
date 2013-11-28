@@ -5,16 +5,59 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-11-22T09:46:00Z</updated>
+  <updated>2013-11-28T05:57:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Railsのsanitizeヘルパーで違反タグを削除するのではなくエスケープする</title>
+    <link rel="alternate" href="http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html"/>
+    <id>http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html</id>
+    <published>2013-11-28T05:57:00Z</published>
+    <updated>2013-11-28T06:14:43+00:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Railsのsanitizeヘルパーでは、ホワイトリストに登録されているタグ以外は削除される。この仕様だと、&lt;code&gt;sanitize &amp;quot;(&amp;gt;_&amp;lt;)なんと！(&amp;gt;_&amp;lt;)&amp;quot;&lt;/code&gt;は&lt;code&gt;(&amp;gt;__&amp;lt;)&lt;/code&gt;となってしまい、好ましくない。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;confing/initializers/escape_to_sanitize.rb&lt;/code&gt;などに以下のように書いて、違反タグを削除ではなくエスケープする仕様としてみた。&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;cgi&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Escape bad tags when sanitized, instead of remove.&lt;/span&gt;
+&lt;span class="no"&gt;HTML&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Sanitizer&lt;/span&gt;&lt;span class="nf"&gt;.class_eval&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="kp"&gt;protected&lt;/span&gt;
+  &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nf"&gt;tokenize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;tokenizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;HTML&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Tokenizer&lt;/span&gt;&lt;span class="nf"&gt;.new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;token&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="nf"&gt;.next&lt;/span&gt;
+      &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;HTML&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Node&lt;/span&gt;&lt;span class="nf"&gt;.parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="n"&gt;process_node&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;
+      &lt;span class="c1"&gt;# replace bad tags with escaped HTML&lt;/span&gt;
+      &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="nf"&gt;.last.nil?&lt;/span&gt;
+        &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="nf"&gt;.length&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;CGI&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;escapeHTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="k"&gt;end&lt;/span&gt;
+    &lt;span class="k"&gt;end&lt;/span&gt;
+    &lt;span class="n"&gt;result&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;テストしてないので、意図しないバグがあるかもしれない。&lt;/p&gt;
+
+&lt;p&gt;他に &lt;a title="rgrove/sanitize" href="https://github.com/rgrove/sanitize"&gt;rgrove/sanitize&lt;/a&gt; などを使っても良いと思う。これは、rails標準のsanitizerより柔軟な設定ができるというもので、上記のような要件なら、&lt;a title="Transfomers" href="https://github.com/rgrove/sanitize?source=cc#transformers-1"&gt;Transfomers&lt;/a&gt;をゴニョゴニョすれば実現できそう。&lt;/p&gt;
+
+&lt;p&gt;参考）&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="ruby on rails - Rails3 sanitize escape HTML rather than remove - Stack Overflow" href="http://stackoverflow.com/questions/6039128/rails3-sanitize-escape-html-rather-than-remove"&gt;ruby on rails - Rails3 sanitize escape HTML rather than remove - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>RailsでSass Sourcemapを使ってみる</title>
     <link rel="alternate" href="http://blog.url.com/2013/11/22/rails-sass-sourcemap.html"/>
     <id>http://blog.url.com/2013/11/22/rails-sass-sourcemap.html</id>
     <published>2013-11-22T09:46:00Z</published>
-    <updated>2013-11-23T15:47:59+00:00</updated>
+    <updated>2013-11-28T06:14:43+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -150,7 +193,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/22/heroku-hk.html"/>
     <id>http://blog.url.com/2013/11/22/heroku-hk.html</id>
     <published>2013-11-22T03:27:00Z</published>
-    <updated>2013-11-23T15:47:59+00:00</updated>
+    <updated>2013-11-28T06:14:43+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -174,7 +217,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html"/>
     <id>http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html</id>
     <published>2013-11-20T09:06:00Z</published>
-    <updated>2013-11-23T15:47:59+00:00</updated>
+    <updated>2013-11-28T06:14:43+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -192,7 +235,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html"/>
     <id>http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html</id>
     <published>2013-11-18T05:40:00Z</published>
-    <updated>2013-11-23T15:47:59+00:00</updated>
+    <updated>2013-11-28T06:14:43+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -256,7 +299,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html"/>
     <id>http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html</id>
     <published>2013-11-15T02:33:00Z</published>
-    <updated>2013-11-23T15:47:59+00:00</updated>
+    <updated>2013-11-28T06:14:43+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -415,138 +458,6 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="../../../2013/11/18/polymorphic-includes-joins-eager-loading.html#toc_0"&gt;polymorphicでのincludesとjoinについて&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>リファクタリングについて考えたりとか、rspecの高速化とか</title>
-    <link rel="alternate" href="http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html"/>
-    <id>http://blog.url.com/2013/11/14/refactoring-fast-rspec-with-spring.html</id>
-    <published>2013-11-14T04:09:00Z</published>
-    <updated>2013-11-23T15:47:59+00:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h1 id="toc_0"&gt;再度リファクタリング&lt;/h1&gt;
-
-&lt;p&gt;ActiveDecoratorで実装してた部分をModelに移す。&amp;lt;- 見た目に関係しないコードはできるだけモデルでやる方針&lt;/p&gt;
-
-&lt;h2 id="toc_1"&gt;方針&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;内部でhelperを使ってないコードとそうでないコードをわける&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id="toc_2"&gt;Springでrspecの高速化&lt;/h1&gt;
-
-&lt;p&gt;単体テストを手動で走らせるのに結構時間かかるので。&lt;/p&gt;
-
-&lt;p&gt;調べると、springというのが良さそう。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="jonleighton/spring" href="https://github.com/jonleighton/spring"&gt;jonleighton/spring&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;個人でつかうため、プロジェクトのGemfileは使わずにやる方法。&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;gem install spring
-&lt;span class="gp"&gt;$ &lt;/span&gt;spring rspec
-&lt;/pre&gt;
-&lt;p&gt;gem バージョンが古いというエラーが出るので、gemのアップデート&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;gem install rubygems-update
-&lt;span class="gp"&gt;$ &lt;/span&gt;update_rubygems
-&lt;/pre&gt;
-&lt;p&gt;次のようにするといいらしい&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;gem pristine --all
-&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;gem pristine&lt;/code&gt;: gemの隠し場所にあるファイルからインストールしたgemを初期状態へ戻す&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;from: &lt;a title="Rubyのパッケージマネジメントシステムgem(Rubygems)のコマンド一覧" href="http://blog.layer8.sh/ja/2012/04/16/ruby%E3%81%AE%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0gemrubygems%E3%81%AE%E3%82%B3%E3%83%9E%E3%83%B3/"&gt;Rubyのパッケージマネジメントシステムgem(Rubygems)のコマンド一覧&lt;/a&gt;&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;spring rspec hoge_spec.rb
-Version: 0.9.2
-
-Usage: spring COMMAND &lt;span class="o"&gt;[&lt;/span&gt;ARGS]
-
-Commands &lt;span class="k"&gt;for &lt;/span&gt;spring itself:
-....
-&lt;/pre&gt;
-&lt;p&gt;あれ・・・？&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="jonleighton/spring-commands-rspec" href="https://github.com/jonleighton/spring-commands-rspec"&gt;jonleighton/spring-commands-rspec&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;こういうのがある&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;gem install spring-commands-rspec
-&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;~/.spring.rb&lt;/code&gt;に次のように書く&lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;spring/commands/rspec&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;spring rspec path/to/hoge_spec.rb
-&lt;/pre&gt;
-&lt;p&gt;成功。結構速くなって嬉しい。&lt;/p&gt;
-
-&lt;h2 id="toc_3"&gt;参考その１&lt;/h2&gt;
-
-&lt;p&gt;spec_helper等、specファイル中でロードエラーが出る場合。&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;spring rspec path/to/hoge_spec.rb
-require&lt;span class="s1"&gt;&amp;#39;: cannot load such file -- spec_helper (LoadError)
-&lt;/span&gt;&lt;/pre&gt;
-&lt;p&gt;こんな時は、プロジェクトルートで一回&lt;code&gt;spring rspec&lt;/code&gt;を実行しておく&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;spring stop
-&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$PROJECT_ROOT&lt;/span&gt;
-&lt;span class="gp"&gt;$ &lt;/span&gt;spring rspec path/to/hoge_spec.rb
-&lt;/pre&gt;
-&lt;p&gt;これで、プロジェクトルートをカレントディレクトリとしてspringでrailsが読み込まれるので、requireでパスを正しく読み込める。&lt;/p&gt;
-
-&lt;h2 id="toc_4"&gt;参考その２&lt;/h2&gt;
-
-&lt;p&gt;emacsのrspec-modeで、上記のようにしてspringを使うと、自動ではspringがONにならない。
-これはtmpにpidファイルが作られないため。
-強制的にspringを使うには、次のように設定する。&lt;/p&gt;
-&lt;pre class="highlight common_lisp"&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="ss"&gt;&amp;#39;rspec-mode&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;rspec-spring-p&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;rspec-use-spring-when-possible&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;stringp&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;executable-find&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;spring&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;ちなみに、rspec-modeでは&lt;code&gt;C-c , v&lt;/code&gt;で開いているファイルに関連するテストだけを走らせる事ができる。&lt;/p&gt;
-
-&lt;h2 id="toc_5"&gt;guard、使ったほうががいいですか&lt;/h2&gt;
-
-&lt;p&gt;guardと組み合わせて使ってる人が多いみたい。guardは以前rails-tutorialやってる時に使ったけど、裏で走り続けるのがCPUの無駄使いにしか思えなくて使わなくなってしまった。guardの結果がエラーでも無視してコーディングすることも多かった。guard使ったほうがいい理由は、書いているコードが意図しない影響をもたらしてしまうことにすぐに気付いて方向修正できることなんだろうけど、commitの前にテストが通るか確認するだけでも十分な気もする。&lt;/p&gt;
-
-&lt;h2 id="toc_6"&gt;Gitのpre-commit-hookでテスト走らせる&lt;/h2&gt;
-
-&lt;p&gt;そんなことを考えていて、Gitのpre-commit-hookでテスト走らせればいいんじゃないかと思いつきました。同じようなことを考えた先達がいたようです。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="markhazlett/RSpec-Pre-commit-Git-Hook" href="https://github.com/markhazlett/RSpec-Pre-commit-Git-Hook"&gt;markhazlett/RSpec-Pre-commit-Git-Hook&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a title="Matjaz Muhic : git pre-commit hook - commit if all RSpec tests passed" href="https://coderwall.com/p/0uuoaq"&gt;Matjaz Muhic : git pre-commit hook - commit if all RSpec tests passed&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;コミットにあまりに時間がかかるのは考えものですが、一回やってみてもいいかも。&lt;/p&gt;
-
-&lt;h1 id="toc_7"&gt;Capybaraを使ったテストがOpenSSL::SSL::SSLErrorでコケる&lt;/h1&gt;
-
-&lt;p&gt;omniauthで登録する画面でエラーが出る(OSX 10.9, ruby2.0, rails3.2.12)。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;save_and_open_page&lt;/code&gt;でブラウザ開いてみると、&lt;code&gt;OpenSSL::SSL::SSLError&lt;/code&gt;。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="OpenSSL Errors and Rails – Certificate Verify Failed · RailsApps" href="http://railsapps.github.io/openssl-certificate-verify-failed.html"&gt;OpenSSL Errors and Rails – Certificate Verify Failed · RailsApps&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ここの、Errors with Ruby 2.0 &amp;gt; Alternative の手順で解決。SSL証明書が古くなっていたのが原因のよう。&lt;/p&gt;
-
-&lt;p&gt;kowabanaのローカル環境作った時からコケてて、そういうものかと放置してたのですが、@komagataさんに聞いたところ普通は全部通るとの事だったので、やっぱりか！、と思って調べてみました。&lt;/p&gt;
-
-&lt;h1 id="toc_8"&gt;新知識&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a title="Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g" href="http://blog.s21g.com/articles/561"&gt;Rubyでクラスメソッドをprivateにする正しい方法 - Hello, world! - s21g&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a title="Rubyのアクセス制御について(protectとprivate) - おもしろWEBサービス開発日記" href="http://d.hatena.ne.jp/willnet/20080612/1213286518"&gt;Rubyのアクセス制御について(protectとprivate) - おもしろWEBサービス開発日記&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a title="Active Record scopes vs class methods | Plataformatec Blog" href="http://blog.plataformatec.com.br/2013/02/active-record-scopes-vs-class-methods/"&gt;Active Record scopes vs class methods | Plataformatec Blog&lt;/a&gt;
-scopeじゃなくてClassMethodではだめなの？という疑問に対して&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
