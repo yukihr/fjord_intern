@@ -1,0 +1,39 @@
+---
+title: Railsのsanitizeヘルパーで違反タグを削除するのではなくエスケープする
+date: 2013-11-28 14:57 JST
+tags: rails, sanitize
+---
+
+Railsのsanitizeヘルパーでは、ホワイトリストに登録されているタグ以外は削除される。この仕様だと、`sanitize "(>_<)なんと！(>_<)"`は`(>__<)`となってしまい、好ましくない。
+
+`confing/initializers/escape_to_sanitize.rb`などに以下のように書いて、違反タグを削除ではなくエスケープする仕様としてみた。
+
+```ruby
+require 'cgi'
+
+# Escape bad tags when sanitized, instead of remove.
+HTML::Sanitizer.class_eval do
+  protected
+  def tokenize(text, options)
+    tokenizer = HTML::Tokenizer.new(text)
+    result = []
+    while token = tokenizer.next
+      node = HTML::Node.parse(nil, 0, 0, token, false)
+      process_node node, result, options
+      # replace bad tags with escaped HTML
+      if result.last.nil?
+        result[result.length - 1] = CGI::escapeHTML(token)
+      end
+    end
+    result
+  end
+end
+```
+
+テストしてないので、意図しないバグがあるかもしれない。
+
+他に [rgrove/sanitize](https://github.com/rgrove/sanitize "rgrove/sanitize") などを使っても良いと思う。これは、rails標準のsanitizerより柔軟な設定ができるというもので、上記のような要件なら、[Transfomers](https://github.com/rgrove/sanitize?source=cc#transformers-1 "Transfomers")をゴニョゴニョすれば実現できそう。
+
+参考）
+
+* [ruby on rails - Rails3 sanitize escape HTML rather than remove - Stack Overflow](http://stackoverflow.com/questions/6039128/rails3-sanitize-escape-html-rather-than-remove "ruby on rails - Rails3 sanitize escape HTML rather than remove - Stack Overflow")
