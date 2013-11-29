@@ -1,0 +1,37 @@
+---
+title: RubyのInheritanceとMixinでのメソッドオーバーライド
+date: 2013-11-29 21:48 JST
+tags: ruby
+---
+
+<%= link_to_article 'mixinでのメソッドオーバーライドの検証', '2013/11/22/rails-sass-sourcemap.html#toc_1' %>
+
+
+上の記事で、メソッドオーバーライドが予想通りに動かなくて悩んでいたのだけれど、以下のように子クラスへの`include`を先に書くと、想定の動作となった。
+
+```ruby
+Original::Successor.class_eval do
+  include Override1::Klass
+end
+
+Original::Klass.class_eval do
+  include Override1::Klass
+end
+
+Original::Klass.new.overridden #=> 'original'
+Original::Successor.new.overridden #=> 'override 1'
+```
+
+上記記事で取り組んでいたGemのソースも確かに子クラスへの`include`が先に書かれている。
+親クラスに先にincldeしてしまうと、子クラスへのincludeが無効になってしまうよう。
+
+まさか順番の違いが原因だとは思わなかったなあ。灯台下暗し。
+なぜこういう動作になるのかまだよくわかってないが、もうちょっと調べてみよう。
+
+あと、Ruby2.0からはこんな場合に`prepend`を使うといいらしい。
+
+* [» Ruby2.0のModule#prependは如何にしてalias_method_chainを撲滅するのか！？ TECHSCORE BLOG](http://www.techscore.com/blog/2013/01/22/ruby2-0%E3%81%AEmodule-prepend%E3%81%AF%E5%A6%82%E4%BD%95%E3%81%AB%E3%81%97%E3%81%A6alias_method_chain%E3%82%92%E6%92%B2%E6%BB%85%E3%81%99%E3%82%8B%E3%81%AE%E3%81%8B%EF%BC%81%EF%BC%9F/ "» Ruby2.0のModule#prependは如何にしてalias_method_chainを撲滅するのか！？ TECHSCORE BLOG")
+
+上記リンク、関数検索の優先順位についても書かれていて勉強になる。
+
+今週は作業週だったんだけれど体調を崩してしまってあまり何もできなかった。kowabanaの開発はほんとに勉強になることが多いので、ちょともったいない。

@@ -82,6 +82,9 @@ Rails.configuration.assets.paths << Compass::Frameworks['compass'].stylesheets_d
 
 の検証のために次のようなコードを書いてみたが、予想と異なる結果に。こうなると、元のコードがどうして動いているのかがわからない。デバッガも入れて動作を追ってみたけれど、結局分からずじまい。見逃している点がありそうで不安。まあ、間違ってたらPullreqのDiscussionで指摘してくれるだろう。
 
+<%= link_to_article '追記：予想通りの動作が再現出来ました', '2013/11/29/ruby-inheritance-and-mixin.html' %>
+
+
 ```ruby
 module Original
   class Klass
@@ -139,4 +142,3 @@ Original::Klass.send(:include, Override2::Klass)
 Original::Klass.new.overridden #=> 'override 2'
 Original::Successor.new.overridden #=> 'override 2'
 ```
-
