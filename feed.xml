@@ -5,16 +5,56 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-11-28T05:57:00Z</updated>
+  <updated>2013-11-29T12:48:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>RubyのInheritanceとMixinでのメソッドオーバーライド</title>
+    <link rel="alternate" href="http://blog.url.com/2013/11/29/ruby-inheritance-and-mixin.html"/>
+    <id>http://blog.url.com/2013/11/29/ruby-inheritance-and-mixin.html</id>
+    <published>2013-11-29T12:48:00Z</published>
+    <updated>2013-11-29T13:03:52+00:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="../../../2013/11/22/rails-sass-sourcemap.html#toc_1"&gt;mixinでのメソッドオーバーライドの検証&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;上の記事で、メソッドオーバーライドが予想通りに動かなくて悩んでいたのだけれど、以下のように子クラスへの&lt;code&gt;include&lt;/code&gt;を先に書くと、想定の動作となった。&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.class_eval&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;Override1&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;&lt;span class="nf"&gt;.class_eval&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;Override1&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Klass&lt;/span&gt;&lt;span class="nf"&gt;.new.overridden&lt;/span&gt; &lt;span class="c1"&gt;#=&amp;gt; &amp;#39;original&amp;#39;&lt;/span&gt;
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.new.overridden&lt;/span&gt; &lt;span class="c1"&gt;#=&amp;gt; &amp;#39;override 1&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;上記記事で取り組んでいたGemのソースも確かに子クラスへの&lt;code&gt;include&lt;/code&gt;が先に書かれている。
+親クラスに先にincldeしてしまうと、子クラスへのincludeが無効になってしまうよう。&lt;/p&gt;
+
+&lt;p&gt;まさか順番の違いが原因だとは思わなかったなあ。灯台下暗し。
+なぜこういう動作になるのかまだよくわかってないが、もうちょっと調べてみよう。&lt;/p&gt;
+
+&lt;p&gt;あと、Ruby2.0からはこんな場合に&lt;code&gt;prepend&lt;/code&gt;を使うといいらしい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="» Ruby2.0のModule#prependは如何にしてalias_method_chainを撲滅するのか！？ TECHSCORE BLOG" href="http://www.techscore.com/blog/2013/01/22/ruby2-0%E3%81%AEmodule-prepend%E3%81%AF%E5%A6%82%E4%BD%95%E3%81%AB%E3%81%97%E3%81%A6alias_method_chain%E3%82%92%E6%92%B2%E6%BB%85%E3%81%99%E3%82%8B%E3%81%AE%E3%81%8B%EF%BC%81%EF%BC%9F/"&gt;» Ruby2.0のModule#prependは如何にしてalias_method_chainを撲滅するのか！？ TECHSCORE BLOG&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;上記リンク、関数検索の優先順位についても書かれていて勉強になる。&lt;/p&gt;
+
+&lt;p&gt;今週は作業週だったんだけれど体調を崩してしまってあまり何もできなかった。kowabanaの開発はほんとに勉強になることが多いので、ちょともったいない。&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Railsのsanitizeヘルパーで違反タグを削除するのではなくエスケープする</title>
     <link rel="alternate" href="http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html"/>
     <id>http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html</id>
     <published>2013-11-28T05:57:00Z</published>
-    <updated>2013-11-28T06:14:43+00:00</updated>
+    <updated>2013-11-29T13:03:52+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -57,7 +97,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/22/rails-sass-sourcemap.html"/>
     <id>http://blog.url.com/2013/11/22/rails-sass-sourcemap.html</id>
     <published>2013-11-22T09:46:00Z</published>
-    <updated>2013-11-28T06:14:43+00:00</updated>
+    <updated>2013-11-29T13:03:52+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -131,6 +171,8 @@
 &lt;h2 id="toc_1"&gt;*1&lt;/h2&gt;
 
 &lt;p&gt;の検証のために次のようなコードを書いてみたが、予想と異なる結果に。こうなると、元のコードがどうして動いているのかがわからない。デバッガも入れて動作を追ってみたけれど、結局分からずじまい。見逃している点がありそうで不安。まあ、間違ってたらPullreqのDiscussionで指摘してくれるだろう。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="../../../2013/11/29/ruby-inheritance-and-mixin.html"&gt;追記：予想通りの動作が再現出来ました&lt;/a&gt;&lt;/p&gt;
 &lt;pre class="highlight ruby"&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;Original&lt;/span&gt;
   &lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Klass&lt;/span&gt;
     &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nf"&gt;overridden&lt;/span&gt;
@@ -193,7 +235,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/22/heroku-hk.html"/>
     <id>http://blog.url.com/2013/11/22/heroku-hk.html</id>
     <published>2013-11-22T03:27:00Z</published>
-    <updated>2013-11-28T06:14:43+00:00</updated>
+    <updated>2013-11-29T13:03:52+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -217,7 +259,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html"/>
     <id>http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html</id>
     <published>2013-11-20T09:06:00Z</published>
-    <updated>2013-11-28T06:14:43+00:00</updated>
+    <updated>2013-11-29T13:03:52+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -235,7 +277,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html"/>
     <id>http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html</id>
     <published>2013-11-18T05:40:00Z</published>
-    <updated>2013-11-28T06:14:43+00:00</updated>
+    <updated>2013-11-29T13:03:52+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -291,173 +333,6 @@
 &lt;li&gt;&lt;a title="eager loadingって何？ - おもしろWEBサービス開発日記" href="http://d.hatena.ne.jp/willnet/20090303/1236093728"&gt;eager loadingって何？ - おもしろWEBサービス開発日記&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a title="#22 Eager Loading (revised) - RailsCasts" href="http://railscasts.com/episodes/22-eager-loading-revised"&gt;#22 Eager Loading (revised) - RailsCasts&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a title="Ruby on Rails を高速化する" href="http://www.ibm.com/developerworks/jp/opensource/library/os-railsn1/"&gt;Ruby on Rails を高速化する&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>parallel_tests, rspecテストコードのリファクタリング, gitで詰んだかと思った話</title>
-    <link rel="alternate" href="http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html"/>
-    <id>http://blog.url.com/2013/11/15/parallel_tests-rspec-refactor-git-fail.html</id>
-    <published>2013-11-15T02:33:00Z</published>
-    <updated>2013-11-28T06:14:43+00:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h1 id="toc_0"&gt;parallel_tests を使ってみる&lt;/h1&gt;
-
-&lt;h2 id="toc_1"&gt;プロジェクトではなく、環境にインストール。 -&gt; 微妙な結果に&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="grosser/parallel_tests" href="https://github.com/grosser/parallel_tests#setup-for-non-rails"&gt;Setup for non-rails&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;基本的にここを参考に。
-まずはgemのインストール。&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;gem install parallel_tests
-&lt;/pre&gt;
-&lt;p&gt;次の記述に従って、dbの設定を編集。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="grosser/parallel_tests" href="https://github.com/grosser/parallel_tests#add-to-configdatabaseyml"&gt;Add to config/database.yml&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;並列実行の数の指定はここを参考にすると良い。今回はクアッドコアのマシンなので4にした。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="Ruby / Rails のテストが約3倍速になって超快適に！！ - #生存戦略 、それは - subtech" href="http://subtech.g.hatena.ne.jp/secondlife/20100819/1282226971"&gt;Ruby / Rails のテストが約3倍速になって超快適に！！ - #生存戦略 、それは - subtech&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;テスト用データベースの準備&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;parallel_rspec -n 4 -e &lt;span class="s1"&gt;&amp;#39;rake db:create&amp;#39;&lt;/span&gt; 
-&lt;span class="gp"&gt;$ &lt;/span&gt;parallel_rspec -n 4 -e &lt;span class="s1"&gt;&amp;#39;rake db:test:prepare&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;実際に走らせる&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;parallel_rspec spec/ -n 4
-&lt;/pre&gt;
-&lt;p&gt;75秒 -&gt; 45秒に高速化された。んー、思ったほどではない・・・。&lt;/p&gt;
-
-&lt;p&gt;そして、普通にテスト走らせた時にはなかったエラーが・・・。&lt;/p&gt;
-
-&lt;p&gt;やっぱり、プロジェクトにインストールしないとだめか。&lt;/p&gt;
-
-&lt;h1 id="toc_2"&gt;rspecをもっと綺麗に書きたい&lt;/h1&gt;
-
-&lt;p&gt;とても参考になる。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="RSpec の入門とその一歩先へ - t-wadaの日記" href="http://d.hatena.ne.jp/t-wada/20100228/p1"&gt;RSpec の入門とその一歩先へ - t-wadaの日記&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;あと、違うデータに対して同じit{..}を実行しているので、その重複を無くしたい。次が参考になりそう。shard examplesを使えばいいっぽい。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="すごいぞRSpec(shared example group編) - ぷろぐらまねが" href="http://d.hatena.ne.jp/yohfee/20110222/1298384637"&gt;すごいぞRSpec(shared example group編) - ぷろぐらまねが&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;実際の使用例は、次も参考になる。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="shared examples - Example groups - RSpec Core - RSpec - Relish" href="https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-examples"&gt;shared examples - Example groups - RSpec Core - RSpec - Relish&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id="toc_3"&gt;Gitで詰んだかと思った&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;あるブランチ(branch-hogeとしよう)をorigin(Github)にpush&lt;/li&gt;
-&lt;li&gt;masterの変更を取り込むためにlocalのbranch-hogeで&lt;code&gt;$git rebase master&lt;/code&gt;とする。 &lt;strong&gt;&amp;lt;-ここがそもそもの間違い&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;branch-hogeのコミットを&lt;code&gt;$ git rebase -i&lt;/code&gt;でまとめる。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;$ git push origin branch-hoge&lt;/code&gt;とするとエラーになる。2.で履歴が置き換わっているためbranch-hoge@originにpushできない。&lt;/li&gt;
-&lt;li&gt;あーrebaseしたからか！と気づいて、&lt;code&gt;$ git reflog&lt;/code&gt;でHEADの履歴を参照するも、&lt;code&gt;rebase -i&lt;/code&gt;でよくわからないことに・・・。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;詰んだかと思いましたが、なんとかリカバった。手順は、&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;$ git checkout --track origin/branch-hoge&lt;/code&gt;てローカルに追跡ブランチorigin-branch-hogeを作成。&lt;/li&gt;
-&lt;li&gt;branch-hogeからorigin-branch-hogeに必要なコミットをcherry-pick。このとき、-nを使うとgit addした状態で追加されていくので、origin-branch-hogeに必要な変更をためていって、最後にコミットすれば良い。&lt;/li&gt;
-&lt;li&gt;push可能な変更を追跡ブランチに追加することができたので、&lt;code&gt;$ git push&lt;/code&gt;すると良い。PullReqでautomergeできない場合は、masterを &lt;strong&gt;merge&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id="toc_4"&gt;教訓&lt;/h2&gt;
-
-&lt;p&gt;すでにpushしたブランチでrebaseするべからず&lt;/p&gt;
-
-&lt;h1 id="toc_5"&gt;relationで関連オブジェクトを取得するときにunscopedを使いたい&lt;/h1&gt;
-
-&lt;p&gt;ちょっとハマった&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="[rails] うぇぇん、unscopedがきかないよー。 って泣いてたお話 | おれせか" href="http://ichi.fool.jp/blog/?p=1753"&gt;[rails] うぇぇん、unscopedがきかないよー。 って泣いてたお話 | おれせか&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id="toc_6"&gt;新知識&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="Rubyで文字列をクラス名として扱うには？ - QA@IT" href="http://qa.atmarkit.co.jp/q/75"&gt;Rubyで文字列をクラス名として扱うには？ - QA@IT&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id="toc_7"&gt;Gitのpre-commit-hookでテストする&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href="../../../2013/11/14/refactoring-fast-rspec-with-spring.html#toc_6"&gt;昨日のやつ&lt;/a&gt;で思いついたけど、テストの必要ないコミットには、コメントでそのことを示せばいいのでは。頭に&amp;quot;!&amp;ldquo;をつけるとか。試してみようか。&lt;/p&gt;
-
-&lt;h1 id="toc_8"&gt;polymorphicでわからないこと&lt;/h1&gt;
-&lt;pre class="highlight ruby"&gt;&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Comment&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;ActiveRecord&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Base&lt;/span&gt;
-  &lt;span class="n"&gt;belongs_to&lt;/span&gt; &lt;span class="ss"&gt;:commentable&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;polymorphic: &lt;/span&gt;&lt;span class="kp"&gt;true&lt;/span&gt;
-  &lt;span class="c1"&gt;# この下を書くのと書かないとでは何が違う？&lt;/span&gt;
-  &lt;span class="c1"&gt;# 書いたほうがComment.includes(:article)とかできて良さそうだけど&lt;/span&gt;
-  &lt;span class="c1"&gt;# なにか弊害があるんだろうか？&lt;/span&gt;
-  &lt;span class="n"&gt;belongs_to&lt;/span&gt; &lt;span class="ss"&gt;:article&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="ss"&gt;foreign_key: &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;commentable_id&amp;#39;&lt;/span&gt;
-  &lt;span class="n"&gt;belongs_to&lt;/span&gt; &lt;span class="ss"&gt;:picture&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="ss"&gt;foreign_key: &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;commentable_id&amp;#39;&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-
-&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Article&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;ActiveRecord&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Base&lt;/span&gt;
-  &lt;span class="n"&gt;has_many&lt;/span&gt; &lt;span class="ss"&gt;:comments&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;as: :commentable&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-
-&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Picture&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;ActiveRecord&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Base&lt;/span&gt;
-  &lt;span class="n"&gt;has_many&lt;/span&gt; &lt;span class="ss"&gt;:comments&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;as: :commentable&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;belongs_to :parent&lt;/code&gt; があればコードがすんなり書ける気がする。&lt;/p&gt;
-
-&lt;h2 id="toc_9"&gt;[追記:2013-11-16]&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;belongs_to :parent&lt;/code&gt; とかけば、確かにincludesで別モデルに関するリレーションを定義できるのだけれど、SQLが複雑になって遅くなったりする。というか、そもそもpolymorphicなので、一種類の親モデルを持つわけではない。つまりbelongs_toで親になりうる全てのモデルを指定すると、それぞれのモデルインスタンスが、全てを親に持つことになってしまっておかしな定義になる。ちょっとめんどくさいけれど、&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/a/5815612/1015770"&gt;http://stackoverflow.com/a/5815612/1015770&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;にあるように、joinの定義はSQLで書くのが無難なよう。こうしたほうがいいよ、というのがあったらぜひ教えてほしい。&lt;/p&gt;
-
-&lt;h3 id="toc_10"&gt;参考&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="Ruby on Railsあれこれ/findメソッドの：includeオプションの書き方 - 笑猫酒家" href="http://winter-tail.sakura.ne.jp/pukiwiki/index.php?Ruby%20on%20Rails%A4%A2%A4%EC%A4%B3%A4%EC%2Ffind%A5%E1%A5%BD%A5%C3%A5%C9%A4%CE%A1%A7include%A5%AA%A5%D7%A5%B7%A5%E7%A5%F3%A4%CE%BD%F1%A4%AD%CA%FD"&gt;Ruby on Railsあれこれ/findメソッドの：includeオプションの書き方 - 笑猫酒家&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id="toc_11"&gt;[追記:2013-11-17]&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/a/16124295/1015770"&gt;http://stackoverflow.com/a/16124295/1015770&lt;/a&gt; &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;上記URLのSolutionも参考になる。&lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;span class="n"&gt;belongs_to&lt;/span&gt; &lt;span class="ss"&gt;:article&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="ss"&gt;foreign_key: &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;comemntable_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="ss"&gt;conditions: &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;comments.commentable_type = &amp;#39;Article&amp;#39;&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;とすれば、commentable_typeが&amp;#39;Article&amp;#39;のcommentにだけ、articleという子プロパティが作られる。
-これは一回使ってみたい。&lt;/p&gt;
-
-&lt;h2 id="toc_12"&gt;[追記:2013-11-18]&lt;/h2&gt;
-
-&lt;p&gt;続きを書きました。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="../../../2013/11/18/polymorphic-includes-joins-eager-loading.html#toc_0"&gt;polymorphicでのincludesとjoinについて&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
