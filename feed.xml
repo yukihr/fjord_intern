@@ -5,16 +5,86 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-11-29T12:48:00Z</updated>
+  <updated>2013-11-30T16:01:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Arel興味あれる？</title>
+    <link rel="alternate" href="http://blog.url.com/2013/12/01/im-interasted-in-arel.html"/>
+    <id>http://blog.url.com/2013/12/01/im-interasted-in-arel.html</id>
+    <published>2013-11-30T16:01:00Z</published>
+    <updated>2013-11-30T16:26:56+00:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Arel？あ！Railsのー！あーれーるー! ﾍ(ﾟ∀ﾟﾍ)&lt;/p&gt;
+
+&lt;p&gt;というわけで・・・最近、怖話のissueのこのコメント読んで（すみません、開発参加者以外は見れません・・）&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="add email notification flags to users by nomnel · Pull Request #626 · fjordllc/kowabana" href="https://github.com/fjordllc/kowabana/pull/626#issuecomment-23762718"&gt;add email notification flags to users by nomnel · Pull Request #626 · fjordllc/kowabana&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Arel面白そう、と思って気になっていて調べてみたので、メモ。&lt;/p&gt;
+
+&lt;p&gt;Arel活用して生SQL根絶したい。のと、Arelの動作を理解して、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="amatsuda/arel_ruby" href="https://github.com/amatsuda/arel_ruby"&gt;amatsuda/arel_ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a title="tkawa/activerecord-endoscope" href="https://github.com/tkawa/activerecord-endoscope"&gt;tkawa/activerecord-endoscope&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="Rails - ActiveRecordにこういう機能があったらどうでしょう？をgemにしてみた - Qiita [キータ]" href="http://qiita.com/tkawa/items/41d95b0e4ee0c30604ed"&gt;Rails - ActiveRecordにこういう機能があったらどうでしょう？をgemにしてみた - Qiita [キータ]&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;のようなクールなプロダクトを作って見たいのでござる。&lt;/p&gt;
+
+&lt;h2 id="toc_0"&gt;参考文献&lt;/h2&gt;
+
+&lt;h3 id="toc_1"&gt;まずは背景知識などを広く深く。&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="第43回　Rails 3を支える名脇役たち その1 - Arel -｜gihyo.jp … 技術評論社" href="http://gihyo.jp/dev/serial/01/ruby/0043?ard=1385828020"&gt;第43回　Rails 3を支える名脇役たち その1 - Arel -｜gihyo.jp … 技術評論社&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="toc_2"&gt;クエリ組み立てられるようになろう！&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="Arelで色んなSQLを組み立ててみる - @ryopeko の何か" href="http://ryopeko.hatenablog.com/entry/20101215/1292373612"&gt;Arelで色んなSQLを組み立ててみる - @ryopeko の何か&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a title="AdventCalendar - Arel でサブクエリ - Qiita [キータ]" href="http://qiita.com/tkawa/items/e65c8847e57a5329f336"&gt;AdventCalendar - Arel でサブクエリ - Qiita [キータ]&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ArelだけでOUTER JOINもできちゃうんですね！使おう、使っちゃおう！&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a title="Arel::Tableを使ってなるべく生のSQLを書かずに済ます方法 | TechRacho" href="http://techracho.bpsinc.jp/tsunekawa/2013_05_24/8502"&gt;Arel::Tableを使ってなるべく生のSQLを書かずに済ます方法 | TechRacho&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="toc_3"&gt;使えるようになったなーと思えるようになったら、コードリード、拡張に！&lt;/h3&gt;
+
+&lt;p&gt;まずは本家&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="rails/arel" href="https://github.com/rails/arel"&gt;rails/arel&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;プラグインも参考にしながら&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="amatsuda/arel_ruby" href="https://github.com/amatsuda/arel_ruby"&gt;amatsuda/arel_ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a title="tkawa/activerecord-endoscope" href="https://github.com/tkawa/activerecord-endoscope"&gt;tkawa/activerecord-endoscope&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;がんばるんばで！&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>RubyのInheritanceとMixinでのメソッドオーバーライド</title>
     <link rel="alternate" href="http://blog.url.com/2013/11/29/ruby-inheritance-and-mixin.html"/>
     <id>http://blog.url.com/2013/11/29/ruby-inheritance-and-mixin.html</id>
     <published>2013-11-29T12:48:00Z</published>
-    <updated>2013-11-30T09:25:27+00:00</updated>
+    <updated>2013-11-30T16:26:56+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -144,7 +214,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html"/>
     <id>http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html</id>
     <published>2013-11-28T05:57:00Z</published>
-    <updated>2013-11-30T09:25:27+00:00</updated>
+    <updated>2013-11-30T16:26:56+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -187,7 +257,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/22/rails-sass-sourcemap.html"/>
     <id>http://blog.url.com/2013/11/22/rails-sass-sourcemap.html</id>
     <published>2013-11-22T09:46:00Z</published>
-    <updated>2013-11-30T09:25:27+00:00</updated>
+    <updated>2013-11-30T16:26:56+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -325,7 +395,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/22/heroku-hk.html"/>
     <id>http://blog.url.com/2013/11/22/heroku-hk.html</id>
     <published>2013-11-22T03:27:00Z</published>
-    <updated>2013-11-30T09:25:27+00:00</updated>
+    <updated>2013-11-30T16:26:56+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -349,7 +419,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html"/>
     <id>http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html</id>
     <published>2013-11-20T09:06:00Z</published>
-    <updated>2013-11-30T09:25:27+00:00</updated>
+    <updated>2013-11-30T16:26:56+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -360,70 +430,6 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
 &lt;/ul&gt;
 
 &lt;p&gt;Gemfile.lockを見ると、therubyracerがlibv8のビルドエラーが出るバージョンに依存している。therubyracerのバージョンを最新にして解決。&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Polymorphicのincludes,join、eager loading、そろそろ１ヶ月</title>
-    <link rel="alternate" href="http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html"/>
-    <id>http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html</id>
-    <published>2013-11-18T05:40:00Z</published>
-    <updated>2013-11-30T09:25:27+00:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;はやいもので、ローカルインターンに来始めてからもうすぐ1ヶ月です。
-時が立つのは早い。次何するかそろそろ決めないと・・・。&lt;/p&gt;
-
-&lt;h1 id="toc_0"&gt;polymorphicでのincludesとjoinについて&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="../../../2013/11/15/parallel_tests-rspec-refactor-git-fail.html#toc_8"&gt;polymorphicでわからないこと&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;の続き。今までに理解できたことをまとめてみる。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/a/16124295/1015770"&gt;http://stackoverflow.com/a/16124295/1015770&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;にあるように、&lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Comment&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;ActiveRecord&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Base&lt;/span&gt;
-  &lt;span class="n"&gt;belongs_to&lt;/span&gt; &lt;span class="ss"&gt;:commentable&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;polymorphic: &lt;/span&gt;&lt;span class="kp"&gt;true&lt;/span&gt;
-  &lt;span class="n"&gt;belongs_to&lt;/span&gt; &lt;span class="ss"&gt;:article&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="ss"&gt;foreign_key: &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;comemntable_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="ss"&gt;conditions: &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;comments.commentable_type = &amp;#39;Article&amp;#39;&amp;quot;&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;のように書いておけば、commentオブジェクトのうち、&lt;code&gt;commentable_type&lt;/code&gt;が&lt;code&gt;Article&lt;/code&gt;のものについては、&lt;code&gt;comment.article&lt;/code&gt;でarticleオブジェクトにアクセスできる。さらに、&lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;span class="n"&gt;comments&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Comment&lt;/span&gt;&lt;span class="nf"&gt;.includes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:article&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="nf"&gt;.where&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;articles.user_id = 10&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;のようなクエリを発行することも可能になる。これによって、&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="joins オプションとinclude オプションの決定的な違い - mic_footprints" href="http://d.hatena.ne.jp/micdonalds/20101115/1289819697"&gt;joins オプションとinclude オプションの決定的な違い - mic_footprints&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;にあるように、&lt;code&gt;includes&lt;/code&gt;の長所(あまり詳しくないがeager loadingというらしい)を活用することができる。&lt;/p&gt;
-
-&lt;p&gt;ただ、&lt;code&gt;article&lt;/code&gt;オブジェクトを用いる必要があまりない場合、つまり、&lt;code&gt;article&lt;/code&gt;の情報をCommentのクエリのみに用いる場合は、&lt;code&gt;joins&lt;/code&gt;で&lt;code&gt;left join&lt;/code&gt;を使う以下の説明にあるコードのほうが、簡潔なSQLを発行出来て(comment.commentableに何回もアクセスしない場合は)速度的にも有利。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/a/5815612/1015770"&gt;http://stackoverflow.com/a/5815612/1015770&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;クエリの結果をどのように利用するかで、最適解が変わってくるということかな・・。&lt;/p&gt;
-
-&lt;p&gt;ご意見、ツッコミお待ちしております＞＜&lt;/p&gt;
-
-&lt;h1 id="toc_1"&gt;eager loadingについて調べてみる。&lt;/h1&gt;
-
-&lt;p&gt;せっかくeager loadingが出てきたので、掘り下げて調べてみる。とりあえず参考リンク。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a title="eager loadingって何？ - おもしろWEBサービス開発日記" href="http://d.hatena.ne.jp/willnet/20090303/1236093728"&gt;eager loadingって何？ - おもしろWEBサービス開発日記&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a title="#22 Eager Loading (revised) - RailsCasts" href="http://railscasts.com/episodes/22-eager-loading-revised"&gt;#22 Eager Loading (revised) - RailsCasts&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a title="Ruby on Rails を高速化する" href="http://www.ibm.com/developerworks/jp/opensource/library/os-railsn1/"&gt;Ruby on Rails を高速化する&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
