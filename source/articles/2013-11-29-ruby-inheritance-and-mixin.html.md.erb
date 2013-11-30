@@ -36,3 +36,101 @@ Original::Successor.new.overridden #=> 'override 1'
 上記リンク、関数検索の優先順位についても書かれていて勉強になる。
 
 今週は作業週だったんだけれど体調を崩してしまって半分くらいしか活動できなかった。kowabanaの開発は勉強になることが多いのでちょともったいない。
+
+
+[追記:2013-11-30]
+
+上記の動作の原因を追ってみた。まず、`Class::ancestor`でクラスの継承・Mixin関係を見ることができるみたいなので、子クラス、親クラスの`include`順、それぞれの場合で見てみる。以前の検証コードよりも簡略化している。
+
+まずは、親クラスに先に`include`する場合。
+
+```ruby
+class Original
+  def overridden
+    'original'
+  end
+end
+
+class Successor < Original
+end
+
+module Override1
+  def overridden
+    'override 1'
+  end
+end
+
+#親クラスに先にinclude
+Original.class_eval do
+  include Override1
+end
+
+Successor.class_eval do
+  include Override1
+end
+
+Original.ancestors # => [Original, Override1, Object, Kernel, BasicObject]
+Successor.ancestors # => [Successor, Original, Override1, Object, Kernel, BasicObject]
+```
+
+次に、子クラスに先に`include`する場合。
+
+```ruby
+class Original
+  def overridden
+    'original'
+  end
+end
+
+class Successor < Original
+end
+
+module Override1
+  def overridden
+    'override 1'
+  end
+end
+
+#子クラスに先にinclude
+Successor.class_eval do
+  include Override1
+end
+
+Original.class_eval do
+  include Override1
+end
+
+Original.ancestors # => [Original, Override1, Object, Kernel, BasicObject]
+Successor.ancestors # => [Successor, Override1, Original, Override1, Object, Kernel, BasicObject]
+```
+
+Successorの継承関係に注目。
+
+```ruby
+# 親クラスに先にinclude
+Successor.ancestors # => [Successor, Original, Override1, Object, Kernel, BasicObject]
+# 子クラスに先にinclude 二つ目のOverride1が追加されている
+Successor.ancestors # => [Successor, Override1 , Original, Override1, Object, Kernel, BasicObject]
+```
+
+やっぱり、先にincludeするのが子クラスか親クラスによってメソッドの探索順が変わってくるよう。
+
+このへん、rubyのソース見たら何か分かるのかなーと思ってソースを追ってみたら、そのものズバリのコメントがあった。
+
+* [ruby/class.c at 8b0771b0142dffb45dd0d7fc18f6c2868eeb2b3b · ruby/ruby](https://github.com/ruby/ruby/blob/8b0771b0142dffb45dd0d7fc18f6c2868eeb2b3b/class.c#L862 "ruby/class.c at 8b0771b0142dffb45dd0d7fc18f6c2868eeb2b3b · ruby/ruby")
+
+親クラスに`include`されているモジュールは子クラスで`include`できない仕様となっているよう。
+このコメントと仕様を実現するロジックが加えられたコミットは次になる(Git)。
+
+```
+commit 6f1c934bc361ec5d01a0b4b1a45d07840af02dc3
+Author: matz <matz@b2dd03c8-39d4-4d8f-98ff-823fe69b080e>
+Date:   Tue Nov 7 08:56:18 2006 +0000
+
+    * class.c (rb_include_module): revert duplicate inclusio
+      modules.  [ruby-dev:29793]
+```
+
+ruby-devのスレッドに実装の議論がある。
+
+* [ruby-dev jp - [ruby-dev:29793] Module duplicate](http://ruby.11.x6.nabble.com/ruby-dev-29793-Module-duplicate-td3514439.html "ruby-dev jp - [ruby-dev:29793] Module duplicate")
