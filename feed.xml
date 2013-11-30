@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/29/ruby-inheritance-and-mixin.html"/>
     <id>http://blog.url.com/2013/11/29/ruby-inheritance-and-mixin.html</id>
     <published>2013-11-29T12:48:00Z</published>
-    <updated>2013-11-29T18:31:44+00:00</updated>
+    <updated>2013-11-30T09:25:27+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -48,6 +48,95 @@
 &lt;p&gt;上記リンク、関数検索の優先順位についても書かれていて勉強になる。&lt;/p&gt;
 
 &lt;p&gt;今週は作業週だったんだけれど体調を崩してしまって半分くらいしか活動できなかった。kowabanaの開発は勉強になることが多いのでちょともったいない。&lt;/p&gt;
+
+&lt;p&gt;[追記:2013-11-30]&lt;/p&gt;
+
+&lt;p&gt;上記の動作の原因を追ってみた。まず、&lt;code&gt;Class::ancestor&lt;/code&gt;でクラスの継承・Mixin関係を見ることができるみたいなので、子クラス、親クラスの&lt;code&gt;include&lt;/code&gt;順、それぞれの場合で見てみる。以前の検証コードよりも簡略化している。&lt;/p&gt;
+
+&lt;p&gt;まずは、親クラスに先に&lt;code&gt;include&lt;/code&gt;する場合。&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Original&lt;/span&gt;
+  &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nf"&gt;overridden&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;original&amp;#39;&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Successor&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;Original&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;Override1&lt;/span&gt;
+  &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nf"&gt;overridden&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;override 1&amp;#39;&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="c1"&gt;#親クラスに先にinclude&lt;/span&gt;
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="nf"&gt;.class_eval&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;Override1&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.class_eval&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;Override1&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="nf"&gt;.ancestors&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; [Original, Override1, Object, Kernel, BasicObject]&lt;/span&gt;
+&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.ancestors&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; [Successor, Original, Override1, Object, Kernel, BasicObject]&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;次に、子クラスに先に&lt;code&gt;include&lt;/code&gt;する場合。&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Original&lt;/span&gt;
+  &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nf"&gt;overridden&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;original&amp;#39;&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;Successor&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;Original&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;Override1&lt;/span&gt;
+  &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nf"&gt;overridden&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;override 1&amp;#39;&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="c1"&gt;#子クラスに先にinclude&lt;/span&gt;
+&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.class_eval&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;Override1&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="nf"&gt;.class_eval&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;Override1&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="no"&gt;Original&lt;/span&gt;&lt;span class="nf"&gt;.ancestors&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; [Original, Override1, Object, Kernel, BasicObject]&lt;/span&gt;
+&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.ancestors&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; [Successor, Override1, Original, Override1, Object, Kernel, BasicObject]&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Successorの継承関係に注目。&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;span class="c1"&gt;# 親クラスに先にinclude&lt;/span&gt;
+&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.ancestors&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; [Successor, Original, Override1, Object, Kernel, BasicObject]&lt;/span&gt;
+&lt;span class="c1"&gt;# 子クラスに先にinclude 二つ目のOverride1が追加されている&lt;/span&gt;
+&lt;span class="no"&gt;Successor&lt;/span&gt;&lt;span class="nf"&gt;.ancestors&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; [Successor, Override1 , Original, Override1, Object, Kernel, BasicObject]&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;やっぱり、先にincludeするのが子クラスか親クラスによってメソッドの探索順が変わってくるよう。&lt;/p&gt;
+
+&lt;p&gt;このへん、rubyのソース見たら何か分かるのかなーと思ってソースを追ってみたら、そのものズバリのコメントがあった。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="ruby/class.c at 8b0771b0142dffb45dd0d7fc18f6c2868eeb2b3b · ruby/ruby" href="https://github.com/ruby/ruby/blob/8b0771b0142dffb45dd0d7fc18f6c2868eeb2b3b/class.c#L862"&gt;ruby/class.c at 8b0771b0142dffb45dd0d7fc18f6c2868eeb2b3b · ruby/ruby&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;親クラスに&lt;code&gt;include&lt;/code&gt;されているモジュールは子クラスで&lt;code&gt;include&lt;/code&gt;できない仕様となっているよう。
+このコメントと仕様を実現するロジックが加えられたコミットは次になる(Git)。&lt;/p&gt;
+&lt;pre class="highlight text"&gt;commit 6f1c934bc361ec5d01a0b4b1a45d07840af02dc3
+Author: matz &amp;lt;matz@b2dd03c8-39d4-4d8f-98ff-823fe69b080e&amp;gt;
+Date:   Tue Nov 7 08:56:18 2006 +0000
+
+    * class.c (rb_include_module): revert duplicate inclusio
+      modules.  [ruby-dev:29793]
+&lt;/pre&gt;
+&lt;p&gt;ruby-devのスレッドに実装の議論がある。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a title="ruby-dev jp - [ruby-dev:29793] Module duplicate" href="http://ruby.11.x6.nabble.com/ruby-dev-29793-Module-duplicate-td3514439.html"&gt;ruby-dev jp - [ruby-dev:29793] Module duplicate&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </content>
   </entry>
   <entry>
@@ -55,7 +144,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html"/>
     <id>http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html</id>
     <published>2013-11-28T05:57:00Z</published>
-    <updated>2013-11-29T18:31:44+00:00</updated>
+    <updated>2013-11-30T09:25:27+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -98,7 +187,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/22/rails-sass-sourcemap.html"/>
     <id>http://blog.url.com/2013/11/22/rails-sass-sourcemap.html</id>
     <published>2013-11-22T09:46:00Z</published>
-    <updated>2013-11-29T18:31:44+00:00</updated>
+    <updated>2013-11-30T09:25:27+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -236,7 +325,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/22/heroku-hk.html"/>
     <id>http://blog.url.com/2013/11/22/heroku-hk.html</id>
     <published>2013-11-22T03:27:00Z</published>
-    <updated>2013-11-29T18:31:44+00:00</updated>
+    <updated>2013-11-30T09:25:27+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -260,7 +349,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html"/>
     <id>http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html</id>
     <published>2013-11-20T09:06:00Z</published>
-    <updated>2013-11-29T18:31:44+00:00</updated>
+    <updated>2013-11-30T09:25:27+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -278,7 +367,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html"/>
     <id>http://blog.url.com/2013/11/18/polymorphic-includes-joins-eager-loading.html</id>
     <published>2013-11-18T05:40:00Z</published>
-    <updated>2013-11-29T18:31:44+00:00</updated>
+    <updated>2013-11-30T09:25:27+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>

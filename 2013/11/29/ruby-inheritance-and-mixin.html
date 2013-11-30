@@ -72,6 +72,95 @@
 <p>上記リンク、関数検索の優先順位についても書かれていて勉強になる。</p>
 
 <p>今週は作業週だったんだけれど体調を崩してしまって半分くらいしか活動できなかった。kowabanaの開発は勉強になることが多いのでちょともったいない。</p>
+
+<p>[追記:2013-11-30]</p>
+
+<p>上記の動作の原因を追ってみた。まず、<code>Class::ancestor</code>でクラスの継承・Mixin関係を見ることができるみたいなので、子クラス、親クラスの<code>include</code>順、それぞれの場合で見てみる。以前の検証コードよりも簡略化している。</p>
+
+<p>まずは、親クラスに先に<code>include</code>する場合。</p>
+<pre class="highlight ruby"><span class="k">class </span><span class="nc">Original</span>
+  <span class="k">def </span><span class="nf">overridden</span>
+    <span class="s1">&#39;original&#39;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class </span><span class="nc">Successor</span> <span class="o">&lt;</span> <span class="no">Original</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nn">Override1</span>
+  <span class="k">def </span><span class="nf">overridden</span>
+    <span class="s1">&#39;override 1&#39;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1">#親クラスに先にinclude</span>
+<span class="no">Original</span><span class="nf">.class_eval</span> <span class="k">do</span>
+  <span class="kp">include</span> <span class="no">Override1</span>
+<span class="k">end</span>
+
+<span class="no">Successor</span><span class="nf">.class_eval</span> <span class="k">do</span>
+  <span class="kp">include</span> <span class="no">Override1</span>
+<span class="k">end</span>
+
+<span class="no">Original</span><span class="nf">.ancestors</span> <span class="c1"># =&gt; [Original, Override1, Object, Kernel, BasicObject]</span>
+<span class="no">Successor</span><span class="nf">.ancestors</span> <span class="c1"># =&gt; [Successor, Original, Override1, Object, Kernel, BasicObject]</span>
+</pre>
+<p>次に、子クラスに先に<code>include</code>する場合。</p>
+<pre class="highlight ruby"><span class="k">class </span><span class="nc">Original</span>
+  <span class="k">def </span><span class="nf">overridden</span>
+    <span class="s1">&#39;original&#39;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class </span><span class="nc">Successor</span> <span class="o">&lt;</span> <span class="no">Original</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nn">Override1</span>
+  <span class="k">def </span><span class="nf">overridden</span>
+    <span class="s1">&#39;override 1&#39;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1">#子クラスに先にinclude</span>
+<span class="no">Successor</span><span class="nf">.class_eval</span> <span class="k">do</span>
+  <span class="kp">include</span> <span class="no">Override1</span>
+<span class="k">end</span>
+
+<span class="no">Original</span><span class="nf">.class_eval</span> <span class="k">do</span>
+  <span class="kp">include</span> <span class="no">Override1</span>
+<span class="k">end</span>
+
+<span class="no">Original</span><span class="nf">.ancestors</span> <span class="c1"># =&gt; [Original, Override1, Object, Kernel, BasicObject]</span>
+<span class="no">Successor</span><span class="nf">.ancestors</span> <span class="c1"># =&gt; [Successor, Override1, Original, Override1, Object, Kernel, BasicObject]</span>
+</pre>
+<p>Successorの継承関係に注目。</p>
+<pre class="highlight ruby"><span class="c1"># 親クラスに先にinclude</span>
+<span class="no">Successor</span><span class="nf">.ancestors</span> <span class="c1"># =&gt; [Successor, Original, Override1, Object, Kernel, BasicObject]</span>
+<span class="c1"># 子クラスに先にinclude 二つ目のOverride1が追加されている</span>
+<span class="no">Successor</span><span class="nf">.ancestors</span> <span class="c1"># =&gt; [Successor, Override1 , Original, Override1, Object, Kernel, BasicObject]</span>
+</pre>
+<p>やっぱり、先にincludeするのが子クラスか親クラスによってメソッドの探索順が変わってくるよう。</p>
+
+<p>このへん、rubyのソース見たら何か分かるのかなーと思ってソースを追ってみたら、そのものズバリのコメントがあった。</p>
+
+<ul>
+<li><a title="ruby/class.c at 8b0771b0142dffb45dd0d7fc18f6c2868eeb2b3b · ruby/ruby" href="https://github.com/ruby/ruby/blob/8b0771b0142dffb45dd0d7fc18f6c2868eeb2b3b/class.c#L862">ruby/class.c at 8b0771b0142dffb45dd0d7fc18f6c2868eeb2b3b · ruby/ruby</a></li>
+</ul>
+
+<p>親クラスに<code>include</code>されているモジュールは子クラスで<code>include</code>できない仕様となっているよう。
+このコメントと仕様を実現するロジックが加えられたコミットは次になる(Git)。</p>
+<pre class="highlight text">commit 6f1c934bc361ec5d01a0b4b1a45d07840af02dc3
+Author: matz &lt;matz@b2dd03c8-39d4-4d8f-98ff-823fe69b080e&gt;
+Date:   Tue Nov 7 08:56:18 2006 +0000
+
+    * class.c (rb_include_module): revert duplicate inclusio
+      modules.  [ruby-dev:29793]
+</pre>
+<p>ruby-devのスレッドに実装の議論がある。</p>
+
+<ul>
+<li><a title="ruby-dev jp - [ruby-dev:29793] Module duplicate" href="http://ruby.11.x6.nabble.com/ruby-dev-29793-Module-duplicate-td3514439.html">ruby-dev jp - [ruby-dev:29793] Module duplicate</a></li>
+</ul>
 </div>
 
   
