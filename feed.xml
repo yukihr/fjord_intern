@@ -10,17 +10,15 @@
     <name>Blog Author</name>
   </author>
   <entry>
-    <title>Arel興味あれる？</title>
-    <link rel="alternate" href="http://blog.url.com/2013/12/01/im-interasted-in-arel.html"/>
-    <id>http://blog.url.com/2013/12/01/im-interasted-in-arel.html</id>
+    <title>Arel興味あります</title>
+    <link rel="alternate" href="http://blog.url.com/2013/12/01/im-interested-in-arel.html"/>
+    <id>http://blog.url.com/2013/12/01/im-interested-in-arel.html</id>
     <published>2013-11-30T16:01:00Z</published>
-    <updated>2013-11-30T16:42:02+00:00</updated>
+    <updated>2013-11-30T19:29:30+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;p&gt;Arel？あ！Railsのー！あーれーるー! ﾍ(ﾟ∀ﾟﾍ)&lt;/p&gt;
-
-&lt;p&gt;というわけで・・・最近、怖話のissueのこのコメント読んで（すみません、開発参加者以外は見れません・・）&lt;/p&gt;
+    <content type="html">&lt;p&gt;最近、怖話のissueのこのコメント読んで（すみません、開発参加者以外は見れません・・）&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a title="add email notification flags to users by nomnel · Pull Request #626 · fjordllc/kowabana" href="https://github.com/fjordllc/kowabana/pull/626#issuecomment-23762718"&gt;add email notification flags to users by nomnel · Pull Request #626 · fjordllc/kowabana&lt;/a&gt;&lt;/li&gt;
@@ -39,7 +37,7 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;のようなクールなプロダクトを作って見たいのでござる。&lt;/p&gt;
+&lt;p&gt;のようなクールなプロダクトを作れたら素晴らしいなあと。&lt;/p&gt;
 
 &lt;h2 id="toc_0"&gt;参考文献&lt;/h2&gt;
 
@@ -49,7 +47,7 @@
 &lt;li&gt;&lt;a title="第43回　Rails 3を支える名脇役たち その1 - Arel -｜gihyo.jp … 技術評論社" href="http://gihyo.jp/dev/serial/01/ruby/0043?ard=1385828020"&gt;第43回　Rails 3を支える名脇役たち その1 - Arel -｜gihyo.jp … 技術評論社&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id="toc_2"&gt;クエリ組み立てられるようになろう！&lt;/h3&gt;
+&lt;h3 id="toc_2"&gt;クエリ組み立てられるようになろう&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a title="Arelで色んなSQLを組み立ててみる - @ryopeko の何か" href="http://ryopeko.hatenablog.com/entry/20101215/1292373612"&gt;Arelで色んなSQLを組み立ててみる - @ryopeko の何か&lt;/a&gt;&lt;/li&gt;
@@ -62,7 +60,7 @@
 &lt;li&gt;&lt;a title="予習 Rails3 (1) Arel - I am Bad at Math" href="http://d.hatena.ne.jp/badatmath/20100816/1281997015"&gt;予習 Rails3 (1) Arel - I am Bad at Math&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id="toc_3"&gt;使えるようになったなーと思えるようになったら、コードリード、拡張に！&lt;/h3&gt;
+&lt;h3 id="toc_3"&gt;使えるようになったなーと思えるようになったら、コードリード、拡張に挑戦する&lt;/h3&gt;
 
 &lt;p&gt;まずは本家&lt;/p&gt;
 
@@ -77,10 +75,10 @@
 &lt;li&gt;&lt;a title="tkawa/activerecord-endoscope" href="https://github.com/tkawa/activerecord-endoscope"&gt;tkawa/activerecord-endoscope&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;がんばるんばで！&lt;/p&gt;
+&lt;p&gt;がんばるんば&lt;/p&gt;
 
-&lt;p&gt;Arelってあまり「これやべえー！」って記事少ないですね。でも、関係代数を元にSQLを作っちゃうなんてすごくないですかね。
-バズらないのが脇役たる所以かもしれませんが、黒魔術的な魅力と美しい設計に惹かれます。&lt;/p&gt;
+&lt;p&gt;Arel、関係代数を元にSQLを作っちゃうなんてすごいですね。
+黒魔術的な魅力と美しい設計に惹かれています。&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -88,7 +86,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/29/ruby-inheritance-and-mixin.html"/>
     <id>http://blog.url.com/2013/11/29/ruby-inheritance-and-mixin.html</id>
     <published>2013-11-29T12:48:00Z</published>
-    <updated>2013-11-30T16:42:02+00:00</updated>
+    <updated>2013-11-30T19:29:30+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -218,7 +216,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html"/>
     <id>http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html</id>
     <published>2013-11-28T05:57:00Z</published>
-    <updated>2013-11-30T16:42:02+00:00</updated>
+    <updated>2013-11-30T19:29:30+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -261,7 +259,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/22/rails-sass-sourcemap.html"/>
     <id>http://blog.url.com/2013/11/22/rails-sass-sourcemap.html</id>
     <published>2013-11-22T09:46:00Z</published>
-    <updated>2013-11-30T16:42:02+00:00</updated>
+    <updated>2013-11-30T19:29:30+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -399,7 +397,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/22/heroku-hk.html"/>
     <id>http://blog.url.com/2013/11/22/heroku-hk.html</id>
     <published>2013-11-22T03:27:00Z</published>
-    <updated>2013-11-30T16:42:02+00:00</updated>
+    <updated>2013-11-30T19:29:30+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -423,7 +421,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html"/>
     <id>http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html</id>
     <published>2013-11-20T09:06:00Z</published>
-    <updated>2013-11-30T16:42:02+00:00</updated>
+    <updated>2013-11-30T19:29:30+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
