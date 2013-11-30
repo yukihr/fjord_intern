@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/12/01/im-interasted-in-arel.html"/>
     <id>http://blog.url.com/2013/12/01/im-interasted-in-arel.html</id>
     <published>2013-11-30T16:01:00Z</published>
-    <updated>2013-11-30T16:26:56+00:00</updated>
+    <updated>2013-11-30T16:42:02+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -59,6 +59,7 @@
 &lt;li&gt;ArelだけでOUTER JOINもできちゃうんですね！使おう、使っちゃおう！&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a title="Arel::Tableを使ってなるべく生のSQLを書かずに済ます方法 | TechRacho" href="http://techracho.bpsinc.jp/tsunekawa/2013_05_24/8502"&gt;Arel::Tableを使ってなるべく生のSQLを書かずに済ます方法 | TechRacho&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a title="予習 Rails3 (1) Arel - I am Bad at Math" href="http://d.hatena.ne.jp/badatmath/20100816/1281997015"&gt;予習 Rails3 (1) Arel - I am Bad at Math&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id="toc_3"&gt;使えるようになったなーと思えるようになったら、コードリード、拡張に！&lt;/h3&gt;
@@ -77,6 +78,9 @@
 &lt;/ul&gt;
 
 &lt;p&gt;がんばるんばで！&lt;/p&gt;
+
+&lt;p&gt;Arelってあまり「これやべえー！」って記事少ないですね。でも、関係代数を元にSQLを作っちゃうなんてすごくないですかね。
+バズらないのが脇役たる所以かもしれませんが、黒魔術的な魅力と美しい設計に惹かれます。&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -84,7 +88,7 @@
     <link rel="alternate" href="http://blog.url.com/2013/11/29/ruby-inheritance-and-mixin.html"/>
     <id>http://blog.url.com/2013/11/29/ruby-inheritance-and-mixin.html</id>
     <published>2013-11-29T12:48:00Z</published>
-    <updated>2013-11-30T16:26:56+00:00</updated>
+    <updated>2013-11-30T16:42:02+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -214,7 +218,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html"/>
     <id>http://blog.url.com/2013/11/28/rails-helper-sanitize-escape-bad-tags-instead-of-remove.html</id>
     <published>2013-11-28T05:57:00Z</published>
-    <updated>2013-11-30T16:26:56+00:00</updated>
+    <updated>2013-11-30T16:42:02+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -257,7 +261,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/22/rails-sass-sourcemap.html"/>
     <id>http://blog.url.com/2013/11/22/rails-sass-sourcemap.html</id>
     <published>2013-11-22T09:46:00Z</published>
-    <updated>2013-11-30T16:26:56+00:00</updated>
+    <updated>2013-11-30T16:42:02+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -395,7 +399,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/22/heroku-hk.html"/>
     <id>http://blog.url.com/2013/11/22/heroku-hk.html</id>
     <published>2013-11-22T03:27:00Z</published>
-    <updated>2013-11-30T16:26:56+00:00</updated>
+    <updated>2013-11-30T16:42:02+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -419,7 +423,7 @@ Date:   Tue Nov 7 08:56:18 2006 +0000
     <link rel="alternate" href="http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html"/>
     <id>http://blog.url.com/2013/11/20/mavericks-gem-libv8-build-error.html</id>
     <published>2013-11-20T09:06:00Z</published>
-    <updated>2013-11-30T16:26:56+00:00</updated>
+    <updated>2013-11-30T16:42:02+00:00</updated>
     <author>
       <name>Article Author</name>
     </author>
